@@ -33,6 +33,16 @@
 
 
 
+   <style>
+    body{
+       background-image: url(https://images8.alphacoders.com/934/934369.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
 
 <body>
     <header class="navbar-fixed">
@@ -527,12 +537,9 @@
 </li>
 <li><p><strong>题目2</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1017">P1017 进制转换</a></p>
 <ul>
-<li><p>题目描述：读入一个十进制数和一个负进制数的基数, 输出此负进制数</p>
-</li>
-<li><p>背景知识：考虑 $a % b$, 当 $a$ 和 $b$ 不一定为正数时, 其结果正负号与 $a$ 的符号保持一致。且取余结果试图使得其结果的绝对值尽可能的小。如果我们总是想要得到正数的结果, 那么当结果为负时, 我们为结果加 $abs(b)$ 即可。设所求<strong>正余数</strong>为 $a_0$, 其满足$a = b * k + a_0$。</p>
-</li>
-<li><p>解题思路：考虑十进制转换为 m 进制： $x_{10} = a_0 + a_1m^1 + a_2m^2 + … + a_km^k$, 其中 $m$ 都为正数, 那么对于负进制转换, 只需考虑到其中的 $m$ 都为负数即可, 此时就会遇到<strong>负数求模</strong>的情况。由于 $a_0, a_1, …, a_k$ 需要全部为正数, 因此我们只需利用上边的背景知识求解即可。</p>
-</li>
+<li>题目描述：读入一个十进制数和一个负进制数的基数, 输出此负进制数</li>
+<li>背景知识：考虑 $a \% b$, 当 $a$ 和 $b$ 不一定为正数时, 其结果正负号与 $a$ 的符号保持一致。且取余结果试图使得其结果的绝对值尽可能的小。如果我们总是想要得到正数的结果, 那么当结果为负时, 我们为结果加 $abs(b)$ 即可。设所求<strong>正余数</strong>为 $a_0$, 其满足$a = b * k + a_0$。</li>
+<li>解题思路：考虑十进制转换为 m 进制： $x_{10} = a_0 + a_1m^1 + a_2m^2 + … + a_km^k$, 其中 $m$ 都为正数, 那么对于负进制转换, 只需考虑到其中的 $m$ 都为负数即可, 此时就会遇到<strong>负数求模</strong>的情况。由于 $a_0, a_1, …, a_k$ 需要全部为正数, 因此我们只需利用上边的背景知识求解即可。</li>
 <li><p>主要代码：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">while(a)&#123;
     &#x2F;&#x2F; 考虑求余结果的正负性
@@ -546,8 +553,7 @@ while(!s.empty()) &#123;cout&lt;&lt;s.top();s.pop();&#125;<span aria-hidden="tru
 </li>
 <li><p><strong>题目3</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1469">P1469 找筷子</a></p>
 <ul>
-<li><p>题目描述：给出若干数, 除其中的某一个数外, 其他的数都两两出现, 试找出唯一不重的那个数。</p>
-</li>
+<li>题目描述：给出若干数, 除其中的某一个数外, 其他的数都两两出现, 试找出唯一不重的那个数。</li>
 <li><p>解题思路：异或所有的数, 最后得到的数即为唯一不重的数。我们可以将所有重复的数字两两配对并放在最前边, 将他们进行异或, 最后可以得到 0, 再拿 0  与唯一不重复的那个数 $x$ 进行异或, 最后得到 $x$ 本身。原理如下：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 异或运算满足交换律和结合律
 &#x2F;&#x2F; 且
@@ -563,10 +569,8 @@ for(int i &#x3D; 0; i &lt; n; ++i)
 </li>
 <li><p><strong>题目4</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1100">P1100 高低位交换</a></p>
 <ul>
-<li><p>题目描述：给定一个小于 $2^32$ 的正整数, 其在计算机中通过 32 位二进制数的形式存储, 交换其前 16 位二进制数和其后的 16 位二进制数, 得到一个新的正整数, 试求出该正整数。</p>
-</li>
-<li><p>题目思路：我们只需要得到其前 16 位和后 16 位, 然后将其交换位置并合在一起即可。思路有很多, 给出一种体位运算特性较多的思路。假设原数字为 x 我们可以通过 <code>x &amp; 0xffff0000</code> 来得到前 16 位数字, 通过 <code>x &amp; 0x0000ffff</code> 来得到后 16 位数字, 通过移位运算调整两者的位置, 最后将两者相“<strong>或</strong>”, 从而得到答案</p>
-</li>
+<li>题目描述：给定一个小于 $2^{32}$ 的正整数, 其在计算机中通过 32 位二进制数的形式存储, 交换其前 16 位二进制数和其后的 16 位二进制数, 得到一个新的正整数, 试求出该正整数。</li>
+<li>题目思路：我们只需要得到其前 16 位和后 16 位, 然后将其交换位置并合在一起即可。思路有很多, 给出一种体位运算特性较多的思路。假设原数字为 x 我们可以通过 <code>x &amp; 0xffff0000</code> 来得到前 16 位数字, 通过 <code>x &amp; 0x0000ffff</code> 来得到后 16 位数字, 通过移位运算调整两者的位置, 最后将两者相“<strong>或</strong>”, 从而得到答案</li>
 <li><p>主要代码：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 注意无符号整数才包含 2^32 内的正整数
 unsigned int x;
@@ -579,10 +583,8 @@ cout&lt;&lt;(((x &amp; 0xffff0000) &gt;&gt; 16) | ((x &amp; 0x0000ffff) &lt;&lt;
 </li>
 <li><p><strong>题目1</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1866">P1866 编号</a></p>
 <ul>
-<li><p>题目描述：给定 $n$ 个位置, 在每个位置中放置一个数字, 每个位置 $i$ 所允许的数字范围为 $1 \rightarrow maxNumber[i]$, 且每个位置所放数字不能相同, 试确定有几种放置情况。</p>
-</li>
-<li><p>题目思路：首先读取数组 $maxNumber[i]$, 随后将 $maxNumber[i]$ 从小到大进行排序, 随后依次分配数字即可。</p>
-</li>
+<li>题目描述：给定 $n$ 个位置, 在每个位置中放置一个数字, 每个位置 $i$ 所允许的数字范围为 $1 \rightarrow maxNumber[i]$, 且每个位置所放数字不能相同, 试确定有几种放置情况。</li>
+<li>题目思路：首先读取数组 $maxNumber[i]$, 随后将 $maxNumber[i]$ 从小到大进行排序, 随后依次分配数字即可。</li>
 <li><p>主要代码：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for(int i &#x3D; 0; i &lt; n; ++i) cin&gt;&gt;a[i];
 &#x2F;&#x2F; 对数组进行排序, 排序之后位置 i 之前分配的数字必然被包含在 a[i] 中
@@ -604,8 +606,7 @@ for(int i &#x3D; 0; i &lt; n; ++i)&#123;
 </li>
 <li><p><strong>题目2</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2822">P2822 组合数问题</a></p>
 <ul>
-<li><p>题目描述：给出 $n$、$m$, 试求有多少对 $(i, j)$ 满足 ${(i, j) | 0 \leq i \leq n, 0 \leq j \leq min(i, m), k | C_i^j}$。<code>a | b</code> 表示 $b mod a == 0$。题目有多组数据, 每一组数据都会提供一个新的 $n, m$, 但是 $k$ 保持不变。</p>
-</li>
+<li>题目描述：给出 $n$、$m$, 试求有多少对 $(i, j)$ 满足 $\{(i, j) | 0 \leq i \leq n, 0 \leq j \leq min(i, m), k | C_i^j\}$。<code>a | b</code> 表示 $b mod a == 0$。题目有多组数据, 每一组数据都会提供一个新的 $n, m$, 但是 $k$ 保持不变。</li>
 <li><p>背景知识：杨辉三角打表。朴素的组合数求法是利用公式 $C_i^j = \frac{i!}{j!(i-j)!}$, 但是当我们需要用到大量的组合数时, 我们一一求解是不显示的, 因此需要对组合数提前进行打表。组合数有一个<strong>臭蛋公式</strong>：$C_i^j = C_{i-1}^j + C_{i-1}^{j-1}$, 使用该公式进行递推打表, 可以得到杨辉三角, 也即组合数表。代码如下：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; a[i][j] 表示 i 个物体中挑选 j 个物体的组合数
 void init(void)&#123;
@@ -616,8 +617,7 @@ void init(void)&#123;
         &#125;
     &#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><p>题目思路：使用<strong>打表 + 前缀和</strong>的方法。首先对杨辉三角进行打表, 随后由于 $k$ 值固定, 我们预先对所有的 $(i, j)$ 是否满足题目条件进行判定, 并使用数组 $b[maxn][maxn]$ 存储判定结果, $b[p][q]$ 表示所有满足 $i \leq p, j \leq q, k | C_i^j$ 的 $(i, j)$ 对儿的个数。那么对于每次查询可以使用 $O(1)$ 的时间复杂度解决问题。</p>
-</li>
+<li>题目思路：使用<strong>打表 + 前缀和</strong>的方法。首先对杨辉三角进行打表, 随后由于 $k$ 值固定, 我们预先对所有的 $(i, j)$ 是否满足题目条件进行判定, 并使用数组 $b[maxn][maxn]$ 存储判定结果, $b[p][q]$ 表示所有满足 $i \leq p, j \leq q, k | C_i^j$ 的 $(i, j)$ 对儿的个数。那么对于每次查询可以使用 $O(1)$ 的时间复杂度解决问题。</li>
 <li><p>主要代码：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void init(int k)&#123;
     &#x2F;&#x2F; 模拟杨辉三角打表
@@ -644,10 +644,8 @@ void init(void)&#123;
 </li>
 <li><p><strong>题目3</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2789">P2789 直线交点数</a></p>
 <ul>
-<li><p>题目描述：平面上有N条直线，且无三线共点，那么这些直线能有多少<strong>种</strong>不同的交点数？</p>
-</li>
-<li><p>题目思路：求出所有的相交情况, 求出每种相交情况的交点个数, 由于不同的相交情况可能有相同的交点数, 因此需要对交点数进行标记, 防止重复统计, 最后统计被标记的交点个数。使用动态规划思想考虑相交情况, 假设目前有 $n$ 条线, 该 $n$ 条线中有 $i$ 条直线平行, 而其余的直线与该 $i$ 条直线相交, 令 $dp[n]$ 表示 $n$ 条直线的情况, 则有 $dp[n] = \sum_{i=1}^{n}(i*(n-i)+dp[n-i])$</p>
-</li>
+<li>题目描述：平面上有N条直线，且无三线共点，那么这些直线能有多少<strong>种</strong>不同的交点数？</li>
+<li>题目思路：求出所有的相交情况, 求出每种相交情况的交点个数, 由于不同的相交情况可能有相同的交点数, 因此需要对交点数进行标记, 防止重复统计, 最后统计被标记的交点个数。使用动态规划思想考虑相交情况, 假设目前有 $n$ 条线, 该 $n$ 条线中有 $i$ 条直线平行, 而其余的直线与该 $i$ 条直线相交, 令 $dp[n]$ 表示 $n$ 条直线的情况, 则有 $dp[n] = \sum_{i=1}^{n}(i*(n-i)+dp[n-i])$</li>
 <li><p>主要代码：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 第一个参数表示有 n 条直线的状态
 &#x2F;&#x2F; 第二个参数表示此时的交点数目
@@ -665,10 +663,8 @@ cout&lt;&lt;ans&lt;&lt;endl;<span aria-hidden="true" class="line-numbers-rows"><
 </li>
 <li><p><strong>题目四</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3913">P3913 车的攻击</a></p>
 <ul>
-<li><p>题目描述：$N\times N$ 的国际象棋棋盘上有 $K$ 个车, 给出 $K$ 个车的位置, 求至少被一个车攻击的格子数目。(车可以攻击同一行或同一列的格子)</p>
-</li>
-<li><p>题目思路：将棋盘上的车投影到第一行和第一列中, 假设投影之后第一行有 $a$ 个车, 第一列有 $b$ 个车, 被攻击的格子数有 $a\times N + b\times N - a\times b$。说起投影, 第一反应是使用一个 $vis$ 数组, 但是本体 $N$ 的数据范围为 1e9, 因此会 MLE。我采用的是哈希表解决该问题, 使用 STL 中的 sort 和 unique()(去重函数) 也可以解决该问题</p>
-</li>
+<li>题目描述：$N\times N$ 的国际象棋棋盘上有 $K$ 个车, 给出 $K$ 个车的位置, 求至少被一个车攻击的格子数目。(车可以攻击同一行或同一列的格子)</li>
+<li>题目思路：将棋盘上的车投影到第一行和第一列中, 假设投影之后第一行有 $a$ 个车, 第一列有 $b$ 个车, 被攻击的格子数有 $a\times N + b\times N - a\times b$。说起投影, 第一反应是使用一个 $vis$ 数组, 但是本体 $N$ 的数据范围为 1e9, 因此会 MLE。我采用的是哈希表解决该问题, 使用 STL 中的 sort 和 unique()(去重函数) 也可以解决该问题</li>
 <li><p>主要代码：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 采用哈希表的方式进行投影
 &#x2F;&#x2F; num 表示在第一行(列)上车的投影个数
@@ -698,10 +694,8 @@ int main()&#123;
 </li>
 <li><p><strong>题目5</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2638">P2638 安全系统</a></p>
 <ul>
-<li><p>题目描述：有 $n$ 个连续存储区, 每一个存储区可以存储任意个数的 0 或 1, 现给出 $a$ 个 0, 以及 $b$ 个 1, 将其存储在存储区中(无需使用全部的 0 和 1), 问有多少种存储方式。</p>
-</li>
-<li><p>题目思路：我们可以发现存储 0 和存储 1 之间并不相关。因此我们只需分别枚举存储 0 的情况和存储 1 的情况, 然后将其相乘即可。首先考虑如何存储 0, 将 $i$ 个 0 平均分到 $n$ 个区域中, 且允许区域为空, 我们可以使用升级版的<strong>插板法</strong>, 可以求得有 $C_{a+n-1}^{n-1}$ 种情况。分配 1 的情况同理。</p>
-</li>
+<li>题目描述：有 $n$ 个连续存储区, 每一个存储区可以存储任意个数的 0 或 1, 现给出 $a$ 个 0, 以及 $b$ 个 1, 将其存储在存储区中(无需使用全部的 0 和 1), 问有多少种存储方式。</li>
+<li>题目思路：我们可以发现存储 0 和存储 1 之间并不相关。因此我们只需分别枚举存储 0 的情况和存储 1 的情况, 然后将其相乘即可。首先考虑如何存储 0, 将 $i$ 个 0 平均分到 $n$ 个区域中, 且允许区域为空, 我们可以使用升级版的<strong>插板法</strong>, 可以求得有 $C_{a+n-1}^{n-1}$ 种情况。分配 1 的情况同理。</li>
 <li><p>主要代码：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">generate(max(a+n, b+n));    &#x2F;&#x2F; 对组合数进行打表
 for(int i &#x3D; 0; i &lt;&#x3D; a; ++i)&#123;&#x2F;&#x2F; 枚举放入多少个 0
@@ -713,10 +707,8 @@ for(int i &#x3D; 0; i &lt;&#x3D; a; ++i)&#123;&#x2F;&#x2F; 枚举放入多少个
 </li>
 <li><p><strong>题目6</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1246">1246 编码</a></p>
 <ul>
-<li><p>题目描述：有 26 个字母, 将其组合成特殊的单词, 这些单词中的字母按照严格升序的顺序进行严格排序, 得到$a,b,…,z,ab,ac,…,az,…,yz,…abc,…$ 的一系列单词, 将这些单词按照其在序列中的顺序从 1 开始进行编号。现给定一个特殊单词, 求出它的编号。</p>
-</li>
-<li><p>解题思路：这道题是使用一个巧妙的组合思想来求解的。假设给定单词为 $dgz$, 我们只需求出其前边有几个单词再加 1 即可。该单词有 3 位, 我们先找出 2 位的单词和 1 位的单词有多少个, 对于 2 位的单词, 我们知道其不会有重复的, 并且其固定按照升序排序, 因此可以转换成在 26 个字母中挑出 2 个字母的问题, 其值为 $C_{26}^2$, 1 位数的单词同理, 接下来我们只需考虑在其之前三位数的单词的个数即可。我们可以接着考虑以 $a、b、c$ 开头的三位数单词的个数, 随后考虑以 $de、df$ 开头的单词的个数, 依次类推。最后将所有单词加起来再加一就是目标单词的编号。</p>
-</li>
+<li>题目描述：有 26 个字母, 将其组合成特殊的单词, 这些单词中的字母按照严格升序的顺序进行严格排序, 得到$a,b,…,z,ab,ac,…,az,…,yz,…abc,…$ 的一系列单词, 将这些单词按照其在序列中的顺序从 1 开始进行编号。现给定一个特殊单词, 求出它的编号。</li>
+<li>解题思路：这道题是使用一个巧妙的组合思想来求解的。假设给定单词为 $dgz$, 我们只需求出其前边有几个单词再加 1 即可。该单词有 3 位, 我们先找出 2 位的单词和 1 位的单词有多少个, 对于 2 位的单词, 我们知道其不会有重复的, 并且其固定按照升序排序, 因此可以转换成在 26 个字母中挑出 2 个字母的问题, 其值为 $C_{26}^2$, 1 位数的单词同理, 接下来我们只需考虑在其之前三位数的单词的个数即可。我们可以接着考虑以 $a、b、c$ 开头的三位数单词的个数, 随后考虑以 $de、df$ 开头的单词的个数, 依次类推。最后将所有单词加起来再加一就是目标单词的编号。</li>
 <li><p>主要代码：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 用于得到组合数, 此处非打表
 LL c(LL n, LL m)&#123;
@@ -748,10 +740,8 @@ cout&lt;&lt;ans+1&lt;&lt;endl;<span aria-hidden="true" class="line-numbers-rows"
 </li>
 <li><p><strong>题目1</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3383">P3383 线性筛素数</a></p>
 <ul>
-<li><p>题目描述：给出 $q$ 个查询, 每次要求输出第 $k_i$ 小的素数</p>
-</li>
-<li><p>解题思路：欧拉筛、埃氏筛都可以使用</p>
-</li>
+<li>题目描述：给出 $q$ 个查询, 每次要求输出第 $k_i$ 小的素数</li>
+<li>解题思路：欧拉筛、埃氏筛都可以使用</li>
 <li><p>主要代码：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 埃氏筛思想：从小到大逐个得到小于 n 的质数
 &#x2F;&#x2F; 每得到一个质数，就将 n 以内该质数的所有倍数筛去
@@ -1417,6 +1407,11 @@ $(function () {
 
     <!--腾讯兔小巢-->
     
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
     
 
     

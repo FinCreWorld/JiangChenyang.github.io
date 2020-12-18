@@ -33,6 +33,16 @@
 
 
 
+   <style>
+    body{
+       background-image: url(https://images8.alphacoders.com/934/934369.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
 
 <body>
     <header class="navbar-fixed">
@@ -581,8 +591,7 @@ int dfs(int p)&#123;
     vis[p] &#x3D; mx + t[p]; &#x2F;&#x2F; 记录完成杂务 p 所需时间
     return vis[p];
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><p>相似题型：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4017">P4017最大食物链计数</a>该题求一个有向无环图中从头至尾链的数目，用的同样是 dfs 的思想来解决拓扑排序的问题。</p>
-</li>
+<li>相似题型：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4017">P4017最大食物链计数</a>该题求一个有向无环图中从头至尾链的数目，用的同样是 dfs 的思想来解决拓扑排序的问题。</li>
 </ul>
 <h2 id="P1807-最长路（dfs查找固定起点和终点的最长路径）"><a href="#P1807-最长路（dfs查找固定起点和终点的最长路径）" class="headerlink" title="P1807_最长路（dfs查找固定起点和终点的最长路径）"></a>P1807_最长路（dfs查找固定起点和终点的最长路径）</h2><ul>
 <li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1807">题目链接</a></p>
@@ -614,16 +623,11 @@ int dfs(int p)&#123;
 </li>
 <li><p>基础知识：该题是一道求<strong>欧拉通路</strong>的题。由于我离散数学学的不是很好，因此还不得不百度了一下如何求欧拉通路QAQ。因此需要明确一些欧拉通路的概念。</p>
 <ul>
-<li><p><strong>欧拉通路</strong>：通过图中的每条边且仅通过一次，并且通过每一个顶点的路径</p>
-</li>
-<li><p><strong>欧拉回路</strong>：通过图中的每条边且仅通过一次，并且通过每一个顶点的回路</p>
-</li>
-<li><p><strong>判断欧拉通路是否存在</strong>：对于无向图，该图必须联通，有且仅有两个顶点的度数为奇数，其余顶点的度数为偶数，且该两个顶点为欧拉通路的两端；对于有向图，该有向图的基图需联通（将所有有向边变为无向边），有且仅有两个顶点的出度和入度不相等，且一个顶点的出度比入读大 1（通路起点），一个顶点的入读比出度大 1（通路终点），其他所有顶点出度和入度相同。</p>
-</li>
-<li><p><strong>判断欧拉回路是否存在</strong>：对于无向图，其所有顶点的度数都为偶数；对于有向图，其所有顶点的出度和入读相同。<br>  <img src="/2020/12/18/ji-chu-tu-shang-wen-ti-xiao-jie/my_program\vscode\cpp_source\data_structure\graph\euler.PNG" alt="euler_step"></p>
-</li>
-<li><p><strong>求解欧拉通路/回路的步骤</strong>：</p>
-<ul>
+<li><strong>欧拉通路</strong>：通过图中的每条边且仅通过一次，并且通过每一个顶点的路径</li>
+<li><strong>欧拉回路</strong>：通过图中的每条边且仅通过一次，并且通过每一个顶点的回路</li>
+<li><strong>判断欧拉通路是否存在</strong>：对于无向图，该图必须联通，有且仅有两个顶点的度数为奇数，其余顶点的度数为偶数，且该两个顶点为欧拉通路的两端；对于有向图，该有向图的基图需联通（将所有有向边变为无向边），有且仅有两个顶点的出度和入度不相等，且一个顶点的出度比入读大 1（通路起点），一个顶点的入读比出度大 1（通路终点），其他所有顶点出度和入度相同。</li>
+<li><strong>判断欧拉回路是否存在</strong>：对于无向图，其所有顶点的度数都为偶数；对于有向图，其所有顶点的出度和入读相同。<br>  <img src="/2020/12/18/ji-chu-tu-shang-wen-ti-xiao-jie/Euler.PNG" alt="euler_step"></li>
+<li><strong>求解欧拉通路/回路的步骤</strong>：<ul>
 <li>注：此处仅以<strong>有向图的欧拉通路</strong>为例，并且假设通路起点入读为 0，出度为 1，终点出度为 0，入读为 1。在我们的遍历过程中，我们每从一个顶点出发，该顶点的出度 -1，每进入一个顶点，该顶点的入读 -1。</li>
 <li><strong>step1</strong>：首先我们可以轻易的<strong>确定欧拉通路的开始顶点</strong>，如上图所示，开始顶点为 <code>A</code>，随后我们以 <code>A</code> 为起点开始dfs。如 <code>step1</code>，假设我们访问到了顶点 <code>H</code>，若 <code>H</code> 非回路终点，那么由于<strong>出度与入读相同</strong>，则其必有一条边可以使我们继续向下访问，接下来我们访问到点 <code>I</code>，若 <code>I</code> 同样不是通路终点，则我们同样一定可以继续走下去。</li>
 <li><strong>step2</strong>：我们将如同step1中所示持续向下访问，直到我们到达<strong>通路终点</strong> <code>Z</code>，由于其出度为 0，我们无法继续向下访问，此时我们可以得到一条路径<code>&quot;A-&gt;H-&gt;I-&gt;Y-&gt;Z&quot;</code>，通常情况下此条路径无法遍历有向图中所有的顶点，因此我们需要继续拓展到其他的点。</li>
@@ -784,7 +788,7 @@ bool dfs(int x, int y, int lx, int ly)&#123;
 </li>
 <li><p>题目描述：有编号从 1 到 n 的火车站，不同的站点有不同的登记。火车会在其经过的某些火车站停下，如果火车站在序列为{$a_1,a_2,a_3,…,a_k$}的车站中停下，则从首发站 $a_1$ 到终点站 $a_k$ 中的所有<strong>没有停下的车站</strong>的级别都低于停下的车站{$a_1,a_2,a_3,…,a_k$}。现给出 m 个火车的航站表（每个表中包含了第 i 趟火车所有停下的车站），试确定所划分级别的最小数目。</p>
 </li>
-<li><p>解题思路：首先根据航站表建图，根据已确定的等级关系所建的图找出图中最长路径即可。详情见题目<a href="P1113_%E6%9D%82%E5%8A%A1%EF%BC%88dfs%E6%9F%A5%E6%89%BE%E5%9B%BA%E5%AE%9A%E7%BB%88%E7%82%B9%E7%9A%84%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%EF%BC%89">杂务</a>。本题的一个小难点在于如何根据航展表建图，建图部分代码如下：</p>
+<li><p>解题思路：首先根据航站表建图，根据已确定的等级关系所建的图找出图中最长路径即可。详情见题目<a href="P1113_杂务（dfs查找固定终点的最长路径）">杂务</a>。本题的一个小难点在于如何根据航展表建图，建图部分代码如下：</p>
   <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; bool vis[maxn] 记录停下的站点
 &#x2F;&#x2F; bool g[maxn][maxn] 记录已经加的边
 void input()&#123;
@@ -1443,6 +1447,11 @@ $(function () {
 
     <!--腾讯兔小巢-->
     
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
     
 
     

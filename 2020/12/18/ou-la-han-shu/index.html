@@ -33,6 +33,16 @@
 
 
 
+   <style>
+    body{
+       background-image: url(https://images8.alphacoders.com/934/934369.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
 
 <body>
     <header class="navbar-fixed">
@@ -548,14 +558,20 @@ int Euler(int n, int *pri)&#123;
 <h2 id="欧拉函数-Euler’s-totient-function-的定义"><a href="#欧拉函数-Euler’s-totient-function-的定义" class="headerlink" title="欧拉函数(Euler’s totient function)的定义"></a>欧拉函数(Euler’s totient function)的定义</h2><p>使用 $\phi(x)$ 来代表欧拉函数，其表示的是小于等于 $x$ 和 $x$ 互质的数的个数。根据定义我们可以知道 $\phi(1) = 1$，当 $p$ 为质数时 $\phi(p) = p-1$。注意，1 与任何数都互质。</p>
 <h2 id="欧拉函数的性质"><a href="#欧拉函数的性质" class="headerlink" title="欧拉函数的性质"></a>欧拉函数的性质</h2><ul>
 <li>欧拉函数是积性函数<br>  欧拉函数为积性函数是指当 $a$, $b$ 两个数互质时，即 $gcd(a, b) = 1$，$\phi(a \times b)= \phi(a) \times \phi(b)$<br>  特别的，当 $n$ 为奇数时，$\phi(2n) = \phi(n)$</li>
-<li>$n = \sum_{d|n}\phi(d)$<br>  上述公式可以解释为所有 $n$ 的因数的欧拉函数的和为 $n$ 本身。可以使用<a target="_blank" rel="noopener" href="https://oi-wiki.org/math/mobius/">莫比乌斯反演</a>来证明，然而我不会。此处使用其他方法证明。<br>  <strong>条件一</strong>：如果 $gcd(k, n) = d$，即 $k$ 与 $n$ 的最大公因数为 $d$，那么当 $k$ 与 $n$ 同时除以 $d$ 时（$k$ 和 $n$ 一定可以整除 $d$），$\frac{k}{d}$ 与 $\frac{n}{d}$ 互质。有 $gcd(\frac{k}{d},\frac{n}{d}) = 1$<br>  <strong>条件二</strong>：如果令 $f(x)$ 表示满足 $gcd(k, n) = x$ 的 $k$ 的个数，即 $f(x)$ 为所有小于等于 $n$ 的数中和 $n$ 的最大公倍数为 $x$ 的数的个数，那么有$$n = f(1) + f(2) + f(3) + … + f(n) = \sum_{i=1}^{n}f(i)$$其原因在于，对于任意从 1 到 $n$ 之间的数字 $m$，$m$ 只可能与 $n$ 有唯一的一个最大公因数 $i$，且 $i \leq n$，那么我们只需枚举从 1 到 $n$ 中所有的数字 $i$ 作为最大公因数，并累加 $f(i)$，其就代表枚举了 $m$ 从 1 到 $n$ 的所有情况，故 $\sum_{i=1}^n f(x) = n$<br>  &emsp;<br>  根据上述两个条件，我们可以找到 $f(x)$ 定义的等价形式，即$f(x)$ 表示满足 $gcd(\frac{k}{x}, \frac{n}{x}) = 1$ 的 $k$ 的个数，把 $\frac{k}{x}$ 看做 $k$，则 $f(x)$ 表示满足 $gcd(k, \frac{n}{x}) = 1$ 的 $k$ 的个数，根据欧拉函数的定义，可以发现 $f(x) = \phi(\frac{n}{x})$。<br>  这时有 $n = \sum_{i=1}^{n}f(i) = \sum_{i=1}^{n}\phi(\frac{n}{i}) =\sum_{d|n}\phi(d))$。</li>
+<li>$n = \sum_{d|n}\phi(d)$<br>  上述公式可以解释为所有 $n$ 的因数的欧拉函数的和为 $n$ 本身。可以使用<a target="_blank" rel="noopener" href="https://oi-wiki.org/math/mobius/">莫比乌斯反演</a>来证明，然而我不会。此处使用其他方法证明。<br>  <strong>条件一</strong>：如果 $gcd(k, n) = d$，即 $k$ 与 $n$ 的最大公因数为 $d$，那么当 $k$ 与 $n$ 同时除以 $d$ 时（$k$ 和 $n$ 一定可以整除 $d$），$\frac{k}{d}$ 与 $\frac{n}{d}$ 互质。有 $gcd(\frac{k}{d},\frac{n}{d}) = 1$<br>  <strong>条件二</strong>：如果令 $f(x)$ 表示满足 $gcd(k, n) = x$ 的 $k$ 的个数，即 $f(x)$ 为所有小于等于 $n$ 的数中和 $n$ 的最大公倍数为 $x$ 的数的个数，那么有<script type="math/tex">n = f(1) + f(2) + f(3) + ... + f(n) = \sum_{i=1}^{n}f(i)</script>其原因在于，对于任意从 1 到 $n$ 之间的数字 $m$，$m$ 只可能与 $n$ 有唯一的一个最大公因数 $i$，且 $i \leq n$，那么我们只需枚举从 1 到 $n$ 中所有的数字 $i$ 作为最大公因数，并累加 $f(i)$，其就代表枚举了 $m$ 从 1 到 $n$ 的所有情况，故 $\sum_{i=1}^n f(x) = n$<br>  &emsp;<br>  根据上述两个条件，我们可以找到 $f(x)$ 定义的等价形式，即$f(x)$ 表示满足 $gcd(\frac{k}{x}, \frac{n}{x}) = 1$ 的 $k$ 的个数，把 $\frac{k}{x}$ 看做 $k$，则 $f(x)$ 表示满足 $gcd(k, \frac{n}{x}) = 1$ 的 $k$ 的个数，根据欧拉函数的定义，可以发现 $f(x) = \phi(\frac{n}{x})$。<br>  这时有 $n = \sum_{i=1}^{n}f(i) = \sum_{i=1}^{n}\phi(\frac{n}{i}) =\sum_{d|n}\phi(d))$。</li>
 <li>若 $n = p^k$，且 $p$ 为质数，那么 $\phi(n) = p^k-p^{k-1}$。原因是从 1 到 $n$ 中所有与 $n$ 不互质的数的个数有 $n/p = n^p/p = p^{k-1}$ 个，故与 $n$ 互质的数的个数有 $n-p^{k-1}=p^k-p^{k-1}$ 个。</li>
 <li>由唯一分解定理，设 $n=\prod_{i=1}^n{p_i^{k_i}}$，由于 $\phi(n)$ 为积性函数，故</li>
 </ul>
-<p>$$<br>\begin{aligned}<br>phi(n) =&amp; \prod_{i=1}^n\phi(p_i^{k_i})\<br>=&amp; \prod_{i=1}^n(p^k-p^{k-1})\<br>=&amp; \prod_{i=1}^np_i^k(1-\frac{1}{p_i})\<br>=&amp; \prod_{i=1}^np_i^k\times\prod_{i=1}^n(1-\frac{1}{p_i})\<br>=&amp; n\times\prod_{i=1}^n(1-\frac{1}{p_i})<br>\end{aligned}<br>$$</p>
-<p>我们可以得到欧拉函数的对应公式：</p>
-<p>$$<br>\phi(n) = n \times \prod_{i=1}^n(1-\frac{1}{p_i})<br>$$</p>
-<h2 id="求出单个欧拉函数的值"><a href="#求出单个欧拉函数的值" class="headerlink" title="求出单个欧拉函数的值"></a>求出单个欧拉函数的值</h2><p>我们可以简单的根据上述欧拉公式来求得单个欧拉函数的值：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+phi(n) =& \prod_{i=1}^n\phi(p_i^{k_i})\\
+=& \prod_{i=1}^n(p^k-p^{k-1})\\
+=& \prod_{i=1}^np_i^k(1-\frac{1}{p_i})\\
+=& \prod_{i=1}^np_i^k\times\prod_{i=1}^n(1-\frac{1}{p_i})\\
+=& n\times\prod_{i=1}^n(1-\frac{1}{p_i})
+\end{aligned}</script><p>我们可以得到欧拉函数的对应公式：</p>
+<script type="math/tex; mode=display">
+\phi(n) = n \times \prod_{i=1}^n(1-\frac{1}{p_i})</script><h2 id="求出单个欧拉函数的值"><a href="#求出单个欧拉函数的值" class="headerlink" title="求出单个欧拉函数的值"></a>求出单个欧拉函数的值</h2><p>我们可以简单的根据上述欧拉公式来求得单个欧拉函数的值：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int euler_phi(int x)&#123;
     int ans &#x3D; n;
     for(int i &#x3D; 2; i * i &lt;&#x3D; n; ++i)&#123;
@@ -582,10 +598,17 @@ int Euler(int n, int *pri)&#123;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们通过欧拉筛来线性求解多个欧拉函数的值。首先需要进行公式推导:</p>
 <p>在欧拉筛的过程中，每一个合数都是被其最小因数筛掉的，我们设该最小因数为 $p_1$，剩余部分为 $n’$，两者满足关系 $p_1*n’=n$。<br>考虑 $n’$ 的两种情况，如果 $n’ \bmod p_1 = 0$，则 $n’$ 包含了 $n$ 的全部质因子。</p>
-<p>$$<br>\begin{aligned}<br>\phi(n) =&amp; n \times \prod_{i=1}^n{\frac{p_i-1}{p_i}}\<br>=&amp;p_1\times n’ \times \prod_{i=1}^n{\frac{p_i-1}{p_i}}\<br>=&amp;p_1\times \phi(n’)<br>\end{aligned}<br>$$</p>
-<p>如果 $n’ \bmod p_1 \neq 0$，则 $p_1$ 和 $n’$ 互质，根据欧拉函数的性质有</p>
-<p>$$<br>\begin{aligned}<br>\phi(n) =&amp; \phi(n’) \times \phi(p_1)\<br>=&amp; \phi(n’) \times (p_1 - 1)<br>\end{aligned}<br>$$</p>
-<p>据此，我们可以在通过欧拉筛得到质数的同时得到欧拉函数</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\phi(n) =& n \times \prod_{i=1}^n{\frac{p_i-1}{p_i}}\\
+=&p_1\times n' \times \prod_{i=1}^n{\frac{p_i-1}{p_i}}\\
+=&p_1\times \phi(n')
+\end{aligned}</script><p>如果 $n’ \bmod p_1 \neq 0$，则 $p_1$ 和 $n’$ 互质，根据欧拉函数的性质有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\phi(n) =& \phi(n') \times \phi(p_1)\\
+=& \phi(n') \times (p_1 - 1)
+\end{aligned}</script><p>据此，我们可以在通过欧拉筛得到质数的同时得到欧拉函数</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int euler(int n, int* phi, int* pri)&#123;
     phi[1] &#x3D; 1;
     for(int i &#x3D; 2; i &lt;&#x3D; n; ++i)&#123;
@@ -1211,6 +1234,11 @@ $(function () {
 
     <!--腾讯兔小巢-->
     
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
     
 
     
