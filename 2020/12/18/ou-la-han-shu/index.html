@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 蒋晨阳,acm">
+    <meta name="keywords" content="欧拉函数, 蒋晨阳,acm">
     <meta name="description" content="蒋晨阳的小博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | 十卷书舍</title>
+    <title>欧拉函数 | 十卷书舍</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">欧拉函数</h1>
                 </div>
             </div>
         </div>
@@ -457,14 +457,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    75
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -479,16 +479,38 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+                <h1 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h1><p>[TOC]</p>
+<blockquote>
+<p>本来好好的刷着排列组合的题目鬼知道怎么蹦出来了一个欧拉函数的题，以前也没有接触过，那就只能学一学喽</p>
+</blockquote>
+<p><strong>整理自<a target="_blank" rel="noopener" href="https://oi-wiki.org/math/euler/">oi-wiki-欧拉函数</a></strong></p>
+<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>当需要求取多个数的欧拉函数时，需要借助<strong>埃氏筛</strong>和<strong>欧拉筛</strong>的相关思想。</p>
+<h3 id="埃氏筛-Eratosthenes"><a href="#埃氏筛-Eratosthenes" class="headerlink" title="埃氏筛(Eratosthenes)"></a>埃氏筛(Eratosthenes)</h3><p>时间复杂度为 $O(nlglgn)$，<del>我不会证QAQ</del></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 埃氏筛思想：从小到大逐个得到小于 n 的质数</span></span><br><span class="line"><span class="comment">// 每得到一个质数，就将 n 以内该质数的所有倍数筛去</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Eratosthenes</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *pri)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;    <span class="comment">// 满足该条件说明 i 为质数</span></span><br><span class="line">            pri[cnt++] = i;</span><br><span class="line">            <span class="comment">// 筛去所有质数的倍数</span></span><br><span class="line">            <span class="comment">// 对于 k * i，当 k &lt; i 时该数已经被 k 筛去</span></span><br><span class="line">            <span class="comment">// 故 k 从 i 开始</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = i * i * <span class="number">1l</span>l; j &lt;= n; j += i)</span><br><span class="line">                vis[j] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h3><p>时间复杂度为 $O(n)$，每一个数仅被访问一次</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 欧拉筛思想：枚举从 1 到 n 的所有数 i</span></span><br><span class="line"><span class="comment">// 使 i 乘上所有已求得的质数筛去合数</span></span><br><span class="line"><span class="comment">// 通过最小因子的思想进行线性优化，即每一个数都被其最小因子筛掉，而不是被其他因子筛掉</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Euler</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *pri)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">2</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i]) pri[cnt++] = i; <span class="comment">// 满足该条件说明 i 为质数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cnt; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">1l</span>l * pri[j] * i &gt; n) <span class="keyword">break</span>;</span><br><span class="line">            vis[i * pri[j]] = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 下面的代码是优化的核心</span></span><br><span class="line">            <span class="comment">// 对于 i * pri[j]，若 i % pri[j] == 0</span></span><br><span class="line">            <span class="comment">// 则 i = pri[j] * n&#x27;</span></span><br><span class="line">            <span class="comment">// 那么对于 i * pri[k]，k &gt; j</span></span><br><span class="line">            <span class="comment">// i * pri[k] = pri[j] * n&#x27; * pri[k] = pri[j] * (n&#x27; * pri[k])</span></span><br><span class="line">            <span class="comment">// 其中 pri[j] 是 i * pri[k] 的最小因子</span></span><br><span class="line">            <span class="comment">// 数 i * pri[k] 在之后会通过 pri[j] * (n&#x27; * pri[k]) 筛掉，无需在此处筛去</span></span><br><span class="line">            <span class="keyword">if</span>(i % pri[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="欧拉函数-Euler’s-totient-function-的定义"><a href="#欧拉函数-Euler’s-totient-function-的定义" class="headerlink" title="欧拉函数(Euler’s totient function)的定义"></a>欧拉函数(Euler’s totient function)的定义</h2><p>使用 $\phi(x)$ 来代表欧拉函数，其表示的是小于等于 $x$ 和 $x$ 互质的数的个数。根据定义我们可以知道 $\phi(1) = 1$，当 $p$ 为质数时 $\phi(p) = p-1$。注意，1 与任何数都互质。</p>
+<h2 id="欧拉函数的性质"><a href="#欧拉函数的性质" class="headerlink" title="欧拉函数的性质"></a>欧拉函数的性质</h2><ul>
+<li>欧拉函数是积性函数<br>  欧拉函数为积性函数是指当 $a$, $b$ 两个数互质时，即 $gcd(a, b) = 1$，$\phi(a \times b)= \phi(a) \times \phi(b)$<br>  特别的，当 $n$ 为奇数时，$\phi(2n) = \phi(n)$</li>
+<li>$n = \sum_{d|n}\phi(d)$<br>  上述公式可以解释为所有 $n$ 的因数的欧拉函数的和为 $n$ 本身。可以使用<a target="_blank" rel="noopener" href="https://oi-wiki.org/math/mobius/">莫比乌斯反演</a>来证明，然而我不会。此处使用其他方法证明。<br>  <strong>条件一</strong>：如果 $gcd(k, n) = d$，即 $k$ 与 $n$ 的最大公因数为 $d$，那么当 $k$ 与 $n$ 同时除以 $d$ 时（$k$ 和 $n$ 一定可以整除 $d$），$\frac{k}{d}$ 与 $\frac{n}{d}$ 互质。有 $gcd(\frac{k}{d},\frac{n}{d}) = 1$<br>  <strong>条件二</strong>：如果令 $f(x)$ 表示满足 $gcd(k, n) = x$ 的 $k$ 的个数，即 $f(x)$ 为所有小于等于 $n$ 的数中和 $n$ 的最大公倍数为 $x$ 的数的个数，那么有$$n = f(1) + f(2) + f(3) + … + f(n) = \sum_{i=1}^{n}f(i)$$其原因在于，对于任意从 1 到 $n$ 之间的数字 $m$，$m$ 只可能与 $n$ 有唯一的一个最大公因数 $i$，且 $i \leq n$，那么我们只需枚举从 1 到 $n$ 中所有的数字 $i$ 作为最大公因数，并累加 $f(i)$，其就代表枚举了 $m$ 从 1 到 $n$ 的所有情况，故 $\sum_{i=1}^n f(x) = n$<br>  &emsp;<br>  根据上述两个条件，我们可以找到 $f(x)$ 定义的等价形式，即$f(x)$ 表示满足 $gcd(\frac{k}{x}, \frac{n}{x}) = 1$ 的 $k$ 的个数，把 $\frac{k}{x}$ 看做 $k$，则 $f(x)$ 表示满足 $gcd(k, \frac{n}{x}) = 1$ 的 $k$ 的个数，根据欧拉函数的定义，可以发现 $f(x) = \phi(\frac{n}{x})$。<br>  这时有 $n = \sum_{i=1}^{n}f(i) = \sum_{i=1}^{n}\phi(\frac{n}{i}) =\sum_{d|n}\phi(d))$。</li>
+<li>若 $n = p^k$，且 $p$ 为质数，那么 $\phi(n) = p^k-p^{k-1}$。原因是从 1 到 $n$ 中所有与 $n$ 不互质的数的个数有 $n/p = n^p/p = p^{k-1}$ 个，故与 $n$ 互质的数的个数有 $n-p^{k-1}=p^k-p^{k-1}$ 个。</li>
+<li>由唯一分解定理，设 $n=\prod_{i=1}^n{p_i^{k_i}}$，由于 $\phi(n)$ 为积性函数，故</li>
+</ul>
+<p>$$<br>\begin{aligned}<br>phi(n) =&amp; \prod_{i=1}^n\phi(p_i^{k_i})\<br>=&amp; \prod_{i=1}^n(p^k-p^{k-1})\<br>=&amp; \prod_{i=1}^np_i^k(1-\frac{1}{p_i})\<br>=&amp; \prod_{i=1}^np_i^k\times\prod_{i=1}^n(1-\frac{1}{p_i})\<br>=&amp; n\times\prod_{i=1}^n(1-\frac{1}{p_i})<br>\end{aligned}<br>$$</p>
+<p>我们可以得到欧拉函数的对应公式：</p>
+<p>$$<br>\phi(n) = n \times \prod_{i=1}^n(1-\frac{1}{p_i})<br>$$</p>
+<h2 id="求出单个欧拉函数的值"><a href="#求出单个欧拉函数的值" class="headerlink" title="求出单个欧拉函数的值"></a>求出单个欧拉函数的值</h2><p>我们可以简单的根据上述欧拉公式来求得单个欧拉函数的值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">euler_phi</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i * i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n % i == <span class="number">0</span>)&#123;</span><br><span class="line">            ans = ans / i * (i - <span class="number">1</span>);</span><br><span class="line">            whiel(n % i == <span class="number">0</span>) n /= i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 特判 n 为质数的情况</span></span><br><span class="line">    <span class="keyword">if</span>(n &gt; <span class="number">1</span>) ans = ans / n * (n<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述方法可以使用 <a target="_blank" rel="noopener" href="https://oi-wiki.org/math/pollard-rho/">Pollard Rho</a>进行优化，然而菜鸡的我现在貌似还用不到。</p>
+<h2 id="求出多个欧拉函数的值"><a href="#求出多个欧拉函数的值" class="headerlink" title="求出多个欧拉函数的值"></a>求出多个欧拉函数的值</h2><p>借助上述的公式，我们可以借用埃氏筛的思想求欧拉函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">phi_table</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *phi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) phi[i] = <span class="number">0</span>;</span><br><span class="line">    phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">if</span>(!phi[i])&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt;= n; j += i)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!phi[j]) phi[j] = j;</span><br><span class="line">                phi[j] = phi[j] / i * (i - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们通过欧拉筛来线性求解多个欧拉函数的值。首先需要进行公式推导:</p>
+<p>在欧拉筛的过程中，每一个合数都是被其最小因数筛掉的，我们设该最小因数为 $p_1$，剩余部分为 $n’$，两者满足关系 $p_1*n’=n$。<br>考虑 $n’$ 的两种情况，如果 $n’ \bmod p_1 = 0$，则 $n’$ 包含了 $n$ 的全部质因子。</p>
+<p>$$<br>\begin{aligned}<br>\phi(n) =&amp; n \times \prod_{i=1}^n{\frac{p_i-1}{p_i}}\<br>=&amp;p_1\times n’ \times \prod_{i=1}^n{\frac{p_i-1}{p_i}}\<br>=&amp;p_1\times \phi(n’)<br>\end{aligned}<br>$$</p>
+<p>如果 $n’ \bmod p_1 \neq 0$，则 $p_1$ 和 $n’$ 互质，根据欧拉函数的性质有</p>
+<p>$$<br>\begin{aligned}<br>\phi(n) =&amp; \phi(n’) \times \phi(p_1)\<br>=&amp; \phi(n’) \times (p_1 - 1)<br>\end{aligned}<br>$$</p>
+<p>据此，我们可以在通过欧拉筛得到质数的同时得到欧拉函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">euler</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>* phi, <span class="keyword">int</span>* pri)</span></span>&#123;</span><br><span class="line">    phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">            <span class="comment">// 对于质数直接进行标记</span></span><br><span class="line">            phi[i] = i - <span class="number">1</span>;</span><br><span class="line">            pri[cnt++] = i;</span><br><span class="line">            vis[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cnt; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">1l</span>l * pri[j] * i &gt; n) <span class="keyword">break</span>;</span><br><span class="line">            vis[i * pri[j]] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i % pri[j])&#123;</span><br><span class="line">                <span class="comment">// 对应第二种情况</span></span><br><span class="line">                phi[i * pri[j]] = phi[i] * (pri[j] - <span class="number">1</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">// 对应第一种情况</span></span><br><span class="line">                phi[i * pri[j]] = phi[i] * pri[j];</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                 
             </div>
             <hr/>
@@ -514,7 +536,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://FinCreWorld.github.io/2020/12/18/hello-world/">http://FinCreWorld.github.io/2020/12/18/hello-world/</a>
+                    <a href="http://FinCreWorld.github.io/2020/12/18/ou-la-han-shu/">http://FinCreWorld.github.io/2020/12/18/ou-la-han-shu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -597,13 +619,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/12/18/ou-la-han-shu/">
+                <a href="/2020/12/18/bei-bao-jiu-jiang-xue-xi-bi-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="欧拉函数">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">欧拉函数</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -631,7 +653,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/12/18/hello-world/">
@@ -661,7 +683,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
