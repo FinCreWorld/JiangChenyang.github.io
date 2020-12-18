@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="基础数学问题小结, 蒋晨阳,acm">
+    <meta name="keywords" content="noi基础数学问题">
     <meta name="description" content="蒋晨阳的小博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -429,12 +429,37 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E5%AD%A6/">
+                                <span class="chip bg-color">数学</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/">
+                                <span class="chip bg-color">计数原理</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/">
+                                <span class="chip bg-color">排列组合</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%B4%E9%99%A4%E7%90%86%E8%AE%BA/">
+                                <span class="chip bg-color">整除理论</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E5%AD%A6/" class="post-category">
+                                数学
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -457,14 +482,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    3.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    16 分
                 </div>
                 
 
@@ -474,7 +499,15 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
+        
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
         
 
         <div class="card-content article-card-content">
@@ -501,7 +534,14 @@
 <li><p>解题思路：考虑十进制转换为 m 进制： $x_{10} = a_0 + a_1m^1 + a_2m^2 + … + a_km^k$, 其中 $m$ 都为正数, 那么对于负进制转换, 只需考虑到其中的 $m$ 都为负数即可, 此时就会遇到<strong>负数求模</strong>的情况。由于 $a_0, a_1, …, a_k$ 需要全部为正数, 因此我们只需利用上边的背景知识求解即可。</p>
 </li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(a)&#123;</span><br><span class="line">    <span class="comment">// 考虑求余结果的正负性</span></span><br><span class="line">    <span class="keyword">if</span>(a&lt;<span class="number">0</span> &amp;&amp; a%b) c = a%b + <span class="built_in">abs</span>(b);</span><br><span class="line">    <span class="keyword">else</span> c = a%b;</span><br><span class="line">    a = (a-c)/b;</span><br><span class="line">    s.push(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(!s.empty()) &#123;<span class="built_in">cout</span>&lt;&lt;s.top();s.pop();&#125;</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">while(a)&#123;
+    &#x2F;&#x2F; 考虑求余结果的正负性
+    if(a&lt;0 &amp;&amp; a%b) c &#x3D; a%b + abs(b);
+    else c &#x3D; a%b;
+    a &#x3D; (a-c)&#x2F;b;
+    s.push(c);
+&#125;
+while(!s.empty()) &#123;cout&lt;&lt;s.top();s.pop();&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 <li><p><strong>题目3</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1469">P1469 找筷子</a></p>
@@ -509,9 +549,16 @@
 <li><p>题目描述：给出若干数, 除其中的某一个数外, 其他的数都两两出现, 试找出唯一不重的那个数。</p>
 </li>
 <li><p>解题思路：异或所有的数, 最后得到的数即为唯一不重的数。我们可以将所有重复的数字两两配对并放在最前边, 将他们进行异或, 最后可以得到 0, 再拿 0  与唯一不重复的那个数 $x$ 进行异或, 最后得到 $x$ 本身。原理如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 异或运算满足交换律和结合律</span></span><br><span class="line"><span class="comment">// 且</span></span><br><span class="line">x ^ x = <span class="number">0</span> <span class="number">0</span> ^ x = x</span><br><span class="line"><span class="comment">// 所以</span></span><br><span class="line">a ^ b ^ c ^ d ^ c ^ a ^ b = (a ^ a) ^ (b ^ b) ^ (c ^ c) ^ d</span><br><span class="line">=<span class="number">0</span> ^ <span class="number">0</span> ^ <span class="number">0</span> ^ d = d</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 异或运算满足交换律和结合律
+&#x2F;&#x2F; 且
+x ^ x &#x3D; 0 0 ^ x &#x3D; x
+&#x2F;&#x2F; 所以
+a ^ b ^ c ^ d ^ c ^ a ^ b &#x3D; (a ^ a) ^ (b ^ b) ^ (c ^ c) ^ d
+&#x3D;0 ^ 0 ^ 0 ^ d &#x3D; d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// read()为自定义的快读函数</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">    a ^= (b=read());</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; read()为自定义的快读函数
+for(int i &#x3D; 0; i &lt; n; ++i)
+    a ^&#x3D; (b&#x3D;read());<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 <li><p><strong>题目4</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1100">P1100 高低位交换</a></p>
@@ -521,7 +568,12 @@
 <li><p>题目思路：我们只需要得到其前 16 位和后 16 位, 然后将其交换位置并合在一起即可。思路有很多, 给出一种体位运算特性较多的思路。假设原数字为 x 我们可以通过 <code>x &amp; 0xffff0000</code> 来得到前 16 位数字, 通过 <code>x &amp; 0x0000ffff</code> 来得到后 16 位数字, 通过移位运算调整两者的位置, 最后将两者相“<strong>或</strong>”, 从而得到答案</p>
 </li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意无符号整数才包含 2^32 内的正整数</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> x;</span><br><span class="line"><span class="built_in">cin</span>&gt;&gt;x;</span><br><span class="line"><span class="comment">// 两个移位运算分别是将前 16 位二进制数放在后 16 位的位置上</span></span><br><span class="line"><span class="comment">// 和将后 16 位二进制数放在前 16 位上</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;(((x &amp; <span class="number">0xffff0000</span>) &gt;&gt; <span class="number">16</span>) | ((x &amp; <span class="number">0x0000ffff</span>) &lt;&lt; <span class="number">16</span>)))&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 注意无符号整数才包含 2^32 内的正整数
+unsigned int x;
+cin&gt;&gt;x;
+&#x2F;&#x2F; 两个移位运算分别是将前 16 位二进制数放在后 16 位的位置上
+&#x2F;&#x2F; 和将后 16 位二进制数放在前 16 位上
+cout&lt;&lt;(((x &amp; 0xffff0000) &gt;&gt; 16) | ((x &amp; 0x0000ffff) &lt;&lt; 16)))&lt;&lt;endl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="计数原理与排列组合"><a href="#计数原理与排列组合" class="headerlink" title="计数原理与排列组合"></a>计数原理与排列组合</h2></li>
 </ul>
 </li>
@@ -532,7 +584,22 @@
 <li><p>题目思路：首先读取数组 $maxNumber[i]$, 随后将 $maxNumber[i]$ 从小到大进行排序, 随后依次分配数字即可。</p>
 </li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line"><span class="comment">// 对数组进行排序, 排序之后位置 i 之前分配的数字必然被包含在 a[i] 中</span></span><br><span class="line">sort(a, a+n);</span><br><span class="line"><span class="comment">// 使用 b 来存储当前已经有多少个数字被分配过了</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">1</span>, b = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">    <span class="comment">// a[i] - b 表示当前位置所能摆放的数字个数</span></span><br><span class="line">    <span class="keyword">if</span>(a[i] - b &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        ans *= (a[i] - b);</span><br><span class="line">        ans %= MOD;</span><br><span class="line">        ++b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for(int i &#x3D; 0; i &lt; n; ++i) cin&gt;&gt;a[i];
+&#x2F;&#x2F; 对数组进行排序, 排序之后位置 i 之前分配的数字必然被包含在 a[i] 中
+sort(a, a+n);
+&#x2F;&#x2F; 使用 b 来存储当前已经有多少个数字被分配过了
+long long ans &#x3D; 1, b &#x3D; 0;
+for(int i &#x3D; 0; i &lt; n; ++i)&#123;
+    &#x2F;&#x2F; a[i] - b 表示当前位置所能摆放的数字个数
+    if(a[i] - b &lt;&#x3D; 0)&#123;
+        ans &#x3D; 0;
+        break;
+    &#125;else&#123;
+        ans *&#x3D; (a[i] - b);
+        ans %&#x3D; MOD;
+        ++b;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 <li><p><strong>题目2</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2822">P2822 组合数问题</a></p>
@@ -540,11 +607,39 @@
 <li><p>题目描述：给出 $n$、$m$, 试求有多少对 $(i, j)$ 满足 ${(i, j) | 0 \leq i \leq n, 0 \leq j \leq min(i, m), k | C_i^j}$。<code>a | b</code> 表示 $b mod a == 0$。题目有多组数据, 每一组数据都会提供一个新的 $n, m$, 但是 $k$ 保持不变。</p>
 </li>
 <li><p>背景知识：杨辉三角打表。朴素的组合数求法是利用公式 $C_i^j = \frac{i!}{j!(i-j)!}$, 但是当我们需要用到大量的组合数时, 我们一一求解是不显示的, 因此需要对组合数提前进行打表。组合数有一个<strong>臭蛋公式</strong>：$C_i^j = C_{i-1}^j + C_{i-1}^{j-1}$, 使用该公式进行递推打表, 可以得到杨辉三角, 也即组合数表。代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a[i][j] 表示 i 个物体中挑选 j 个物体的组合数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j==<span class="number">0</span> || j==i) a[i][j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> a[i][j] = a[i<span class="number">-1</span>][j<span class="number">-1</span>] + a[i<span class="number">-1</span>][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; a[i][j] 表示 i 个物体中挑选 j 个物体的组合数
+void init(void)&#123;
+    for(int i &#x3D; 1; i &lt; maxn; ++i)&#123;
+        for(int j &#x3D; 0; j &lt;&#x3D; i; ++j)&#123;
+            if(j&#x3D;&#x3D;0 || j&#x3D;&#x3D;i) a[i][j] &#x3D; 1;
+            else a[i][j] &#x3D; a[i-1][j-1] + a[i-1][j];
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li><p>题目思路：使用<strong>打表 + 前缀和</strong>的方法。首先对杨辉三角进行打表, 随后由于 $k$ 值固定, 我们预先对所有的 $(i, j)$ 是否满足题目条件进行判定, 并使用数组 $b[maxn][maxn]$ 存储判定结果, $b[p][q]$ 表示所有满足 $i \leq p, j \leq q, k | C_i^j$ 的 $(i, j)$ 对儿的个数。那么对于每次查询可以使用 $O(1)$ 的时间复杂度解决问题。</p>
 </li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 模拟杨辉三角打表</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j==<span class="number">0</span> || j==i) a[i][j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> a[i][j] = a[i<span class="number">-1</span>][j<span class="number">-1</span>] + a[i<span class="number">-1</span>][j];</span><br><span class="line">            <span class="comment">// 存储 a[i][j] 对 k 求余的结果</span></span><br><span class="line">            a[i][j] %= k;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 得到前缀和数组</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j)&#123;</span><br><span class="line">            <span class="comment">// 三角形的前缀和递推公式</span></span><br><span class="line">            ans[i][j] = ans[i][j<span class="number">-1</span>] + ans[i<span class="number">-1</span>][j] - ans[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">            <span class="keyword">if</span>(!a[i][j]) ++ans[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 由于边界条件的存在, 这条语句一定要有</span></span><br><span class="line">        ans[i][i+<span class="number">1</span>] = ans[i][i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void init(int k)&#123;
+    &#x2F;&#x2F; 模拟杨辉三角打表
+    for(int i &#x3D; 1; i &lt; maxn; ++i)&#123;
+        for(int j &#x3D; 0; j &lt;&#x3D; i; ++j)&#123;
+            if(j&#x3D;&#x3D;0 || j&#x3D;&#x3D;i) a[i][j] &#x3D; 1;
+            else a[i][j] &#x3D; a[i-1][j-1] + a[i-1][j];
+            &#x2F;&#x2F; 存储 a[i][j] 对 k 求余的结果
+            a[i][j] %&#x3D; k;
+        &#125;
+    &#125;
+    &#x2F;&#x2F; 得到前缀和数组
+    for(int i &#x3D; 1; i &lt; maxn; ++i)&#123;
+        for(int j &#x3D; 1; j &lt;&#x3D; i; ++j)&#123;
+            &#x2F;&#x2F; 三角形的前缀和递推公式
+            ans[i][j] &#x3D; ans[i][j-1] + ans[i-1][j] - ans[i-1][j-1];
+            if(!a[i][j]) ++ans[i][j];
+        &#125;
+        &#x2F;&#x2F; 由于边界条件的存在, 这条语句一定要有
+        ans[i][i+1] &#x3D; ans[i][i];
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 <li><p><strong>题目3</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2789">P2789 直线交点数</a></p>
@@ -554,7 +649,18 @@
 <li><p>题目思路：求出所有的相交情况, 求出每种相交情况的交点个数, 由于不同的相交情况可能有相同的交点数, 因此需要对交点数进行标记, 防止重复统计, 最后统计被标记的交点个数。使用动态规划思想考虑相交情况, 假设目前有 $n$ 条线, 该 $n$ 条线中有 $i$ 条直线平行, 而其余的直线与该 $i$ 条直线相交, 令 $dp[n]$ 表示 $n$ 条直线的情况, 则有 $dp[n] = \sum_{i=1}^{n}(i*(n-i)+dp[n-i])$</p>
 </li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个参数表示有 n 条直线的状态</span></span><br><span class="line"><span class="comment">// 第二个参数表示此时的交点数目</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!p &amp;&amp; !vis[m]) ++ans, vis[m] = <span class="number">1</span>;    <span class="comment">// 对交点数进行标记</span></span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">// 枚举平行线的数量</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">            dp(n-i, m + i*(n-i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 第一个参数表示有 n 条直线的状态
+&#x2F;&#x2F; 第二个参数表示此时的交点数目
+void dp(int n, int m)&#123;
+    if(!p &amp;&amp; !vis[m]) ++ans, vis[m] &#x3D; 1;    &#x2F;&#x2F; 对交点数进行标记
+    else&#123;
+        &#x2F;&#x2F; 枚举平行线的数量
+        for(int i &#x3D; 1; i &lt;&#x3D; n; ++i)&#123;
+            dp(n-i, m + i*(n-i));
+        &#125;
+    &#125;
+&#125;
+cout&lt;&lt;ans&lt;&lt;endl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 <li><p><strong>题目四</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3913">P3913 车的攻击</a></p>
@@ -564,7 +670,30 @@
 <li><p>题目思路：将棋盘上的车投影到第一行和第一列中, 假设投影之后第一行有 $a$ 个车, 第一列有 $b$ 个车, 被攻击的格子数有 $a\times N + b\times N - a\times b$。说起投影, 第一反应是使用一个 $vis$ 数组, 但是本体 $N$ 的数据范围为 1e9, 因此会 MLE。我采用的是哈希表解决该问题, 使用 STL 中的 sort 和 unique()(去重函数) 也可以解决该问题</p>
 </li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 采用哈希表的方式进行投影</span></span><br><span class="line"><span class="comment">// num 表示在第一行(列)上车的投影个数</span></span><br><span class="line"><span class="comment">// 一列(行)中可能有多个车, 投影的目的就是排除这些重复的车</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *a, <span class="keyword">long</span> <span class="keyword">long</span> &amp;num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = n%maxn;</span><br><span class="line">    <span class="keyword">if</span>(!a[i]) a[i] = n, ++num;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(a[i] != n &amp;&amp; a[i]) i = (i+<span class="number">1</span>)%maxn;</span><br><span class="line">        <span class="keyword">if</span>(!a[i]) a[i] = n, ++num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, k, a, b;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> p = <span class="number">0</span>, q = <span class="number">0</span>;</span><br><span class="line">    n=read(); k=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i)&#123;</span><br><span class="line">        a = read(); b = read();</span><br><span class="line">        <span class="comment">// 分别向第一行插入位置信息, 向第一列插入位置信息</span></span><br><span class="line">        insert(a, row, p); insert(b, col, q);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;p*n+q*n-p*q&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 采用哈希表的方式进行投影
+&#x2F;&#x2F; num 表示在第一行(列)上车的投影个数
+&#x2F;&#x2F; 一列(行)中可能有多个车, 投影的目的就是排除这些重复的车
+void insert(int n, int *a, long long &amp;num)&#123;
+    int i &#x3D; n%maxn;
+    if(!a[i]) a[i] &#x3D; n, ++num;
+    else&#123;
+        while(a[i] !&#x3D; n &amp;&amp; a[i]) i &#x3D; (i+1)%maxn;
+        if(!a[i]) a[i] &#x3D; n, ++num;
+    &#125;
+&#125;
+int main()&#123;
+    int n, k, a, b;
+    long long p &#x3D; 0, q &#x3D; 0;
+    n&#x3D;read(); k&#x3D;read();
+    for(int i &#x3D; 0; i &lt; k; ++i)&#123;
+        a &#x3D; read(); b &#x3D; read();
+        &#x2F;&#x2F; 分别向第一行插入位置信息, 向第一列插入位置信息
+        insert(a, row, p); insert(b, col, q);
+    &#125;
+    cout&lt;&lt;p*n+q*n-p*q&lt;&lt;endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 <li><p><strong>题目5</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2638">P2638 安全系统</a></p>
@@ -574,7 +703,12 @@
 <li><p>题目思路：我们可以发现存储 0 和存储 1 之间并不相关。因此我们只需分别枚举存储 0 的情况和存储 1 的情况, 然后将其相乘即可。首先考虑如何存储 0, 将 $i$ 个 0 平均分到 $n$ 个区域中, 且允许区域为空, 我们可以使用升级版的<strong>插板法</strong>, 可以求得有 $C_{a+n-1}^{n-1}$ 种情况。分配 1 的情况同理。</p>
 </li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">generate(max(a+n, b+n));    <span class="comment">// 对组合数进行打表</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= a; ++i)&#123;<span class="comment">// 枚举放入多少个 0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= b; ++j)&#123;    <span class="comment">// 枚举放入多少个 1</span></span><br><span class="line">        ans += <span class="number">1u</span>ll* c[i<span class="number">-1</span>+n][n<span class="number">-1</span>] * c[j<span class="number">-1</span>+n][n<span class="number">-1</span>]; <span class="comment">// 将两者的情况数相乘</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">generate(max(a+n, b+n));    &#x2F;&#x2F; 对组合数进行打表
+for(int i &#x3D; 0; i &lt;&#x3D; a; ++i)&#123;&#x2F;&#x2F; 枚举放入多少个 0
+    for(int j &#x3D; 0; j &lt;&#x3D; b; ++j)&#123;    &#x2F;&#x2F; 枚举放入多少个 1
+        ans +&#x3D; 1ull* c[i-1+n][n-1] * c[j-1+n][n-1]; &#x2F;&#x2F; 将两者的情况数相乘
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 <li><p><strong>题目6</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1246">1246 编码</a></p>
@@ -584,7 +718,31 @@
 <li><p>解题思路：这道题是使用一个巧妙的组合思想来求解的。假设给定单词为 $dgz$, 我们只需求出其前边有几个单词再加 1 即可。该单词有 3 位, 我们先找出 2 位的单词和 1 位的单词有多少个, 对于 2 位的单词, 我们知道其不会有重复的, 并且其固定按照升序排序, 因此可以转换成在 26 个字母中挑出 2 个字母的问题, 其值为 $C_{26}^2$, 1 位数的单词同理, 接下来我们只需考虑在其之前三位数的单词的个数即可。我们可以接着考虑以 $a、b、c$ 开头的三位数单词的个数, 随后考虑以 $de、df$ 开头的单词的个数, 依次类推。最后将所有单词加起来再加一就是目标单词的编号。</p>
 </li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用于得到组合数, 此处非打表</span></span><br><span class="line"><span class="function">LL <span class="title">c</span><span class="params">(LL n, LL m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!m) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    LL num = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(LL i = n; i &gt; n-m; --i)&#123;</span><br><span class="line">        num *= i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(LL i = m; i &gt; <span class="number">0</span>; --i)&#123;</span><br><span class="line">        num /= i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 用于得到所有位数小于目标单词的单词的数目</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; ++i)&#123;</span><br><span class="line">    ans += c(letter, i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 用于得到位数与目标单词位数相同, 且位置在其之前的单词的个数</span></span><br><span class="line"><span class="keyword">int</span> last = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = last+<span class="number">1</span>; j &lt;= str[i]-<span class="string">&#x27;a&#x27;</span>; ++j)&#123;</span><br><span class="line">        ans += c(letter-j, len-i<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    last = str[i]-<span class="string">&#x27;a&#x27;</span>+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;ans+<span class="number">1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 用于得到组合数, 此处非打表
+LL c(LL n, LL m)&#123;
+    if(!m) return 1;
+    LL num &#x3D; 1;
+    for(LL i &#x3D; n; i &gt; n-m; --i)&#123;
+        num *&#x3D; i;
+    &#125;
+    for(LL i &#x3D; m; i &gt; 0; --i)&#123;
+        num &#x2F;&#x3D; i;
+    &#125;
+    return num;
+&#125;
+&#x2F;&#x2F; 用于得到所有位数小于目标单词的单词的数目
+for(int i &#x3D; 1; i &lt; len; ++i)&#123;
+    ans +&#x3D; c(letter, i);
+&#125;
+&#x2F;&#x2F; 用于得到位数与目标单词位数相同, 且位置在其之前的单词的个数
+int last &#x3D; 0;
+for(int i &#x3D; 0; i &lt; len; ++i)&#123;
+    for(int j &#x3D; last+1; j &lt;&#x3D; str[i]-&#39;a&#39;; ++j)&#123;
+        ans +&#x3D; c(letter-j, len-i-1);
+    &#125;
+    last &#x3D; str[i]-&#39;a&#39;+1;
+&#125;
+cout&lt;&lt;ans+1&lt;&lt;endl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="整除理论"><a href="#整除理论" class="headerlink" title="整除理论"></a>整除理论</h2></li>
 </ul>
 </li>
@@ -595,7 +753,40 @@
 <li><p>解题思路：欧拉筛、埃氏筛都可以使用</p>
 </li>
 <li><p>主要代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 埃氏筛思想：从小到大逐个得到小于 n 的质数</span></span><br><span class="line"><span class="comment">// 每得到一个质数，就将 n 以内该质数的所有倍数筛去</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Eratosthenes</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *pri)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;    <span class="comment">// 满足该条件说明 i 为质数</span></span><br><span class="line">            pri[cnt++] = i;</span><br><span class="line">            <span class="comment">// 筛去所有质数的倍数</span></span><br><span class="line">            <span class="comment">// 对于 k * i，当 k &lt; i 时该数已经被 k 筛去</span></span><br><span class="line">            <span class="comment">// 故 k 从 i 开始</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = i * i * <span class="number">1l</span>l; j &lt;= n; j += i)</span><br><span class="line">                vis[j] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 欧拉筛思想：枚举从 1 到 n 的所有数 i</span></span><br><span class="line"><span class="comment">// 使 i 乘上所有已求得的质数筛去合数</span></span><br><span class="line"><span class="comment">// 通过最小因子的思想进行线性优化，即每一个数都被其最小因子筛掉，而不是被其他因子筛掉</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Euler</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *pri)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">2</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i]) pri[cnt++] = i; <span class="comment">// 满足该条件说明 i 为质数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cnt; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">1l</span>l * pri[j] * i &gt; n) <span class="keyword">break</span>;</span><br><span class="line">            vis[i * pri[j]] = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 下面的代码是优化的核心</span></span><br><span class="line">            <span class="comment">// 对于 i * pri[j]，若 i % pri[j] == 0</span></span><br><span class="line">            <span class="comment">// 则 i = pri[j] * n&#x27;</span></span><br><span class="line">            <span class="comment">// 那么对于 i * pri[k]，k &gt; j</span></span><br><span class="line">            <span class="comment">// i * pri[k] = pri[j] * n&#x27; * pri[k] = pri[j] * (n&#x27; * pri[k])</span></span><br><span class="line">            <span class="comment">// 其中 pri[j] 是 i * pri[k] 的最小因子</span></span><br><span class="line">            <span class="comment">// 数 i * pri[k] 在之后会通过 pri[j] * (n&#x27; * pri[k]) 筛掉，无需在此处筛去</span></span><br><span class="line">            <span class="keyword">if</span>(i % pri[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 埃氏筛思想：从小到大逐个得到小于 n 的质数
+&#x2F;&#x2F; 每得到一个质数，就将 n 以内该质数的所有倍数筛去
+int Eratosthenes(int n, int *pri)&#123;
+    for(int i &#x3D; 2; i &lt;&#x3D; n; ++i)&#123;
+        if(!vis[i])&#123;    &#x2F;&#x2F; 满足该条件说明 i 为质数
+            pri[cnt++] &#x3D; i;
+            &#x2F;&#x2F; 筛去所有质数的倍数
+            &#x2F;&#x2F; 对于 k * i，当 k &lt; i 时该数已经被 k 筛去
+            &#x2F;&#x2F; 故 k 从 i 开始
+            for(long long j &#x3D; i * i * 1ll; j &lt;&#x3D; n; j +&#x3D; i)
+                vis[j] &#x3D; 1;
+        &#125;
+&#125;
+
+&#x2F;&#x2F; 欧拉筛思想：枚举从 1 到 n 的所有数 i
+&#x2F;&#x2F; 使 i 乘上所有已求得的质数筛去合数
+&#x2F;&#x2F; 通过最小因子的思想进行线性优化，即每一个数都被其最小因子筛掉，而不是被其他因子筛掉
+int Euler(int n, int *pri)&#123;
+    for(int i &#x3D;2; i &lt;&#x3D; n; ++i)&#123;
+        if(!vis[i]) pri[cnt++] &#x3D; i; &#x2F;&#x2F; 满足该条件说明 i 为质数
+        for(int j &#x3D; 0; j &lt; cnt; ++j)&#123;
+            if(1ll * pri[j] * i &gt; n) break;
+            vis[i * pri[j]] &#x3D; 1;
+            &#x2F;&#x2F; 下面的代码是优化的核心
+            &#x2F;&#x2F; 对于 i * pri[j]，若 i % pri[j] &#x3D;&#x3D; 0
+            &#x2F;&#x2F; 则 i &#x3D; pri[j] * n&#39;
+            &#x2F;&#x2F; 那么对于 i * pri[k]，k &gt; j
+            &#x2F;&#x2F; i * pri[k] &#x3D; pri[j] * n&#39; * pri[k] &#x3D; pri[j] * (n&#39; * pri[k])
+            &#x2F;&#x2F; 其中 pri[j] 是 i * pri[k] 的最小因子
+            &#x2F;&#x2F; 数 i * pri[k] 在之后会通过 pri[j] * (n&#39; * pri[k]) 筛掉，无需在此处筛去
+            if(i % pri[j] &#x3D;&#x3D; 0) break;
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 </ul>
@@ -662,7 +853,23 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E6%95%B0%E5%AD%A6/">
+                                    <span class="chip bg-color">数学</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/">
+                                    <span class="chip bg-color">计数原理</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/">
+                                    <span class="chip bg-color">排列组合</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%B4%E9%99%A4%E7%90%86%E8%AE%BA/">
+                                    <span class="chip bg-color">整除理论</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -720,7 +927,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            题目均来自洛谷的"图的基本应用"题单。其中主要涉及到的相关知识有：dfs 和 bfs 的基本应用，根据 dfs 求有向无环图中最大路径、路径数量，根据拓扑排序判断图中是否有环的存在以及能否形成稳定的有序序列，找出图中的欧拉通路。
                         
                     </div>
                     <div class="publish-info">
@@ -729,11 +936,35 @@
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            蒋晨阳
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9B%BE%E8%AE%BA/" class="post-category">
+                                    图论
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%9B%BE%E8%AE%BA/">
+                        <span class="chip bg-color">图论</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%90%9C%E7%B4%A2/">
+                        <span class="chip bg-color">搜索</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">拓扑排序</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%AC%A7%E6%8B%89%E9%80%9A%E8%B7%AF/">
+                        <span class="chip bg-color">欧拉通路</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -745,19 +976,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/18/bei-bao-jiu-jiang-xue-xi-bi-ji/">
+                <a href="/2020/12/18/ou-la-han-shu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="欧拉函数">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">欧拉函数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            涉及素数筛，欧拉函数定义及性质，单个欧拉函数的求值，多个欧拉函数求值
                         
                     </div>
                     <div class="publish-info">
@@ -766,11 +997,27 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            蒋晨阳
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E5%AD%A6/" class="post-category">
+                                    数学
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E5%AD%A6/">
+                        <span class="chip bg-color">数学</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">
+                        <span class="chip bg-color">欧拉函数</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -937,63 +1184,16 @@
 </main>
 
 
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
 
 
     <footer class="page-footer bg-color">
-    
-        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #42b983;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="503838841"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#42b983'
-                   loop='all'
-                   order='random'
-                   preload='auto'
-                   volume='0.7'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
     
     <div class="container row center-align" style="margin-bottom: 0px !important;">
         <div class="col s12 m8 l8 copy-right">
@@ -1008,7 +1208,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.7k</span>&nbsp;字
+                class="white-color">14.2k</span>&nbsp;字
             
             
             
@@ -1206,8 +1406,6 @@ $(function () {
     })();
 </script>
 
-    
-    <script src="/libs/others/clicklove.js" async="async"></script>
     
     
     <script async src="/libs/others/busuanzi.pure.mini.js"></script>
