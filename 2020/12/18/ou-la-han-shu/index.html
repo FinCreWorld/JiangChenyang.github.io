@@ -872,6 +872,33 @@ phi(n) =& \prod_{i=1}^n\phi(p_i^{k_i})\\
     </div>
 
     
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '261e9b5e661237a828f3',
+        clientSecret: '2c035a0dafe5d9e865b8c0b6e372de74f3f520f4',
+        repo: 'FinCreWorld.github.io',
+        owner: 'FinCreWorld',
+        admin: "FinCreWorld",
+        id: '2020-12-18T20-24-11',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
 
     
 
