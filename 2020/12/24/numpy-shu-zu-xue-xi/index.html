@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="基础图上问题小结, 蒋晨阳,acm">
+    <meta name="keywords" content="numpy数组学习, 蒋晨阳,acm">
     <meta name="description" content="蒋晨阳的小博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>基础图上问题小结 | 十卷书舍</title>
+    <title>numpy数组学习 | 十卷书舍</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -466,12 +466,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">基础图上问题小结</h1>
+                    <h1 class="description center-align post-title">numpy数组学习</h1>
                 </div>
             </div>
         </div>
@@ -587,8 +587,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%9B%BE%E8%AE%BA/">
-                                <span class="chip bg-color">图论</span>
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
+                            </a>
+                        
+                            <a href="/tags/numpy/">
+                                <span class="chip bg-color">numpy</span>
                             </a>
                         
                     </div>
@@ -599,8 +603,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%9B%BE%E8%AE%BA/" class="post-category">
-                                图论
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                机器学习
                             </a>
                         
                     </div>
@@ -612,7 +616,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-18
+                    2020-12-24
                 </div>
                 
 
@@ -626,14 +630,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.4k
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    5 分
                 </div>
                 
 
@@ -656,301 +660,182 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数据结构图小结"><a href="#数据结构图小结" class="headerlink" title="数据结构图小结"></a>数据结构图小结</h1><blockquote>
-<p>这篇小结中的所有题目均来自洛谷的”图的基本应用”题单。其中主要涉及到的相关知识有：dfs 和 bfs 的基本应用，根据 dfs 求有向无环图中最大路径、路径数量，根据拓扑排序判断图中是否有环的存在以及能否形成稳定的有序序列，找出图中的欧拉通路。</p>
-</blockquote>
-<p>[TOC]</p>
-<h2 id="P5318-查找文献（dfs和bfs基本应用）"><a href="#P5318-查找文献（dfs和bfs基本应用）" class="headerlink" title="P5318_查找文献（dfs和bfs基本应用）"></a>P5318_查找文献（dfs和bfs基本应用）</h2><ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5318">题目连接</a></p>
-</li>
-<li><p>题目描述：给定一个有向图，输出深搜和广搜的结果，但是必须保证输出结果的字典序尽可能的小</p>
-</li>
-<li><p>解题思路：<br>  该题的难点在保证输出字典序尽可能小，因此需要对每一个点的邻接点按照序号进行排序，随后 dfs、bfs 即可</p>
-</li>
-<li><p>核心代码</p>
-  <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; q 是用于存储邻接表的 vector 数组
-for(int i &#x3D; 0; i &lt; m; ++i)&#123;
-    scanf(&quot;%d %d&quot;, &amp;a, &amp;b);
-    q[a].push_back(b);
-&#125;
-for(int i &#x3D; 1; i &lt;&#x3D; n; ++i)&#123;
-    sort(q[i].begin(), q[i].end());
-&#125;
-&#x2F;&#x2F; 随后根据排序后的邻接表深搜和广搜即可
-dfs();
-bfs();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="P3916-图的遍历（dfs查找到达的最大顶点）"><a href="#P3916-图的遍历（dfs查找到达的最大顶点）" class="headerlink" title="P3916_图的遍历（dfs查找到达的最大顶点）"></a>P3916_图的遍历（dfs查找到达的最大顶点）</h2></li>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3916">题目链接</a></p>
-</li>
-<li><p>题目描述：给定一个有向图，有 n 个点， m 条边，其中点从 1 到 n 进行编号。确定每个点所能到达的最大点的编号</p>
-</li>
-<li><p>解题思路：<br>  这道题本质是一个深度优先搜索，对每一个点进行搜索即可。但是关键的一点是从第 n 个点开始搜索，第 n 个点所到达的点的最大值必然是 n，同时将其进行标记；随后从第 n-1 个点开始搜索，对于所有未被访问过的点来说，如果其能被第 n-1 个点到达，那么其可到达的最大值必然是 n-1，以此类推，直到第 1 个点为止。</p>
-</li>
-<li><p>核心代码</p>
-  <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void dfs(int p, int v)&#123;
-    a[p] &#x3D; v;   &#x2F;&#x2F; 记录点 p 可以到达的编号最大的点
-    vis[p] &#x3D; true;
-    for(int k &#x3D; head[p]; k; k &#x3D; edges[k].next)&#123; &#x2F;&#x2F; 继续寻找点 v 可以到达的点
-        if(!vis[edges[k].to])
-            dfs(edges[k].to, v);
-    &#125;
-&#125;
+                <h1 id="numpy-数组学习"><a href="#numpy-数组学习" class="headerlink" title="numpy 数组学习"></a>numpy 数组学习</h1><p>2020.12.24 library jcy</p>
+<p>这一部分主要包括 numpy 中关于数组的结构、定义以及相关操作</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="一、创建数组"><a href="#一、创建数组" class="headerlink" title="一、创建数组"></a>一、创建数组</h2><h2 id="1、创建一维序列"><a href="#1、创建一维序列" class="headerlink" title="1、创建一维序列"></a>1、创建一维序列</h2><p>可以将一维序列理解为数学中的向量</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 创建全 0 的序列</span>
+a <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token comment"># 创建全 1 的序列</span>
+b <span class="token operator">=</span> np<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token comment"># 创建随机序列</span>
+c <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>random<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+<span class="token comment"># 创建从 1-5 的序列</span>
+d <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span>
+<span class="token comment"># 创建 5 个等间距的样本</span>
+e <span class="token operator">=</span> np<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+<span class="token comment"># 创建自定义的序列</span>
+f <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>[0. 0. 0. 0. 0.]
+[1. 1. 1. 1. 1.]
+[0.38560477 0.43756133 0.25563547 0.15480578 0.90388205]
+[0 1 2 3 4]
+[10.  12.5 15.  17.5 20. ]
+[7 8 7 7 7]
+</code></pre><h2 id="二、创建二维数组"><a href="#二、创建二维数组" class="headerlink" title="二、创建二维数组"></a>二、创建二维数组</h2><p>可以将二维数组或更高维的数组理解为矩阵</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 创建一个 2*3 的全 0 矩阵</span>
+zero_2d_array <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'zero:\n'</span><span class="token punctuation">,</span> zero_2d_array<span class="token punctuation">)</span>
+<span class="token comment"># 创建一个 2*3 的全 1 矩阵</span>
+one_2d_array <span class="token operator">=</span> np<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'one:\n'</span><span class="token punctuation">,</span> one_2d_array<span class="token punctuation">)</span>
+<span class="token comment"># 创建一个自定义矩阵</span>
+my_array <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'my:\n'</span><span class="token punctuation">,</span> my_array<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>zero:
+ [[0. 0. 0.]
+ [0. 0. 0.]]
+one:
+ [[1. 1. 1.]
+ [1. 1. 1.]]
+my:
+ [[1 2]
+ [3 4]]
+</code></pre><h2 id="三、多维数组的相关操作"><a href="#三、多维数组的相关操作" class="headerlink" title="三、多维数组的相关操作"></a>三、多维数组的相关操作</h2><h3 id="1、对多维数组进行切片"><a href="#1、对多维数组进行切片" class="headerlink" title="1、对多维数组进行切片"></a>1、对多维数组进行切片</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+              <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+              <span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+              <span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>6
+[[ 6  7]
+ [10 11]]
+[ 2  6 10 14]
+[[ 1  3]
+ [ 9 11]]
+</code></pre><h3 id="2、数组的属性"><a href="#2、数组的属性" class="headerlink" title="2、数组的属性"></a>2、数组的属性</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 类型名称</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>dtype<span class="token punctuation">)</span>  <span class="token comment"># 内部的数据类型</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>size<span class="token punctuation">)</span>   <span class="token comment"># 数据数目</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>  <span class="token comment"># 数组的形状</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>itemsize<span class="token punctuation">)</span>   <span class="token comment"># 每一项占用的字节数</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>ndim<span class="token punctuation">)</span>   <span class="token comment"># 数组的维度</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>nbytes<span class="token punctuation">)</span> <span class="token comment"># 数组中数据占用的字节数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>&lt;class &#39;numpy.ndarray&#39;&gt;
+int32
+16
+(4, 4)
+4
+2
+64
+</code></pre><h2 id="四、使用数组进行运算"><a href="#四、使用数组进行运算" class="headerlink" title="四、使用数组进行运算"></a>四、使用数组进行运算</h2><h3 id="1、基本操作符"><a href="#1、基本操作符" class="headerlink" title="1、基本操作符"></a>1、基本操作符</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span>
+a <span class="token operator">=</span> a<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">62</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">56</span><span class="token punctuation">,</span> <span class="token number">79</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">45</span><span class="token punctuation">,</span>
+              <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">92</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">63</span><span class="token punctuation">,</span> <span class="token number">43</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> b<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]
+ [12 13 14 15]]
+[[10 62  1 14]
+ [ 2 56 79  2]
+ [ 1 45  4 92]
+ [ 5 55 63 43]]
+</code></pre><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 下方的 +、-、*、/、**、&lt;、> 都是对数组进行逐位运算</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">+</span> b<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">*</span> b<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">/</span> b<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">&lt;</span> b<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">></span> b<span class="token punctuation">)</span>
+<span class="token comment"># 计算两个数组的点积</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>dot<span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>[[ 10  63   3  17]
+ [  6  61  85   9]
+ [  9  54  14 103]
+ [ 17  68  77  58]]
+[[-10 -61   1 -11]
+ [  2 -51 -73   5]
+ [  7 -36   6 -81]
+ [  7 -42 -49 -28]]
+[[   0   62    2   42]
+ [   8  280  474   14]
+ [   8  405   40 1012]
+ [  60  715  882  645]]
+[[0.         0.01612903 2.         0.21428571]
+ [2.         0.08928571 0.07594937 3.5       ]
+ [8.         0.2        2.5        0.11956522]
+ [2.4        0.23636364 0.22222222 0.34883721]]
+[[  0   1   4   9]
+ [ 16  25  36  49]
+ [ 64  81 100 121]
+ [144 169 196 225]]
+[[ True  True False  True]
+ [False  True  True False]
+ [False  True False  True]
+ [False  True  True  True]]
+[[False False  True False]
+ [ True False False  True]
+ [ True False  True False]
+ [ True False False False]]
+[[  19  311  276  315]
+ [  91 1183  864  919]
+ [ 163 2055 1452 1523]
+ [ 235 2927 2040 2127]]
+</code></pre><h3 id="2、特殊运算符"><a href="#2、特殊运算符" class="headerlink" title="2、特殊运算符"></a>2、特殊运算符</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token builtin">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token builtin">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>cumsum<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>45
+0
+9
+[ 0  1  3  6 10 15 21 28 36 45]
+</code></pre><h2 id="五、进阶索引方式"><a href="#五、进阶索引方式" class="headerlink" title="五、进阶索引方式"></a>五、进阶索引方式</h2><h3 id="1、花式索引"><a href="#1、花式索引" class="headerlink" title="1、花式索引"></a>1、花式索引</h3><p>花式索引可以通过给定的序列列表得到对应位置的元素，进而得到一个新的序列。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># fancy indexing</span>
+<span class="token comment"># 给定一个索引列表得到对应的序列</span>
+a <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+indices <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>indices<span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>[ 0 10 20 30 40 50 60 70 80 90]
+[10 40 90]
+</code></pre><h3 id="2、bool-屏蔽"><a href="#2、bool-屏蔽" class="headerlink" title="2、bool 屏蔽"></a>2、bool 屏蔽</h3><p>bool 屏蔽可以通过一个 bool 型数组访问序列中的特定元素</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Bool Masking</span>
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
 
-&#x2F;&#x2F; 从第 n 个点开始倒序搜索
-for(int i &#x3D; n; i &gt;&#x3D; 1; --i)&#123;
-    if(!vis[i]) dfs(i, i);  &#x2F;&#x2F; 若点 i 已经被访问，则点 i 可以到达的顶点也一定已经被访问了
-                            &#x2F;&#x2F; 此时无需 dfs
-&#125;
-&#x2F;&#x2F; 输出结果
-for(int i &#x3D; 1; i &lt;&#x3D; n; ++i)&#123;
-    printf(&quot;%d &quot;, a[i]);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="P1113-杂务（dfs查找固定终点的最长路径）"><a href="#P1113-杂务（dfs查找固定终点的最长路径）" class="headerlink" title="P1113_杂务（dfs查找固定终点的最长路径）"></a>P1113_杂务（dfs查找固定终点的最长路径）</h2></li>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1113">题目链接</a></p>
-</li>
-<li><p>题目描述：John 在给奶牛挤奶前需要完成许多杂务，只有一些杂务已经被完成之后某些杂物才能开始去做。例如，如果想要完成杂务<code>D</code>，而杂务<code>D</code>需要在<code>A</code>、<code>B</code>都已经完成的情况下才能开始做。完成每个杂务都需要一定的时间，而农场中有足够的工人去同时去做没有依赖关系的杂务，求完成所有杂务所需的最短时间。</p>
-</li>
-<li><p>解题思路：<br>  使用深搜的思想来解决拓扑排序的问题。假设杂务<code>D</code>需要<code>A</code>、<code>B</code>都完成后才能开始，设 <code>t[D]</code> 为完成杂务D所需的最短时间，则 <code>t[D] = min(t[A], t[B])</code>，而完成A，B所需的最短时间以此类推，直到没有前一项杂务为止。</p>
-</li>
-<li><p>核心代码</p>
-  <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;int&gt; v[maxn];
-int dfs(int p)&#123;
-    int len &#x3D; v[p].size();
-    int mx &#x3D; 0;
-    for(int i &#x3D; 0; i &lt; len; ++i)&#123;
-        &#x2F;&#x2F; 使用记忆化搜索可以极大的减少时间
-        if(!vis[v[p][i]]) mx &#x3D; max(dfs(v[p][i]), mx);
-        else mx &#x3D; max(vis[v[p][i]], mx);
-    &#125;
-    vis[p] &#x3D; mx + t[p]; &#x2F;&#x2F; 记录完成杂务 p 所需时间
-    return vis[p];
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li>相似题型：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4017">P4017最大食物链计数</a>该题求一个有向无环图中从头至尾链的数目，用的同样是 dfs 的思想来解决拓扑排序的问题。</li>
-</ul>
-<h2 id="P1807-最长路（dfs查找固定起点和终点的最长路径）"><a href="#P1807-最长路（dfs查找固定起点和终点的最长路径）" class="headerlink" title="P1807_最长路（dfs查找固定起点和终点的最长路径）"></a>P1807_最长路（dfs查找固定起点和终点的最长路径）</h2><ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1807">题目链接</a></p>
-</li>
-<li><p>题目描述：给定一个有向无环图，有 n 个顶点 m 条边，顶点从 1 至 n 进行编号，边有权值，可以为负权。求出从点 1 到点 n 的最大路径，若不连通则输出-1。</p>
-</li>
-<li><p>解题思路：同样的深搜。其与上一题的区别在于对递归边界返回值的处理。</p>
-</li>
-<li><p>核心代码</p>
-  <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 返回点 p 到达 1 的最长距离
-int dfs(int p)&#123;
-    if(p &#x3D;&#x3D; 1) return 0;
-    int mx &#x3D; -INF, v;
-    vis[p] &#x3D; true;
-    for(int k &#x3D; head[p]; k; k &#x3D; edges[k].nxt)&#123;
-        v &#x3D; edges[k].v;
-        if(!vis[v]) dfs(v); &#x2F;&#x2F; 递归的求解点 p 到点 1 的最长距离
-        &#x2F;&#x2F; 如果联通，则找到最大的子路径
-        if(len[v] !&#x3D; INF) mx &#x3D; max(mx, len[v] + edges[k].w);
-    &#125;
-    if(mx &#x3D;&#x3D; -INF) mx &#x3D; INF;
-    return len[p] &#x3D; mx;
-&#125;
-&#x2F;&#x2F; 随后从点 n 开始 dfs 即可<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="P1127-词链（求欧拉通路）"><a href="#P1127-词链（求欧拉通路）" class="headerlink" title="P1127_词链（求欧拉通路）"></a>P1127_词链（求欧拉通路）</h2></li>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1127">题目链接</a></p>
-</li>
-<li><p>题目描述：如果单词 x 的尾字母和单词 y 的首字母相同，则单词 x 可以和单词 y 首尾相连成词链 x.y。现给定一些单词，找出字典序最小的词链，并且所有单词在该词链中出现并且只出现一次。</p>
-</li>
-<li><p>基础知识：该题是一道求<strong>欧拉通路</strong>的题。由于我离散数学学的不是很好，因此还不得不百度了一下如何求欧拉通路QAQ。因此需要明确一些欧拉通路的概念。</p>
-<ul>
-<li><strong>欧拉通路</strong>：通过图中的每条边且仅通过一次，并且通过每一个顶点的路径</li>
-<li><strong>欧拉回路</strong>：通过图中的每条边且仅通过一次，并且通过每一个顶点的回路</li>
-<li><strong>判断欧拉通路是否存在</strong>：对于无向图，该图必须联通，有且仅有两个顶点的度数为奇数，其余顶点的度数为偶数，且该两个顶点为欧拉通路的两端；对于有向图，该有向图的基图需联通（将所有有向边变为无向边），有且仅有两个顶点的出度和入度不相等，且一个顶点的出度比入读大 1（通路起点），一个顶点的入读比出度大 1（通路终点），其他所有顶点出度和入度相同。</li>
-<li><strong>判断欧拉回路是否存在</strong>：对于无向图，其所有顶点的度数都为偶数；对于有向图，其所有顶点的出度和入读相同。<br>  <img src="/2020/12/18/ji-chu-tu-shang-wen-ti-xiao-jie/Euler.PNG" alt="euler_step"></li>
-<li><strong>求解欧拉通路/回路的步骤</strong>：<ul>
-<li>注：此处仅以<strong>有向图的欧拉通路</strong>为例，并且假设通路起点入读为 0，出度为 1，终点出度为 0，入读为 1。在我们的遍历过程中，我们每从一个顶点出发，该顶点的出度 -1，每进入一个顶点，该顶点的入读 -1。</li>
-<li><strong>step1</strong>：首先我们可以轻易的<strong>确定欧拉通路的开始顶点</strong>，如上图所示，开始顶点为 <code>A</code>，随后我们以 <code>A</code> 为起点开始dfs。如 <code>step1</code>，假设我们访问到了顶点 <code>H</code>，若 <code>H</code> 非回路终点，那么由于<strong>出度与入读相同</strong>，则其必有一条边可以使我们继续向下访问，接下来我们访问到点 <code>I</code>，若 <code>I</code> 同样不是通路终点，则我们同样一定可以继续走下去。</li>
-<li><strong>step2</strong>：我们将如同step1中所示持续向下访问，直到我们到达<strong>通路终点</strong> <code>Z</code>，由于其出度为 0，我们无法继续向下访问，此时我们可以得到一条路径<code>&quot;A-&gt;H-&gt;I-&gt;Y-&gt;Z&quot;</code>，通常情况下此条路径无法遍历有向图中所有的顶点，因此我们需要继续拓展到其他的点。</li>
-<li><strong>step3</strong>：我们访问完 <code>Z</code> 之后，开始<strong>回退</strong>，回到上一次的顶点 <code>Y</code>，若 <code>Y</code> 的边已经被遍历完毕，则我们继续回退，回到顶点 <code>I</code>，此时我们发现 <code>I</code> 有其他的边，这是我们开始以 <code>I</code> 为起点进行 dfs，当从 <code>I</code> 出发时，此时 <code>I</code> 的入读比出度大 1。同样的，由于从 <code>I</code> 点开始 dfs 所访问到的顶点的出度与入读相同，因此 dfs 最终将只能在入读比出度小 1 的顶点（即点 <code>I</code>）终止。我们可得到一条回路 <code>&quot;I-&gt;N-&gt;M-&gt;I&quot;</code></li>
-<li><strong>step4</strong>：深搜完点 <code>I</code> 之后，我们将回退点 <code>N、M</code>，若 <code>N、M</code> 没有多余边，则继续回退，此时回退到点 <code>H</code>，依照步骤4，我们访问到了 <code>G</code> 点并回到 <code>H</code></li>
-<li><strong>step5</strong>：在 <code>step4</code> 中，当我们回到 <code>G</code> 后，需要对从 <code>G</code> 点出发深搜到的点进行回退，假设我们回退到点 <code>G</code>，发现点 <code>G</code> 仍有其他边，则从 <code>G</code> 出发开始深搜，搜到了 <code>D</code> 和 <code>E</code>，随后结束搜索。若此时图中的所有边都已经被遍历，则我们将持续回退，直到回退到点 <code>A</code>，结束欧拉通路的查找。</li>
-<li>如果我们在某一节点回退结束时输出当前节点，则最后我们可以得到序列 <code>&quot;Z Y I M N I H G D E G H A&quot;</code></li>
-</ul>
-</li>
-<li><p>具体查找欧拉通路的代码</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 使用邻接矩阵进行dfs得到欧拉回路，实际操作中建议使用前向星或邻接表
-&#x2F;&#x2F; 此处给出无向图查找欧拉通路，有向图可以自己写写试试看
-int graph[maxn][maxn];
-int path[maxn], cnt &#x3D; 0, vis[maxn];
-int n, m;
-void dfs(int p)&#123;
-    for(int i &#x3D; 1; i &lt;&#x3D; n; ++i)&#123;    &#x2F;&#x2F; 遍历顶点 p 的所有邻接点
-        if(graph[p][i])&#123;
-            --graph[p][i];  &#x2F;&#x2F; 减去顶点的度数
-            --graph[i][p];
-            dfs(i);
-        &#125;
-    &#125;
-    path[cnt++] &#x3D; p;    &#x2F;&#x2F; 遍历完点 p 的所有邻接边之后存储点 p
-&#125;
-int main()&#123;
-    int u, v;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(int i &#x3D; 0; i &lt; m; ++i)&#123;
-        scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
-        ++graph[u][v];
-        ++graph[v][u];
-    &#125;
-    dfs(1);
-    &#x2F;&#x2F; 最终输出结果为倒序
-    for(int i &#x3D; 0; i &lt; cnt; ++i)&#123;
-        cout&lt;&lt;path[i]&lt;&lt;&quot; &quot;;
-    &#125;
-    cout&lt;&lt;endl;
-    system(&quot;pause&quot;);
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
-</li>
-<li><p>核心代码：</p>
-  <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void dfs(int u)&#123;
-    for(int p &#x3D; head[u]; p; p &#x3D; edges[p].nxt)&#123;
-        if(!edges[p].vis)&#123;
-            edges[p].vis &#x3D; 1;
-            dfs(edges[p].v);
-            path.push(edges[p].word);
-        &#125;
-    &#125;
-&#125;
-int main()&#123;
-    input();    &#x2F;&#x2F; 读入单词，并进行建图，由于要求字典序最小，因此需要进行排序，参考上文 图的遍历 一题
-    int flag &#x3D; -1;
-    &#x2F;&#x2F; 找到起点 flag
-    for(int i &#x3D; 0; i &lt; maxgroup; ++i)&#123;
-        &#x2F;&#x2F; degree[i][0] 表示出读，degree[i][1] 表示入度
-        if(degree[i][0] &#x3D;&#x3D; degree[i][1]+1)&#123;
-            flag &#x3D; i;
-            break;
-        &#125;
-    &#125;
-    if(flag &#x3D;&#x3D; -1)&#123;
-        &#x2F;&#x2F; 如果找不到起点，说明此时存在欧拉回路，只需找到字典序最小的单词即可
-        for(int i &#x3D; 0; i &lt; maxgroup; ++i)&#123;
-            if(words[i].size())&#123;
-                dfs(i);
-                break;
-            &#125;
-        &#125;
-    &#125;
-    else dfs(flag); &#x2F;&#x2F; 从起点开始 dfs
-    output();
-    system(&quot;pause&quot;);
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="P1363-幻象迷宫（dfs思维题）"><a href="#P1363-幻象迷宫（dfs思维题）" class="headerlink" title="P1363_幻象迷宫（dfs思维题）"></a>P1363_幻象迷宫（dfs思维题）</h2></li>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1363">题目链接</a></p>
-</li>
-<li><p>题目描述：给定一个n*m的矩阵迷宫，其中“#”表示墙，“.”表示道路，将该迷宫上下左右进行平移，可以平铺成一个无限大的迷宫。给定起点，问能否从起点出发到达无限远的位置。</p>
-</li>
-<li><p>解题思路：进行dfs搜索，记录走到的位置的<strong>绝对位置</strong>（lx, ly)（绝对位置是指其在无限大迷宫中相对起点的横纵坐标，也就是说lx,ly不对边长进行取模运算），同时该所走到的位置还有一个<strong>朴素位置</strong>（x，y）（朴素位置是指其在原始迷宫中相对起点的位置，x,y需进行取模运算）。当走到某个位置时，若之前已经走到过该位置，且两次的绝对位置不同，则可以在迷宫中可以走到无限远的地方。</p>
-</li>
-<li><p>核心代码：</p>
-  <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; x，y表示朴素位置，lx，ly表示绝对位置
-&#x2F;&#x2F; g[x][y][0] 记录该点是否已访问以及能否访问，-1 表示该点为墙，0 表示未访问，1 表示已被访问过
-&#x2F;&#x2F; g[x][y][1] 和 g[x][y][2] 分别记录绝对位置的横纵坐标
-bool dfs(int x, int y, int lx, int ly)&#123;
-    bool flag &#x3D; false;
-    if(g[x][y][0]&#x3D;&#x3D;1 &amp;&amp; (g[x][y][1]!&#x3D;lx || g[x][y][2]!&#x3D;ly))&#123;
-        &#x2F;&#x2F; 当前位置之前已经访问过，且两者的绝对位置不同
-        flag &#x3D; true;
-    &#125;else if(g[x][y][0]&#x3D;&#x3D;0)&#123;
-        &#x2F;&#x2F; 进行标记记录绝对位置
-        g[x][y][0] &#x3D; 1;
-        g[x][y][1] &#x3D; lx;
-        g[x][y][2] &#x3D; ly;
-        for(int i &#x3D; 0; i &lt; 4; ++i)&#123;
-            int xx &#x3D; (x + d[i].x + n)%n;
-            int yy &#x3D; (y + d[i].y + m)%m;
-            flag &#x3D; dfs(xx, yy, lx+d[i].x, ly+d[i].y);
-            if(flag) break;
-        &#125;
-    &#125;
-    return flag;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="P1347-排序（拓扑排序确定有序序列）"><a href="#P1347-排序（拓扑排序确定有序序列）" class="headerlink" title="P1347_排序（拓扑排序确定有序序列）"></a>P1347_排序（拓扑排序确定有序序列）</h2></li>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1347">题目链接</a></p>
-</li>
-<li><p>题目描述：有一串字母，两两之间满足大小关系，现给定 n 个字母，m 条关系，每条关系以 “A &lt; B” 的形式依次给出，若根据前 x 条关系可以确定这 n 个字母唯一的顺序关系，则输出结果，若根据前 x 条关系发现这 n 个字母之间无法形成顺序关系，同样输出结果，若直到最后也无法确定其是否能够组成固定的顺序关系，则输出另一结果。</p>
-</li>
-<li><p>解题思路：这道题是一道典型的拓扑排序题目，每读入一个关系，就根据当前所建图执行一遍拓扑排序，其有三种结果：发现当前图成环、发现可以确定唯一的顺序关系、发现无法确定唯一的顺序关系。前两种结果直接输出，停止程序，而若是第三种结果则继续读入，重复拓扑排序的步骤。</p>
-</li>
-<li><p>核心代码：</p>
-  <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int topo()&#123;
-    queue&lt;int&gt; q;
-    int flag &#x3D; 0, degree[maxn], cnt &#x3D; 0;
-    &#x2F;&#x2F; 复制一遍顶点入度
-    for(int i &#x3D; 0; i &lt; n; ++i)&#123;
-        degree[i] &#x3D; indegree[i];
-    &#125;
-    &#x2F;&#x2F; 将所有入度为 0 的点加入队列
-    for(int i &#x3D; 0; i &lt; n; ++i)&#123;
-        if(!degree[i])&#123;
-            q.push(i);
-        &#125;
-    &#125;
-    &#x2F;&#x2F; 开始拓扑排序
-    int p;
-    while(!q.empty())&#123;
-        &#x2F;&#x2F; 当队列中存在不止一个元素时，说明此时存在不稳定的队列或者当前的边未包括全部的顶点
-        if(q.size() &gt; 1) flag &#x3D; 1;
-        p &#x3D; q.front(); q.pop();
-        ans[cnt++] &#x3D; p; &#x2F;&#x2F; 记录当前确定的顺序，该顺序可能唯一，也可能不唯一
-        for(int k &#x3D; head[p]; k; k &#x3D; edges[k].nxt)&#123;
-            int pp &#x3D; edges[k].to;
-            --degree[pp];
-            if(!degree[pp]) q.push(pp);
-        &#125;
-    &#125;
-    &#x2F;&#x2F; 通过检查是否有入度不为0来确定是否存在环
-    int status &#x3D; 0;     &#x2F;&#x2F; 默认既没有环，也没有稳定序列
-    for(int i &#x3D; 0; i &lt; n; ++i)&#123;
-        if(degree[i])&#123;
-            status &#x3D; 1; &#x2F;&#x2F; 标记存在环
-            break;
-        &#125;
-    &#125;
-
-    if(!flag &amp;&amp; !status &amp;&amp; cnt &#x3D;&#x3D; n) status &#x3D; 2;   &#x2F;&#x2F; 此时存在稳定序列
-    return status;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="P1983-车站分级（有向无环图不固定起点和终点最长路径）"><a href="#P1983-车站分级（有向无环图不固定起点和终点最长路径）" class="headerlink" title="P1983_车站分级（有向无环图不固定起点和终点最长路径）"></a>P1983_车站分级（有向无环图不固定起点和终点最长路径）</h2></li>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1983">题目链接</a></p>
-</li>
-<li><p>题目描述：有编号从 1 到 n 的火车站，不同的站点有不同的登记。火车会在其经过的某些火车站停下，如果火车站在序列为{$a_1,a_2,a_3,…,a_k$}的车站中停下，则从首发站 $a_1$ 到终点站 $a_k$ 中的所有<strong>没有停下的车站</strong>的级别都低于停下的车站{$a_1,a_2,a_3,…,a_k$}。现给出 m 个火车的航站表（每个表中包含了第 i 趟火车所有停下的车站），试确定所划分级别的最小数目。</p>
-</li>
-<li><p>解题思路：首先根据航站表建图，根据已确定的等级关系所建的图找出图中最长路径即可。详情见题目<a href="P1113_杂务（dfs查找固定终点的最长路径）">杂务</a>。本题的一个小难点在于如何根据航展表建图，建图部分代码如下：</p>
-  <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; bool vis[maxn] 记录停下的站点
-&#x2F;&#x2F; bool g[maxn][maxn] 记录已经加的边
-void input()&#123;
-    n &#x3D; read(); m &#x3D; read();
-    int port[maxn]; &#x2F;&#x2F; 记录停下的站点
-    for(int i &#x3D; 0; i &lt; m; ++i)&#123;
-        int k, l, r;
-        k &#x3D; read();
-        memset(vis, 0, sizeof(vis));
-        for(int j &#x3D; 0; j &lt; k; ++j)&#123;
-            port[j] &#x3D; read();   &#x2F;&#x2F; 以两种方式存储停下的站点
-            vis[port[j]] &#x3D; 1;
-        &#125;
-        l &#x3D; port[0]; r &#x3D; port[k-1]; &#x2F;&#x2F; 得到始发站和终点站
-        for(int p &#x3D; l; p &lt; r; ++p)&#123; &#x2F;&#x2F; 遍历是发展到终点站之间的所有站点
-            if(!vis[p])&#123;    &#x2F;&#x2F; 如果该站点未被停下，则为该站点和停下的站点建边
-                for(int j &#x3D; 0; j &lt; k; ++j)&#123;
-                    if(!g[port[j]][p])&#123; &#x2F;&#x2F; 若该边已经加过，则不再添加
-                        edges[port[j]].push_back(p);
-                        g[port[j]][p] &#x3D; true;
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
-
+a <span class="token operator">=</span> np<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> np<span class="token punctuation">.</span>pi<span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> np<span class="token punctuation">.</span>sin<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token comment"># 得到函数图像</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+<span class="token comment"># b >=0 返回一个 bool 型数组</span>
+mask <span class="token operator">=</span> b <span class="token operator">>=</span> <span class="token number">0</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>a<span class="token punctuation">[</span>mask<span class="token punctuation">]</span><span class="token punctuation">,</span> b<span class="token punctuation">[</span>mask<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'bo'</span><span class="token punctuation">)</span>
+mask <span class="token operator">=</span> <span class="token punctuation">(</span>b <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>a <span class="token operator">&lt;=</span> np<span class="token punctuation">.</span>pi <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>a<span class="token punctuation">[</span>mask<span class="token punctuation">]</span><span class="token punctuation">,</span> b<span class="token punctuation">[</span>mask<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'go'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/2020/12/24/numpy-shu-zu-xue-xi/output_20_0.svg" alt="svg"></p>
+<h3 id="3、where-函数"><a href="#3、where-函数" class="headerlink" title="3、where 函数"></a>3、where 函数</h3><p>where 函数用于得到满足指定条件的序列的下标。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> np<span class="token punctuation">.</span>where<span class="token punctuation">(</span>a <span class="token operator">&lt;</span> <span class="token number">50</span><span class="token punctuation">)</span>
+c <span class="token operator">=</span> np<span class="token punctuation">.</span>where<span class="token punctuation">(</span>a <span class="token operator">>=</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a <span class="token operator">>=</span> <span class="token number">50</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>(array([0, 1, 2, 3, 4], dtype=int64),)
+[5 6 7 8 9]
+[False False False False False  True  True  True  True  True]
+</code></pre>
                 
             </div>
             <hr/>
@@ -976,7 +861,7 @@ void input()&#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://FinCreWorld.github.io/2020/12/18/ji-chu-tu-shang-wen-ti-xiao-jie/">http://FinCreWorld.github.io/2020/12/18/ji-chu-tu-shang-wen-ti-xiao-jie/</a>
+                    <a href="http://FinCreWorld.github.io/2020/12/24/numpy-shu-zu-xue-xi/">http://FinCreWorld.github.io/2020/12/24/numpy-shu-zu-xue-xi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1014,8 +899,12 @@ void input()&#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%9B%BE%E8%AE%BA/">
-                                    <span class="chip bg-color">图论</span>
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
+                                </a>
+                            
+                                <a href="/tags/numpy/">
+                                    <span class="chip bg-color">numpy</span>
                                 </a>
                             
                         </div>
@@ -1060,7 +949,7 @@ void input()&#123;
         repo: 'FinCreWorld.github.io',
         owner: 'FinCreWorld',
         admin: "FinCreWorld",
-        id: '2020-12-18T20-28-59',
+        id: '2020-12-24T19-17-09',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1086,50 +975,52 @@ void input()&#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/18/bei-bao-jiu-jiang-xue-xi-bi-ji/">
+                <a href="/2020/12/24/numpy-shu-zu-xue-xi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="背包九讲学习笔记">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="numpy数组学习">
                         
-                        <span class="card-title">背包九讲学习笔记</span>
+                        <span class="card-title">numpy数组学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于背包九讲的小结及体会
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-category">
-                                    动态规划
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    机器学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
-                    <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
-                        <span class="chip bg-color">背包问题</span>
+                    <a href="/tags/numpy/">
+                        <span class="chip bg-color">numpy</span>
                     </a>
                     
                 </div>
@@ -1143,31 +1034,31 @@ void input()&#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/18/ji-chu-shu-xue-wen-ti-xiao-jie/">
+                <a href="/2020/12/23/python-chong-wen/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="基础数学问题小结">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Python 重温">
                         
-                        <span class="card-title">基础数学问题小结</span>
+                        <span class="card-title">Python 重温</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            主要涉及进制的转换、位运算、计数原理与排列组合和整除理论。以洛谷上的题目为主。
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E5%AD%A6/" class="post-category">
-                                    数学
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    机器学习
                                 </a>
                             
                             
@@ -1177,8 +1068,8 @@ void input()&#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E5%AD%A6/">
-                        <span class="chip bg-color">数学</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
                 </div>
@@ -1346,13 +1237,6 @@ void input()&#123;
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 
