@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Python 重温, 蒋晨阳,acm">
+    <meta name="keywords" content="吴恩达机器学习一, 蒋晨阳,acm">
     <meta name="description" content="蒋晨阳的小博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Python 重温 | 十卷书舍</title>
+    <title>吴恩达机器学习一 | 十卷书舍</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -466,12 +466,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Python 重温</h1>
+                    <h1 class="description center-align post-title">吴恩达机器学习一</h1>
                 </div>
             </div>
         </div>
@@ -587,8 +587,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">机器学习</span>
                             </a>
                         
                     </div>
@@ -612,21 +612,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-23
+                    2020-12-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-23
+                    2020-12-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.5k
                 </div>
                 
 
@@ -656,278 +656,93 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Python-重温"><a href="#Python-重温" class="headerlink" title="Python 重温"></a>Python 重温</h1><blockquote>
-<p>高三暑假学习的 python，现在已经忘完了。由于机器学习和数学建模的需要，现在需要重拾一下 python 的相关知识，在这里粗略的总结一下其与 C 的不同之处以及基本语法。</p>
+                <h1 id="吴恩达机器学习（一）"><a href="#吴恩达机器学习（一）" class="headerlink" title="吴恩达机器学习（一）"></a>吴恩达机器学习（一）</h1><blockquote>
+<p>主要总结了一下机器学习的基本知识，单变量线性回归的基本概念以及基本解法。</p>
 </blockquote>
-<h2 id="Python-基础语法"><a href="#Python-基础语法" class="headerlink" title="Python 基础语法"></a>Python 基础语法</h2><ul>
-<li>python 保留字</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>python</th>
-<th>保留</th>
-<th>字符</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>and</td>
-<td>exec</td>
-<td>not</td>
-</tr>
-<tr>
-<td>assert</td>
-<td>finally</td>
-<td>or</td>
-</tr>
-<tr>
-<td>break</td>
-<td>for</td>
-<td>pass</td>
-</tr>
-<tr>
-<td>class</td>
-<td>from</td>
-<td>print</td>
-</tr>
-<tr>
-<td>continue</td>
-<td>global</td>
-<td>raise</td>
-</tr>
-<tr>
-<td>def</td>
-<td>if</td>
-<td>return</td>
-</tr>
-<tr>
-<td>del</td>
-<td>import</td>
-<td>try</td>
-</tr>
-<tr>
-<td>elif</td>
-<td>in</td>
-<td>while</td>
-</tr>
-<tr>
-<td>else</td>
-<td>is</td>
-<td>with</td>
-</tr>
-<tr>
-<td>except</td>
-<td>lambda</td>
-<td>yield</td>
-</tr>
-</tbody>
-</table>
-</div>
+<h2 id="一、机器学习概括"><a href="#一、机器学习概括" class="headerlink" title="一、机器学习概括"></a>一、机器学习概括</h2><blockquote>
+<p>定义：A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.——Tom Mitchell</p>
+</blockquote>
+<p>直白地来说，机器学习是一个被用来完成任务 $T$ 的程序，其可以通过在经验 $E$ 中学习，提高其任务完成的表现度 $P$。</p>
 <ul>
-<li>python 采用强制缩进，且缩进格式必须相同</li>
-<li>可以使用 <code>\</code> 将一条语句分为多行</li>
-<li>注释可以使用 <code>&quot;#&quot;</code> 或 <code>&#39;&#39;&#39;</code></li>
-<li>使用 <code>;</code> 可以在一行显示多条语句</li>
+<li><p>监管学习（supervised learning)</p>
+<p>  有时候，我们希望通过给定程序特定的输入来进行预测。比如输入人口数目从而得到某一地区的销售额。<strong>监管学习</strong>是指首先给定程序已知的数据，随后期待给定未知的输入从而预测结果。比如首先给定已知的北京市人口与销售额的关系、上海市人口与销售额的关系等等，随后输入深圳市的人口，期待得到一个销售额的预测值。</p>
+<p>  监管学习主要有<strong>回归分析</strong>（Regression）和<strong>分类分析</strong>（Classification）</p>
+</li>
+<li><p>无监管学习（unsupervised learning）</p>
+<p>  有时候我们的数据没有标签，我们需要机器自动进行分类。比如一段声音中既有人声也有汽车声，采用无监管学习可以将人声和汽车声进行区分。</p>
+</li>
 </ul>
-<h2 id="Python-变量类型"><a href="#Python-变量类型" class="headerlink" title="Python 变量类型"></a>Python 变量类型</h2><p>python 中有五种标准的变量类型分别为：数字、字符串、列表、元组、字典</p>
+<h2 id="二、单变量线性回归基本概念"><a href="#二、单变量线性回归基本概念" class="headerlink" title="二、单变量线性回归基本概念"></a>二、单变量线性回归基本概念</h2><p>单变量线性回归属于监管学习。</p>
+<p>给定一组数据，我们需要对该组数据进行线性拟合。如下图中，给定“人口-利润”的输入，随后我们找到一条直线，使得其尽可能反映数据集中“人口-利润”的线性关系。为此，首先需要定义函数：</p>
+<p><img src="/2020/12/27/wu-en-da-ji-qi-xue-xi-yi/download.png" alt="download"></p>
 <ul>
-<li>数字类型存在复数（complex）</li>
-<li>对于序列（字符串、列表、元组）存在双向索引，可以利用索引取子串（或间隔取子串）。可以使用 <code>+</code> 和 <code>*</code> 进行运运算。对于列表、元组、字典，其可以互相嵌套。</li>
+<li><p>假设函数（Hypothesis）</p>
+<script type="math/tex; mode=display">
+  h_\theta=\theta_0+\theta_1x</script></li>
+<li><p>参数（parameters）</p>
+<script type="math/tex; mode=display">
+  \theta_0,\theta_1</script></li>
+<li><p>代价函数（Cost Function）</p>
+<script type="math/tex; mode=display">
+  J(\theta_0,\theta_1)=\frac{1}{2m}\sum_{i=1}^m(h_\theta(x_i)-y_i)^2</script></li>
 </ul>
-<h2 id="Python-运算符"><a href="#Python-运算符" class="headerlink" title="Python 运算符"></a>Python 运算符</h2><ul>
-<li>与 C 语言不同的是，Python 采用 <code>//</code> 进行实数除运算，采用 <code>//</code> 进行整除运算，采用 <code>**</code> 进行幂运算</li>
-<li><code>is</code> 和 <code>is not</code> 运算符用来比较两个标识符是否引自一个对象，而 <code>==</code> 用于判断引用变量的值是否相等。<code>id()</code> 用于得到引用变量的地址，<code>is</code> 相当于利用该函数比较地址是否相同。</li>
-</ul>
-<h2 id="Python-中的数据类型转换函数"><a href="#Python-中的数据类型转换函数" class="headerlink" title="Python 中的数据类型转换函数"></a>Python 中的数据类型转换函数</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>int(x[,base])</td>
-<td>将字符串或浮点数转换为整型</td>
-</tr>
-<tr>
-<td>long(x[,base])</td>
-<td>同上</td>
-</tr>
-<tr>
-<td>float(x)</td>
-<td>略</td>
-</tr>
-<tr>
-<td>complex(real[,image])</td>
-<td>略</td>
-</tr>
-<tr>
-<td>str(x)</td>
-<td>将对象转化为字符串类型</td>
-</tr>
-<tr>
-<td>repr(x)</td>
-<td>将对象 x 转化为表达式字符</td>
-</tr>
-<tr>
-<td>eval(x)</td>
-<td>将字符串转换为表达式并进行计算返回对象</td>
-</tr>
-<tr>
-<td>tuple(s)、list(s)、set(s)、dict(d)、frozenset(s)</td>
-<td>略</td>
-</tr>
-<tr>
-<td>chr(x)、unichr(x)</td>
-<td>将一个整数转换为一个字符</td>
-</tr>
-<tr>
-<td>ord(x)</td>
-<td>将字符转换为整数</td>
-</tr>
-<tr>
-<td>hex(x)</td>
-<td>将一个整数转化为十六进制字符串</td>
-</tr>
-<tr>
-<td>oct(x)</td>
-<td>将整数转化为八进制字符串</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="Python-中的数学函数"><a href="#Python-中的数学函数" class="headerlink" title="Python 中的数学函数"></a>Python 中的数学函数</h2><p>以下函数需调用 math 库</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>abs(x)、ceil(x)、cmp(x,y)、floor(x)、log10(x)、max(x1,x2,…)、min(x1,x2,…)、pow(x,y)、sqrt(x)</td>
-<td>略</td>
-</tr>
-<tr>
-<td>fabs(x)</td>
-<td>返回绝对值的浮点数形式</td>
-</tr>
-<tr>
-<td>log(x[,base])</td>
-<td>返回以base为底的x的对数</td>
-</tr>
-<tr>
-<td>modf(x)</td>
-<td>返回 x 的整数和小数部分</td>
-</tr>
-<tr>
-<td>round(x[,n])</td>
-<td>返回 x 的四舍五入的值，n 表示小数点后的位数</td>
-</tr>
-<tr>
-<td>acos()、asin()、atan()、cos()、sin()、tan()</td>
-<td>略</td>
-</tr>
-<tr>
-<td>atan2(y,x)</td>
-<td>返回对应坐标的反正切值</td>
-</tr>
-<tr>
-<td>hypot(x,y)</td>
-<td>返回直角三角形的斜边</td>
-</tr>
-<tr>
-<td>degrees(x)、radians(x)</td>
-<td>将弧度转化为角度、将角度转化为弧度</td>
-</tr>
-<tr>
-<td>pi、e</td>
-<td>数学常量</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="Python-中的字符串"><a href="#Python-中的字符串" class="headerlink" title="Python 中的字符串"></a>Python 中的字符串</h2><ul>
-<li>可以使用 <code>&#39;xxxx%s&#39;(&#39;hello&#39;)</code> 的形式格式化字符串</li>
-<li>python 三引号可以保留字符串原有格式</li>
-<li>可以使用 <code>u&#39;xxx&#39;</code> 的格式定义一个 Unicode 字符串</li>
-<li><a href="[Python 字符串 | 菜鸟教程 (runoob.com">更多关于字符串的函数</a>](<a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-strings.html">https://www.runoob.com/python/python-strings.html</a>))</li>
-</ul>
-<h2 id="Python-中的列表"><a href="#Python-中的列表" class="headerlink" title="Python 中的列表"></a>Python 中的列表</h2><p>支持 <code>for in</code> 语句。</p>
-<p>元组内置函数同列表内置函数相同。</p>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">cmp</span><span class="token punctuation">(</span>list1<span class="token punctuation">,</span>list2<span class="token punctuation">)</span>	<span class="token comment"># 比价两个列表</span>
-<span class="token builtin">len</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span>	<span class="token comment"># 得到列表长度</span>
-<span class="token builtin">max</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span>
-<span class="token builtin">min</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span>
-<span class="token builtin">list</span><span class="token punctuation">(</span>seq<span class="token punctuation">)</span>	<span class="token comment"># 将序列转化为列表</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">list</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
-<span class="token builtin">list</span><span class="token punctuation">.</span>count<span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
-<span class="token builtin">list</span><span class="token punctuation">.</span>extend<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>	<span class="token comment"># 拼接序列</span>
-<span class="token builtin">list</span><span class="token punctuation">.</span>index<span class="token punctuation">(</span>obj<span class="token punctuation">)</span>	<span class="token comment"># 找到第一个匹配项的位置</span>
-<span class="token builtin">list</span><span class="token punctuation">.</span>insert<span class="token punctuation">(</span>index<span class="token punctuation">,</span> obj<span class="token punctuation">)</span>	<span class="token comment"># 向序列中插入新对象</span>
-<span class="token builtin">list</span><span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">[</span>index<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>	<span class="token comment"># 移除列表中的一个元素，并返回值</span>
-<span class="token builtin">list</span><span class="token punctuation">.</span>remove<span class="token punctuation">(</span>obj<span class="token punctuation">)</span>	<span class="token comment"># 移除列表中的第一个匹配项</span>
-<span class="token builtin">list</span><span class="token punctuation">.</span>reverse<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment"># 翻转列表</span>
-<span class="token builtin">list</span><span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token builtin">cmp</span><span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>key<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>reverse<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>	<span class="token comment"># 排序</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Python-中的字典"><a href="#Python-中的字典" class="headerlink" title="Python 中的字典"></a>Python 中的字典</h2><p>可以使用 <code>del</code> 删除字典中的某一个键值对</p>
-<p>字典键的特性：</p>
-<ol>
-<li>不允许同一个键出现两次。对于同一个键，首先出现的键会被覆盖。</li>
-<li>键不允许改变，因此需要以数字、字符串或元组充当。</li>
-<li>键对应的值可以为任意对象。</li>
-</ol>
-<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">dict</span><span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token builtin">dict</span><span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment"># 返回一个字典的浅拷贝</span>
-<span class="token builtin">dict</span><span class="token punctuation">.</span>fromkeys<span class="token punctuation">(</span>seq<span class="token punctuation">[</span><span class="token punctuation">,</span>val<span class="token punctuation">]</span><span class="token punctuation">)</span>	<span class="token comment"># 创建一个薪资点，以 seq 中的元素作为键，其对应的值为 val</span>
-<span class="token builtin">dict</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span>key<span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>	<span class="token comment"># 返回 key 对应的值，若键不存在返回 default</span>
-<span class="token builtin">dict</span><span class="token punctuation">.</span>has_key<span class="token punctuation">(</span>key<span class="token punctuation">)</span>	<span class="token comment"># 判断字典中是否存在 key 键</span>
-<span class="token builtin">dict</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment"># 返回一个列表，以元组形式表示所有键值对</span>
-<span class="token builtin">dict</span><span class="token punctuation">.</span>setdefault<span class="token punctuation">(</span>key<span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>	<span class="token comment"># 和 get 相似，但若不存在键则将添加键值对</span>
-<span class="token builtin">dict</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span>dict2<span class="token punctuation">)</span>	<span class="token comment"># 将 dict2 中内容并入 dict 中</span>
-<span class="token builtin">dict</span><span class="token punctuation">.</span>pop<span class="token punctuation">(</span>key<span class="token punctuation">[</span><span class="token punctuation">,</span>default<span class="token punctuation">]</span><span class="token punctuation">)</span>	<span class="token comment"># 删除并返回值</span>
-<span class="token builtin">dict</span><span class="token punctuation">.</span>popitem<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment"># 删除最后一对键值对</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Python-中的函数"><a href="#Python-中的函数" class="headerlink" title="Python 中的函数"></a>Python 中的函数</h2><ul>
-<li><p>参数传递</p>
-<p>  在 python 中，类型属于对象，变量没有类型，可以将变量看做为一个指针，其可以指向任意数据类型，而其本身不属于任何类型。在 python 中，存在<strong>不可变类型</strong>，如数字、字符串、元组类型，也存在<strong>可变类型</strong>，如list、dict。在参数传递的过程中，不可变类型是<strong>值传递</strong>，而可变类型是<strong>引用传递</strong>。</p>
-</li>
-<li><p>参数列表</p>
+<p>我们的目标是得到使得代价函数 $J(\theta_0,\theta_1)$ 尽可能小的参数 $\theta_0,\theta_1$。</p>
+<h2 id="三、单变量线性回归解决方法——梯度下降法"><a href="#三、单变量线性回归解决方法——梯度下降法" class="headerlink" title="三、单变量线性回归解决方法——梯度下降法"></a>三、单变量线性回归解决方法——梯度下降法</h2><p>我们通常采用梯度下降法（Gradient Descent）来解决线性回归问题。主要思路是，首先设置 $\theta_0,\theta_1$ 的初始值，随后不断改变 $\theta_0,\theta_1$，使得代价函数不断减小，直至收敛。我们采用下面的方程更新参数：</p>
+<script type="math/tex; mode=display">
+\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)\quad j\in\{0,1\}（1）</script><p>通过该方程，我们可以不断地逼近代价函数的极小值点，由于线性代价函数的极值点仅有一个，故其为最小值点，从而可以得到问题的解。其中 $\alpha$ 为逼近速率，当 $\alpha$ 过大时可能会造成不收敛的情况。</p>
+<p>化简$（1）$式可得</p>
+<script type="math/tex; mode=display">
+\theta_j:=\theta_j-\alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x_i)-y_i)x_j\quad j\in{0,1}</script><p>借助该式可以求解问题。</p>
+<h2 id="四、多变量线性回归"><a href="#四、多变量线性回归" class="headerlink" title="四、多变量线性回归"></a>四、多变量线性回归</h2><p>训练数据包含多个特征值时需要用到多变量线性回归相关知识。比如房价会受到房子大小、房子卧室数目等因素的影响，则特征值包括房子大小、房子卧室等。给定多组训练数据，每组训练数据以 $\{x_1,x_2,…,x_n,y\}$ 的形式呈现。记 $X=(x_0,x_1,x_2,…,x_n)$，其中 $x_0\equiv1$，用来表征特征值。记 $\theta=(\theta_0,\theta_1,…,\theta_n)$ 用来表示参数。</p>
+<p>多变量线性回归问题的假设函数为：</p>
+<script type="math/tex; mode=display">
+h(x_1,x_2,...,x_n)=\theta_0+\theta_1x_1+\theta_2x_2+...+\theta_n+x_n</script><p>用向量形式表示即为：</p>
+<script type="math/tex; mode=display">
+h(X)=X\cdot\theta^T</script><p>进而可以得到代价方程和梯度下降方程：</p>
+<script type="math/tex; mode=display">
+J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h(X^{(i)})-y^{(i)})^2\\
+\theta_j=\theta_j-\alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)})-y^{(i)})*X^{(i)}_j</script><p>其中 $X^{(i)}$ 表示第 $i$ 组测试数据的特征值向量，$X^{(i)}_j$ 表示第 $i$ 组测试数据的第 $j$ 个特征值，$y^{(i)}$ 表示第 $i$ 组测试数据的期望值。</p>
+<h2 id="五、特征缩放"><a href="#五、特征缩放" class="headerlink" title="五、特征缩放"></a>五、特征缩放</h2><p>对于多变量线性回归，如果其特征值的大小相差较大，可能会出现迭代次数较多甚至不收敛的情况，这是就需要将数据放缩至同样的规模大小，放缩方法如下：</p>
+<script type="math/tex; mode=display">
+X_j=\frac{X_j-Mean(X_j)}{Std(X_j)}</script><p>其中 $X_j$ 所有测试数据中第 $j$ 个特征值组成的向量，$Mean（）$ 表示求均值，$Std（）$ 表示求标准差。</p>
+<h2 id="六、梯度下降图像方面的问题"><a href="#六、梯度下降图像方面的问题" class="headerlink" title="六、梯度下降图像方面的问题"></a>六、梯度下降图像方面的问题</h2><p>通常建议绘制“代价—迭代次数”图像，可以更方便的调试程序和优化程序。当代价并不随迭代次数的增加而减小时，通常情况下是因为选择的 $\alpha$ 过大，此时减小 $\alpha$ 即可。但同时 $\alpha$ 过小时也可能造成收敛较慢的问题，此时就需要根据图像选择较优的 $\alpha$</p>
+<p>以下为作业题中“代价—迭代次数”图像的实例：</p>
 <ul>
-<li>必备参数：必须使用默认的参数顺序和参数数量</li>
-<li>关键字参数：借用形参名称匹配传参，可以改变顺序</li>
-<li>默认参数</li>
-<li>不定长参数：在参数列表末尾追加元组指针<code>*var_args_tuple</code>即可。</li>
-</ul>
+<li><p>当 $\alpha=1.315$ 时（不收敛）</p>
+<p>  <img src="/2020/12/27/wu-en-da-ji-qi-xue-xi-yi/image-20201226174543644.png" alt="image-20201226174543644" style="zoom: 33%;"></p>
 </li>
-<li><p>匿名函数（lambda函数）</p>
-<p>  形如：<code>lambda [arg1[,arg2[,...]]]:expression</code> 返回表达式的值，其可以被赋值到一个变量中，该变量名即为函数名。</p>
+<li><p>当 $\alpha=1$ 时（收敛较快）</p>
+<p>  <img src="/2020/12/27/wu-en-da-ji-qi-xue-xi-yi/image-20201226174709353.png" alt="image-20201226174709353" style="zoom:33%;"></p>
 </li>
-</ul>
-<h2 id="Python-文件-I-O"><a href="#Python-文件-I-O" class="headerlink" title="Python 文件 I/O"></a>Python 文件 I/O</h2><ul>
-<li><p>打印：<code>print</code> 函数即可</p>
-</li>
-<li><p>读入：<code>input</code> ，返回读入的字符串</p>
-</li>
-<li><p>打开和关闭文件：使用 <code>open(file_name[,access_mode][,buffering]</code> 函数和 <code>close()</code> 方法。</p>
-</li>
-<li><p>file 文件的属性：<code>file.closed</code>、<code>file.mode</code>、<code>file.name</code>、<code>file.softspace</code></p>
-</li>
-<li><p>打开模式</p>
-<p>  <img src="/2020/12/23/python-chong-wen/access-mode.png" alt="access mode"></p>
-<p>  （图片引用自<a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-files-io.html">Python 文件I/O | 菜鸟教程 (runoob.com)</a>）</p>
-</li>
-<li><p>文件的写入：<code>write(str)</code> 方法</p>
-</li>
-<li><p>文件的读出：<code>read([count])</code> 方法，读取指定长度的字符串，否则读取整个文件。<code>readline([size])</code> 读取整行，<code>readlines([size])</code> 读取所有行并返回列表，<code>writelines(seq)</code>写入列表，需自己写入换行符。</p>
-</li>
-<li><p>文件定位：<code>tell</code> 方法告诉当前文件指针位置，<code>seek(offset[,from])</code> 方法用于重新定位指针位置</p>
+<li><p>当 $\alpha=0.001$ 时（收敛较慢）</p>
+<p>  <img src="/2020/12/27/wu-en-da-ji-qi-xue-xi-yi/image-20201226174819646.png" alt="image-20201226174819646" style="zoom:33%;"></p>
 </li>
 </ul>
+<h2 id="七、使用正规方程求解"><a href="#七、使用正规方程求解" class="headerlink" title="七、使用正规方程求解"></a>七、使用正规方程求解</h2><p>对于形如</p>
+<script type="math/tex; mode=display">
+J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h(X^{(i)})-y^{(i)})^2</script><p>的<strong>多元线性回归问题</strong>，存在使得 $J(\theta)’=0$ 的通解：</p>
+<script type="math/tex; mode=display">
+\theta=(X^TX)^{-1}X^Ty</script><p>使用该方程可以直接求出最优拟合直线的参数。但是由于矩阵求逆的算法时间复杂度是 $O(n^3)$ 的，因此若数据组数较多时，该算法占用时间较大，仍需要使用迭代算法求解。</p>
+<p><strong>通解求解过程</strong>：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+J(\theta)&=\frac{1}{2}(X\theta-y)^T(X\theta-y)\\
+&=\frac{1}{2}(\theta^TX^TX\theta-y^TX\theta-\theta^TX^Ty+y^Ty)\\
+
+\end{aligned}</script><p>根据矩阵求导法则有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial\theta^TX^TX\theta}{\partial\theta}&=2X^TX\theta\\
+\frac{\partial y^TX\theta}{\partial\theta}&=X^Ty\\
+\frac{\partial\theta^TX^Ty}{\partial\theta}&=X^Ty
+\end{aligned}</script><p>因此有：</p>
+<script type="math/tex; mode=display">
+\frac{\partial J(\theta)}{\partial\theta}=X^TX\theta-X^Ty</script><p>令导数等于零得：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+X^TX\theta-X^Ty&=0\\
+\theta&=(X^TX)^{-1}X^Ty
+\end{aligned}</script><p><del>矩阵求导法则有点多，我也没有搞太明白，就不在这里写了，以后可能会有补充 QAQ</del></p>
 
                 
             </div>
@@ -954,7 +769,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://FinCreWorld.github.io/2020/12/23/python-chong-wen/">http://FinCreWorld.github.io/2020/12/23/python-chong-wen/</a>
+                    <a href="http://FinCreWorld.github.io/2020/12/27/wu-en-da-ji-qi-xue-xi-yi/">http://FinCreWorld.github.io/2020/12/27/wu-en-da-ji-qi-xue-xi-yi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -992,8 +807,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">机器学习</span>
                                 </a>
                             
                         </div>
@@ -1038,7 +853,7 @@
         repo: 'FinCreWorld.github.io',
         owner: 'FinCreWorld',
         admin: "FinCreWorld",
-        id: '2020-12-23T16-59-06',
+        id: '2020-12-27T20-04-22',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1064,9 +879,60 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/12/27/wu-en-da-ji-qi-xue-xi-yi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="吴恩达机器学习一">
+                        
+                        <span class="card-title">吴恩达机器学习一</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    机器学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/12/24/numpy-shu-zu-xue-xi/">
                     <div class="card-image">
@@ -1084,9 +950,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1108,63 +974,6 @@
                     
                     <a href="/tags/numpy/">
                         <span class="chip bg-color">numpy</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/12/22/shu-lun-ding-li-hui-zong-yi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="数论定理汇总(一)">
-                        
-                        <span class="card-title">数论定理汇总(一)</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-22
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%95%B0%E8%AE%BA/" class="post-category">
-                                    数论
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%95%B0%E8%AE%BA/">
-                        <span class="chip bg-color">数论</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">欧几里得算法</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/">
-                        <span class="chip bg-color">欧拉定理</span>
                     </a>
                     
                 </div>
@@ -1332,6 +1141,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
