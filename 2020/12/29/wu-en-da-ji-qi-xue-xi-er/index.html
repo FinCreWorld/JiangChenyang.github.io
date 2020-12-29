@@ -726,7 +726,49 @@ J(\theta)=-\frac{1}{m}\sum_{i=1}^m(ylog(h\theta(x))+(1-y)log(1-h_\theta(x)))</sc
 <script type="math/tex; mode=display">
 P(y=i|x,\theta)=h_\theta^{(i)}(x)</script><p>由此，对于 $n$ 元分类问题，我们可以得到 $n$ 个类似的假设函数，并通过数据集优化，得到这 $n$ 个假设函数各自的 $\theta$ 参数。我们称 $h_\theta^{(i)}$ 为 1 个分类机，可以得到 $n$ 个分类机。当我们进行预测时，我们将 $x$ 输入 $n$ 个分类机中，即通过 $h_\theta^{(i)}(x)$ 得到 $y=i$ 的概率，最后选择概率最大的 $i$ 输出即可。</p>
 <p><img src="/2020/12/29/wu-en-da-ji-qi-xue-xi-er/image-20201229112923200.png" alt="多元分类问题求解" style="zoom:33%;"></p>
-
+<h2 id="二、正则化"><a href="#二、正则化" class="headerlink" title="二、正则化"></a>二、正则化</h2><h3 id="1、拟合过程中的问题"><a href="#1、拟合过程中的问题" class="headerlink" title="1、拟合过程中的问题"></a>1、拟合过程中的问题</h3><p>在拟合过程中，会遇到<strong>欠拟合</strong>和<strong>过拟合</strong>的问题。</p>
+<ul>
+<li>欠拟合：拟合出来的曲线忽略了较多的信息，无法很好的满足数据特征</li>
+<li>过拟合：拟合出来的曲线过于拟合训练数据，失去了预测性，难以满足数据的整体特征</li>
+</ul>
+<p>对于过拟合问题，有两个解决方法：</p>
+<ul>
+<li>丢弃多余的特征，即减少训练数据集中 $x$ 或 $\theta$ 的维度。或者使用可以自动选择模型的算法。</li>
+<li>使用正则化的思想。保留所有 $\theta$ 参数，但减少其值。</li>
+</ul>
+<h3 id="2、正则化代价函数和梯度下降方程"><a href="#2、正则化代价函数和梯度下降方程" class="headerlink" title="2、正则化代价函数和梯度下降方程"></a>2、正则化代价函数和梯度下降方程</h3><p>我们通过向代价方程加入一个惩罚项，从而减小 $\theta$ 中某些维度上项的值，简化假设函数，解决假设函数过拟合的问题。</p>
+<h4 id="（1）线性回归中的正则化"><a href="#（1）线性回归中的正则化" class="headerlink" title="（1）线性回归中的正则化"></a>（1）线性回归中的正则化</h4><p>定义正则化线性回归中代价函数为</p>
+<script type="math/tex; mode=display">
+J(\theta)=\frac{1}{2m}(\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2+\lambda\sum_{j=1}^n\theta_j^2)</script><p>其中 $\lambda\sum_{j=1}^n\theta_j^2$ 为惩罚项，用来防止出现某一个 $\theta$ 特别大导致出现过拟合的情况。当 $\lambda$ 设置过小时可能还是会导致过拟合，当其特别大时会导致欠拟合。按照约定俗成的习惯，我们并不对 $\theta_0$ 增加惩罚项。</p>
+<p>进而得到梯度下降方程</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\theta_0:=\theta_0-\frac{\alpha}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})\\
+\theta_j:=\theta_j-\alpha[\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j+\frac{\lambda}{m}\theta_j]
+\end{cases}</script><p>而如果使用正规方程来求解的话，我们可以得到：</p>
+<script type="math/tex; mode=display">
+\theta=\Big(X^TX+\lambda
+\left[\begin{matrix}
+0 & 0 & \cdots & 0\\
+0 & 1 & \cdots & 0\\
+\vdots&\vdots&\ddots\\
+0 & 0 & \cdots & 1
+\end{matrix}\right]^{-1}
+\Big)X^Ty\theta=\Big(X^TX+\lambda
+\left[\begin{matrix}
+0 & 0 & \cdots & 0\\
+0 & 1 & \cdots & 0\\
+\vdots&\vdots&\ddots\\
+0 & 0 & \cdots & 1
+\end{matrix}\right]^{-1}
+\Big)X^Ty</script><h4 id="（2）逻辑回归中的正则化"><a href="#（2）逻辑回归中的正则化" class="headerlink" title="（2）逻辑回归中的正则化"></a>（2）逻辑回归中的正则化</h4><p>代价函数</p>
+<script type="math/tex; mode=display">
+J(\theta)=-\frac{1}{m}\sum_{i=1}^m[ylog(h\theta(x))+(1-y)log(1-h_\theta(x))]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2</script><p>梯度下降方程</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\theta_0:=\theta_0-\frac{\alpha}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})\\
+\theta_j:=\theta_j-\alpha[\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j+\frac{\lambda}{m}\theta_j]
+\end{cases}</script>
                 
             </div>
             <hr/>
