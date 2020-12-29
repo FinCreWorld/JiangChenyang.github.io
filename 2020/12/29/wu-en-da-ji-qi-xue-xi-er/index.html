@@ -675,7 +675,7 @@ h_\theta(x)=g(x^T\theta)\\
 g(t)=\frac{1}{1+e^{-t}}
 \end{cases}
 \Rightarrow h_\theta(x)=\frac{1}{1+e^{-x^T\theta}}</script><p>其中 $g(t)$ 为逻辑方程（logistic function），这也是逻辑回归名称的由来。其中 $g(x)$ 的图像如下所示：</p>
-<p><img src="/2020/12/29/wu-en-da-ji-qi-xue-xi-er/Users\JiangChenyang\AppData\Roaming\Typora\typora-user-images\image-20201228212739223.png" alt="逻辑函数图像" style="zoom: 33%;"></p>
+<p><img src="/2020/12/29/wu-en-da-ji-qi-xue-xi-er/image-20201228212739223.png" alt="逻辑函数图像" style="zoom: 33%;"></p>
 <p>当 $h(x)\geq0.5$ 时，我们预测 $y=1$；当 $h(x)&lt;0.5$ 时，我们预测 $y=0$。其中 $h(x)$ 其实为 $y=1$ 的概率。有以下两组公式</p>
 <script type="math/tex; mode=display">
 P(y=1|x,\theta)=h(x)\\
@@ -684,7 +684,7 @@ P(y=0|x,\theta)=1-h(x)</script><p> 其表示在自变量 $x$ 以及参数为 $\t
 <script type="math/tex; mode=display">
 y=1\Rightarrow h(x)\geq0.5\Rightarrow x^T\theta\geq0\\
 y=0\Rightarrow h(x)<0.5\Rightarrow x^T\theta<0</script><p>我们可以发现 $x^T\theta=0$ 定义了 $y=1$ 与 $y=0$ 的边界。例如 $x^T={1,x_1,x_2}$，我们输入训练数据之后得到 $\theta^T={\theta_0,\theta_1,\theta_2}$，那么由 $\theta_0+\theta_1x_1+\theta_2x_2=0$ 所决定的直线就定义了预测 $y=1$ 与 $y=0$ 的边界，我们称此边界为 <strong>决策边界</strong>。</p>
-<p><img src="/2020/12/29/wu-en-da-ji-qi-xue-xi-er/Users\JiangChenyang\AppData\Roaming\Typora\typora-user-images\image-20201228223857481.png" alt="决策边界实例" style="zoom: 33%;"></p>
+<p><img src="/2020/12/29/wu-en-da-ji-qi-xue-xi-er/image-20201228223857481.png" alt="决策边界实例" style="zoom: 33%;"></p>
 <p>对于更复杂的决策边界，我们可以这样定义假设函数：</p>
 <script type="math/tex; mode=display">
 h_\theta(x)=g(\theta_0+\theta_1x_1+\theta_2x_2+\theta_3x_1^2+\theta_4x_2^2)\\
@@ -721,11 +721,11 @@ J(\theta)=-\frac{1}{m}\sum_{i=1}^m(ylog(h\theta(x))+(1-y)log(1-h_\theta(x)))</sc
 \theta_j:=\theta_j-\alpha\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)}</script><p><del>由于某种巧合</del>，可以发现该梯度下降方程和线性回归的梯度下降方程一样，但值得注意的是，两者的 $h_\theta(x)$ 函数并不相同。</p>
 <h3 id="6、高级优化"><a href="#6、高级优化" class="headerlink" title="6、高级优化"></a>6、高级优化</h3><p>相较于上文的梯度下降方法，其实有更高级快速的方法可供选择。如 共轭梯度法（Conjugate descent）​、局部优化法（BFGS）、有限内存局部优化法（L-BFGS）。实现较为困难，可以直接掉包。（没错，我就是调包侠）</p>
 <h3 id="7、多元分类问题"><a href="#7、多元分类问题" class="headerlink" title="7、多元分类问题"></a>7、多元分类问题</h3><p>有时我们会遇到因变量 $y$ 可以取不止两个值的情况，比如邮件分类可以分为垃圾邮件、家人邮件、公司邮件等，这时就需要对二元分类问题进行推广。</p>
-<p><img src="/2020/12/29/wu-en-da-ji-qi-xue-xi-er/Users\JiangChenyang\AppData\Roaming\Typora\typora-user-images\image-20201228234831484.png" alt="image-20201228234831484" style="zoom:33%;"></p>
+<p><img src="/2020/12/29/wu-en-da-ji-qi-xue-xi-er/image-20201228234831484.png" alt="多元分类问题" style="zoom:33%;"></p>
 <p>我们采用 One-vs-All 的思路来解决多元问题。令 $y=i$ 为正类，$y\neq i$ 为负类，那么我们可以得到关于 $y=i$ 的假设函数，有</p>
 <script type="math/tex; mode=display">
 P(y=i|x,\theta)=h_\theta^{(i)}(x)</script><p>由此，对于 $n$ 元分类问题，我们可以得到 $n$ 个类似的假设函数，并通过数据集优化，得到这 $n$ 个假设函数各自的 $\theta$ 参数。我们称 $h_\theta^{(i)}$ 为 1 个分类机，可以得到 $n$ 个分类机。当我们进行预测时，我们将 $x$ 输入 $n$ 个分类机中，即通过 $h_\theta^{(i)}(x)$ 得到 $y=i$ 的概率，最后选择概率最大的 $i$ 输出即可。</p>
-<p><img src="/2020/12/29/wu-en-da-ji-qi-xue-xi-er/Users\JiangChenyang\AppData\Roaming\Typora\typora-user-images\image-20201229000909220.png" alt="image-20201229000909220" style="zoom:33%;"></p>
+<p><img src="/2020/12/29/wu-en-da-ji-qi-xue-xi-er/image-20201229112923200.png" alt="多元分类问题求解" style="zoom:33%;"></p>
 
                 
             </div>
