@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>3——汇编语言基础格式</title>
+      <link href="2021/01/02/3-hui-bian-yu-yan-ji-chu-ge-shi/"/>
+      <url>2021/01/02/3-hui-bian-yu-yan-ji-chu-ge-shi/</url>
+      
+        <content type="html"><![CDATA[<h1 id="第三讲-汇编语言基础格式"><a href="#第三讲-汇编语言基础格式" class="headerlink" title="第三讲 汇编语言基础格式"></a>第三讲 汇编语言基础格式</h1><h2 id="一-汇编程序功能"><a href="#一-汇编程序功能" class="headerlink" title="一 汇编程序功能"></a>一 汇编程序功能</h2><p>将汇编语言编写的源程序翻译成目标程序的过程称为<strong>汇编</strong>，完成汇编任务的程序称为<strong>汇编程序</strong></p><p><img src="/2021/01/02/3-hui-bian-yu-yan-ji-chu-ge-shi/image-20210102114501025.png" alt="汇编基本流程" style="zoom: 33%;"></p><blockquote><p>注：.obj 文件已经是二进制文件，但其与库文件或其他目标文件连接之后才能形成可执行文件</p></blockquote><h2 id="二-（伪）指令语句基本格式"><a href="#二-（伪）指令语句基本格式" class="headerlink" title="二 （伪）指令语句基本格式"></a>二 （伪）指令语句基本格式</h2><p>伪指令汇编后不产生目标机器码，而每条指令语句都产生对应的机器码；伪指令语句对应的操作在汇编后完成，而指令语句对应操作在运行时完成。</p><p>两者的格式：</p><ul><li>指令语句：<code>[标号名:] 操作码 [操作数] [;注释]</code></li><li>伪指令语句：<code>[变量名] 伪操作码 [操作数] [;注释]</code></li></ul><p>各语言单位：</p><ul><li>操作项：操作项为指令、伪指令、宏指令的操作码，又称助记符</li><li>名字项：名字项为标号名、变量名等，可由字母、数字、特殊字符（?、.、@、-、$）组成。数字不能为首项，. 仅能用作首项、单独的 ? 不能作为名字。</li><li>标号：<u>表示指令所在单元地址，在代码段中定义使用</u>。其可用 <code>LABEL</code> 或 <code>EQU</code> 伪指令定义，常用作 <code>CALL</code> 指令或转移指令操作数字段</li><li>变量：<u>在数据段、附加段和堆栈段中定义。</u>其为数字，数据区和存储区的首地址<ul><li>属性：变量和标号具有段属性、偏移属性和类型属性。段属性为所在段；偏移属性为所在地址距离段基址的偏移量；类型属性有段内引用 <code>NEAR</code>、段外引用 <code>FAR</code>、<code>BYTE</code>、<code>WORD</code>、<code>DWORD</code>、<code>FWORD</code>、<code>QWORD</code>、<code>TBYTE</code></li></ul></li><li>常量：指在汇编器确定的没有任何属性的纯数值，主要用于立即数和伪指令赋初值，有数值常量、字符串常量和符号常量（指EQU伪指令或赋值语句“=”定义过的符号名）。数值常量基数后缀为 “d、b、o/q、h”</li></ul><h3 id="三-伪指令语句"><a href="#三-伪指令语句" class="headerlink" title="三 伪指令语句"></a>三 伪指令语句</h3><p>伪指令不负责程序的运行，而负责目标代码的生成，主要功能有：逻辑段的定义、存储模式定义、数据定义、存储器分配、指示程序开始结束等</p><p>常用伪指令：</p><ul><li><p>段定义伪指令：略。不要忘记存在 <code>assume 段寄存器: nothing</code> 伪指令，其用于取消远端寄存器的指定</p></li><li><p>存储模式伪指令：</p><p>  其通常模式为 <code>.MODEL 存储模式 [,语言类型][,操作系统类型][,堆栈选项]</code></p><p>  存储模式：tiny、small、medium、compact、large、huge、flag</p><p>  语言类型：C、BASIC、PASCAL等</p><p>  操作系统：OS_DOS（默认）或OS_OS2</p><p>  堆栈选项：NEARSTACK将堆栈段和数据段组合至一个DGROUP段中，FARSTACK不进行组合。存储模式为Compact、Large、Huge时默认为 FARSTACK，否则为 NEARSTACK</p><p>  <img src="/2021/01/02/3-hui-bian-yu-yan-ji-chu-ge-shi/image-20210102144852583.png" alt="存储模式介绍" style="zoom: 33%;"></p><p>  使用存储模式伪指令可以使用简化段定义但必须有 <code>.MODEL</code> 语句，若只有 <code>.code</code> 、<code>.stack</code>、<code>.code</code> 则可以省略 <code>assume</code> 语句</p></li><li><p>段组定义伪操作：<code>GroupName Group segname1, segname2,...</code>，</p></li><li><p>数据定义及存储器分配伪操作：助记符 <code>DB</code>、<code>DW</code>、<code>DD</code>、<code>DF</code>、<code>DQ</code>、<code>DT</code></p></li><li><p>复制操作符：<code>RepeatCount dup (num1,num2,...)</code> 可嵌套</p></li><li><p>PTR伪指令：用于指定操作数的数据类型，格式为 <code>type PTR 变量或常量</code></p></li><li><p>LABEL伪操作：指定操作数的数据类型，格式为 <code>name LABEL type</code></p></li><li><p>表达式赋值伪操作：为表达式新定义一个名字，表达式可以为任何有效操作数格式、或可求出常数的表达式、或助记符，格式为<code>ExprName EQU expr</code>。功能与 <code>=</code> 相同，但 <code>=</code> 允许重复定义</p></li><li><p>地址计数器 $：其表示数据或代码的地址。当 <code>$</code> 用在指令中时，其表示本条指令第一个字节的地址，若其在伪指令的参数字段中时，其表示当前数据的地址。</p></li><li><p>ORG伪指令：设定当前地址计数器的值，指定存放指令或数据的位置。<code>ORG expr</code>，表达式需可计算出数值</p></li><li><p>基数控制伪操作：<code>.radix expr</code> ，需要注意，当从 10 进制改为 16 进制时，若原来的 16 进制之后有字母 D，则需在该数后面加上 H</p></li></ul><h2 id="四-表达式操作符"><a href="#四-表达式操作符" class="headerlink" title="四 表达式操作符"></a>四 表达式操作符</h2><p>汇编指令中的操作数项可以为常数、寄存器、标号、变量或表达式。表达式是常数、寄存器、标号、变量以及一些操作符组成的序列，有数字表达式和地址表达式两种。</p><p>表达式常见运算符：</p><ul><li><p>算数运算符：+、-、*、/、Mod</p></li><li><p>关系运算符：EQ、NE、LT、LE、GT、GE，若为真返回 0FFFFH，否则返回 00000H</p></li><li><p>逻辑和移位操作符：AND、OR、XOR、NOT</p></li><li><p>数值回送操作符：TYPE、LENGTH、SIZE、OFFSET、SEG。对于TYPE，其返回值如下表</p><p>  | DB   | DW   | DD   | DF   | DQ   | DT   | NEAR | FAR  | 常数 |<br>  | —— | —— | —— | —— | —— | —— | —— | —— | —— |<br>  | 1    | 2    | 4    | 6    | 8    | 10   | -1   | -2   | 0    |</p></li><li><p>属性操作符：SHORT、HIGH、LOW、HIGHWORD、LOWWORD，其操作对象均需为立即数</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 汇编复习简纲 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 汇编 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2——硬件一览</title>
+      <link href="2021/01/02/1-ying-jian-yi-lan/"/>
+      <url>2021/01/02/1-ying-jian-yi-lan/</url>
+      
+        <content type="html"><![CDATA[<h1 id="第一讲-硬件一览"><a href="#第一讲-硬件一览" class="headerlink" title="第一讲 硬件一览"></a>第一讲 硬件一览</h1><h2 id="一-硬件总览"><a href="#一-硬件总览" class="headerlink" title="一 硬件总览"></a>一 硬件总览</h2><p><img src="/2021/01/02/1-ying-jian-yi-lan/image-20210101110944450.png" alt="微机主要设备" style="zoom:50%;"></p><p>微型计算机硬件主要由中央处理机、存储器、系统总线、I/O接口电路和I/O设备组成。</p><ul><li><p>中央处理机</p><p>  集成运算器、控制器和寄存器组，完成算数和逻辑运算以及控制工作。</p></li><li><p>存储器</p><p>  主存（内存），CPU通过总线读写，有ROM和RAM。辅存（外存），CPU通过I/O接口读写。</p></li><li><p>总线</p><ul><li>数据总线（双向总线）</li><li>地址总线（单向总线），直接寻址范围为 $2^n$，8086总线为 20 位</li><li>控制总线（双向总线）</li></ul></li><li><p>I/O接口电路</p><p>  I/O接口电路中每个寄存器统一编号，称为I/O端口地址或端口号，地址空间为 64KB，共 65536 个 I/O 地址，端口地址范围为 0000-FFFFH</p></li><li><p>I/O设备</p><p>  输入输出设备</p></li></ul><h2 id="二-中央处理机与寄存器"><a href="#二-中央处理机与寄存器" class="headerlink" title="二 中央处理机与寄存器"></a>二 中央处理机与寄存器</h2><h3 id="1、中央处理机"><a href="#1、中央处理机" class="headerlink" title="1、中央处理机"></a>1、中央处理机</h3><p><img src="/2021/01/02/1-ying-jian-yi-lan/image-20210101111940167.png" alt="硬件结构图" style="zoom:50%;"></p><p>CPU 功能上可分为<strong>总线接口部件（BIU）</strong>和<strong>执行部件（EU）</strong>。前者负责CPU与存储器、I/O端口传送数据，后者负责指令执行和数据运算。</p><ul><li><p>总线接口部件</p><p>  其含有段寄存器（4个16位寄存器）、指令指针寄存器（16位）、地址加法器（形成20位地址）、指令队列（6字节）和总线接口控制电路。</p></li><li><p>执行部件</p><p>  通用寄存器（数据寄存器和指针与变址寄存器）、标志寄存器（FR）、算术逻辑部件（ALU）和执行部件控制电路。</p></li></ul><h3 id="2、寄存器组"><a href="#2、寄存器组" class="headerlink" title="2、寄存器组"></a>2、寄存器组</h3><h4 id="（1）通用寄存器"><a href="#（1）通用寄存器" class="headerlink" title="（1）通用寄存器"></a>（1）通用寄存器</h4><p><strong>数据寄存器</strong>用来保存操作数或运算结果：</p><div class="table-container"><table><thead><tr><th>寄存器名称</th><th>功能</th></tr></thead><tbody><tr><td>AX（Accumulator）累加器</td><td>算数逻辑运算，与外设传送信息</td></tr><tr><td>BX（Base）基址寄存器</td><td>存放存储器地址</td></tr><tr><td>CX（Count）计数器</td><td>循环和串操作计数器，CL移位指定位数</td></tr><tr><td>DX（Data）数据寄存器</td><td>存放双字数据高16位，乘除运算的参数，存放外设端口地址</td></tr></tbody></table></div><p><strong>变址寄存器</strong>常用于存放某个存储单元偏移位置</p><div class="table-container"><table><thead><tr><th>寄存器名称</th><th>功能</th></tr></thead><tbody><tr><td>SI（Source Index Reg）源变址寄存器</td><td>与DS连用，确定存储单元位置</td></tr><tr><td>DI（Destination Index Reg）目的变址寄存器</td><td>与DS或ES连用，确定单元地址</td></tr></tbody></table></div><blockquote><p>注：变址寄存器不可分割成 8 位寄存器</p></blockquote><p><strong>指针寄存器</strong>常用来访问栈内存储单元</p><div class="table-container"><table><thead><tr><th>寄存器名称</th><th>功能</th></tr></thead><tbody><tr><td>SP（Stack Pointer）堆栈指针寄存器</td><td>通过 SS:SP  来访问栈顶</td></tr><tr><td>BP（Base Pointer）基址指针寄存器</td><td>通过 SS:SP 来访问栈内存储单元</td></tr></tbody></table></div><h4 id="（2）专用寄存器"><a href="#（2）专用寄存器" class="headerlink" title="（2）专用寄存器"></a>（2）专用寄存器</h4><p><strong>指令指针寄存器 IP （Instruction Pointer）</strong>保存下一次从主存中取出指令的偏移地址。</p><p><strong>标志寄存器 FR/PSW （Program Status Word）</strong> 含有<strong>状态标志</strong>和<strong>控制标志</strong></p><p>状态标志用来记录程序运行结果的状态信息，指令执行结束后会改变状态标志</p><div class="table-container"><table><thead><tr><th>标志名称</th><th>标志功能</th></tr></thead><tbody><tr><td>CF（Carry）进位标志</td><td>运算过程中有借位或进位时置 1，用于多字节运算、移位、比较大小</td></tr><tr><td>ZF（Zero）零标志</td><td>运算结果为 0 则置 0，反之置 1</td></tr><tr><td>SF（Sign）符号标志</td><td><strong>有符号数运算</strong>的结果若高位为 1 则置 1，反之置 0</td></tr><tr><td>PF（Parity）奇偶标志</td><td>运算结果<strong>最低8位</strong>中 1 的个数为偶数个时置 1，反之 0</td></tr><tr><td>OF（Overflow）溢出标志</td><td>若算数运算结果有溢出则置 1，反之 0（即算数运算结果是否正确）</td></tr></tbody></table></div><p>控制标志可用指令设定，用于控制处理器执行指令的方式</p><div class="table-container"><table><thead><tr><th>标志名称</th><th>标志功能</th></tr></thead><tbody><tr><td>DF（Direction）方向标志</td><td>串操作中控制地址变化方向，DF=0 时地址增加</td></tr><tr><td>IF（Interrupt-enable）中断允许标志</td><td>IF=1允许中断，否则禁止中断</td></tr><tr><td>TF（Trap Flag）陷阱标志</td><td>TF=1，处理器单步执行指令，产生编号为1的内部中断</td></tr></tbody></table></div><h4 id="（4）段寄存器"><a href="#（4）段寄存器" class="headerlink" title="（4）段寄存器"></a>（4）段寄存器</h4><p>有 SS、DS、CS、ES，略。</p><h2 id="三-访问内存"><a href="#三-访问内存" class="headerlink" title="三 访问内存"></a>三 访问内存</h2><p>8086/8088 的存储空间为 $2^{20}=1$MB，而其内部为16位寄存器，只能寻址 $2^{16}=64$KB，采用内存分段的方式来访问内存空间。</p><ol><li>8086/8088把1MB分成若干逻辑段，每个逻辑段最大为 64KB，可用 16 位地址表示。</li><li>设定段起始地址，段起始地址的格式为 0XXXX0H。某一段的开始必须使段起始地址。</li></ol><p>综上，使用逻辑段来划分存储空间，逻辑段的起始地址必须为段起始地址，而每一段的存储空间最大为 64KB，可以直接访问。因此，使用<strong>段起始地址+段内偏移地址（EA/Offset）</strong>的方式可以在16位寄存器的限制下访问到20位的<strong>物理地址（PA）</strong>。</p><p>物理地址计算公式</p><script type="math/tex; mode=display">PA=(SA<<4)+EA</script><p>其中 SA 为段地址。</p><blockquote><p>注意：内存访问存在<strong>内存对齐（memory alignment）</strong>的问题。8086的16位数据线每个内存周期依次读取偶单元和奇单元，每次一个字节。若字地址为偶单元，则1个内存周期即可读取，否则需要2个内存周期。若双字地址为偶单元，需要2个内存周期，否则需要3个。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 汇编复习简纲 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 汇编 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>1——寻址方式</title>
+      <link href="2021/01/02/2-xun-zhi-fang-shi/"/>
+      <url>2021/01/02/2-xun-zhi-fang-shi/</url>
+      
+        <content type="html"><![CDATA[<h1 id="第二讲-寻址方式"><a href="#第二讲-寻址方式" class="headerlink" title="第二讲 寻址方式"></a>第二讲 寻址方式</h1><h2 id="一-操作数"><a href="#一-操作数" class="headerlink" title="一 操作数"></a>一 操作数</h2><p>操作数有三种来源，分别为<strong>立即数操作数</strong>、<strong>寄存器操作数</strong>和<strong>存储器操作数</strong>。指令通常格式为 <code>操作码 (操作数1，操作2)</code>，寻址的目的是获得指令操作数的地址。</p><h2 id="二-与数据有关的寻址方式"><a href="#二-与数据有关的寻址方式" class="headerlink" title="二 与数据有关的寻址方式"></a>二 与数据有关的寻址方式</h2><p>立即寻址和寄存器寻址无需访问存储器，运行速度较快。而后五种寻址方式需要访问存储器，其中相对寻址、基址变址寻址可以用来访问数组，而相对基址变址寻址可以用来访问二维数组。</p><div class="table-container"><table><thead><tr><th>寻址方式</th><th>操作数格式</th></tr></thead><tbody><tr><td>立即寻址方式</td><td>数字</td></tr><tr><td>寄存器寻址方式</td><td>通用寄存器和段寄存器</td></tr><tr><td>直接寻址</td><td>[buffer]（buffer为符号或数字）</td></tr><tr><td>间接寻址</td><td>[R]（之后以 R 来代指 BX/BP/SI/DI）</td></tr><tr><td>相对寻址</td><td>X[R] 或 [X+R]</td></tr><tr><td>基址变址寻址</td><td>[BX/BP+SI/DI]</td></tr><tr><td>相对基址变址寻址</td><td>R[BX/BP+SI/DI]</td></tr></tbody></table></div><blockquote><p>注：立即寻址中数字不能作为第一个操作数。操作数不能同时对存储器寻址。当操作数中出现 BP 时，默认段地址为 SS，此时 PA=(SS&lt;&lt;4) + Offset(buffer) ，这里的 buffer 表示存储器地址通式。否则 PA=(DS&lt;&lt;4) + Offset(buffer)</p></blockquote><ul><li><p>段跨越问题</p><p>  若不想使用默认的段地址，使用 <code>DS/SS/ES/CS:[buffer]</code> 的方式用来指定段地址。但是取指令操作、PUSH和POP操作、串处理指令的目的串不得使用段跨越前缀。</p></li></ul><h2 id="三-与转移地址有关的寻址方式"><a href="#三-与转移地址有关的寻址方式" class="headerlink" title="三 与转移地址有关的寻址方式"></a>三 与转移地址有关的寻址方式</h2><p>用来确定转移指令以及 <code>call</code> 指令的转向地址。转移指令负责将得到的段地址和偏移地址分别放入 CS 和 IP 寄存器中。</p><ul><li><p>段内转移</p><ul><li><p>段内直接寻址</p><ul><li>短转：JMP SHORT QUEST 8 位位移量，-128~+127</li><li>近转：JMP NEAR PTR NEXT 16 位位移量，-32768~32767</li></ul></li><li><p>段内间接寻址</p><ul><li>JMP R</li><li><p>JMP word ptr [buffer] 此处 buffer 同上，为存储器寻址方式统称</p><p>IP 寄存器中内容替换为访问存储单元内容</p></li></ul></li></ul></li><li><p>段间转移</p><ul><li><p>段间直接寻址</p><p>  JMP FAR PTR NEXTROUNT，其把 <code>seg nextrount</code> 放入 CS 中，<code>offset nextrount</code> 放入 IP 中</p></li><li><p>段间间接寻址</p><p>  JMP word ptr [buffer]，将存储器中高位放入 CS 中，低位放入 IP 中</p></li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 汇编复习简纲 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 汇编 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>吴恩达机器学习二</title>
       <link href="2020/12/29/wu-en-da-ji-qi-xue-xi-er/"/>
       <url>2020/12/29/wu-en-da-ji-qi-xue-xi-er/</url>
