@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>5——循环与分支结构设计</title>
+      <link href="2021/01/05/5-xun-huan-yu-fen-zhi-jie-gou-she-ji/"/>
+      <url>2021/01/05/5-xun-huan-yu-fen-zhi-jie-gou-she-ji/</url>
+      
+        <content type="html"><![CDATA[<h1 id="五-循环与分支结构设计"><a href="#五-循环与分支结构设计" class="headerlink" title="五 循环与分支结构设计"></a>五 循环与分支结构设计</h1><p>在汇编语言中，存在顺序执行、分支语句和循环语句三种程序执行结构，可以使用转移指令来实现分支语句，使用转移指令或循环指令来实现循环语句。</p><h2 id="一-控制转移指令"><a href="#一-控制转移指令" class="headerlink" title="一 控制转移指令"></a>一 控制转移指令</h2><h3 id="1-无条件转移指令"><a href="#1-无条件转移指令" class="headerlink" title="1 无条件转移指令"></a>1 无条件转移指令</h3><div class="table-container"><table><thead><tr><th>指令名称</th><th>指令格式</th><th>指令效果</th></tr></thead><tbody><tr><td>段内直接短转移</td><td>jmp short opr</td><td>（ip）&lt;-（ip）+8位位移量</td></tr><tr><td>段内直接近转移</td><td>jmp near ptr opr</td><td>（ip）&lt;-（ip）+16位位移量</td></tr><tr><td>段内间接转移</td><td>jmp word ptr opr</td><td>（ip）&lt;-（EA）</td></tr><tr><td>段间直接转移</td><td>jmp far ptr opr</td><td>（ip）&lt;-opr偏移地址<br>（cs）&lt;-opr段地址</td></tr><tr><td>段间间接转移</td><td>jmp dword ptr opr</td><td>（ip）&lt;-（EA）<br>（cs）&lt;-（EA+2）</td></tr></tbody></table></div><h3 id="2-条件转移指令"><a href="#2-条件转移指令" class="headerlink" title="2 条件转移指令"></a>2 条件转移指令</h3><div class="table-container"><table><thead><tr><th>指令名称</th><th>检测条件</th><th>转移条件</th></tr></thead><tbody><tr><td>jz、je</td><td>zf=1</td><td>结果为0或相等</td></tr><tr><td>jnz、jne</td><td>zf=0</td><td>结果不为0或不等</td></tr><tr><td>js</td><td>sf=1</td><td>结果为负</td></tr><tr><td>jns</td><td>sf=0</td><td>结果为正</td></tr><tr><td>jc</td><td>cf=1</td><td>有进位或借位</td></tr><tr><td>jnc</td><td>cf=0</td><td>无进位或借位</td></tr><tr><td>jo</td><td>of=1</td><td>运算有溢出</td></tr><tr><td>jno</td><td>of=0</td><td>运算无溢出</td></tr><tr><td>jp、jpe</td><td>pf=1</td><td>有偶数个1</td></tr><tr><td>jnp、jpo</td><td>pf=0</td><td>有奇数个1</td></tr><tr><td>jb、jnae</td><td>cf=1</td><td>无符号低于</td></tr><tr><td>jnb、jae</td><td>cf=0</td><td>无符号不低于</td></tr><tr><td>jbe、jna</td><td>cf=1或zf=1</td><td>无符号低于等于</td></tr><tr><td>jnbe、ja</td><td>cf=0且zf=0</td><td>无符号大于</td></tr><tr><td>jl、jnge</td><td>sf$\otimes$of=1</td><td>算数小于</td></tr><tr><td>jnl、jge</td><td>sf$\otimes$of=0</td><td>算数大于等于</td></tr><tr><td>jg、jnle</td><td>（sf$\otimes$of=0）<br>且zf=0</td><td>算数大于</td></tr><tr><td>jng、jle</td><td>sf$\otimes$of=1<br>或zf=1</td><td>算数小于等于</td></tr></tbody></table></div><h3 id="3-循环指令"><a href="#3-循环指令" class="headerlink" title="3 循环指令"></a>3 循环指令</h3><div class="table-container"><table><thead><tr><th>指令名称</th><th>检测条件</th></tr></thead><tbody><tr><td>loop</td><td>$cx\neq0$</td></tr><tr><td>loope、loopz</td><td>$cx\neq0$ 且 $zf=1$</td></tr><tr><td>loopne、loopnz</td><td>$cx\neq0$ 且 $zf=0$</td></tr></tbody></table></div><h3 id="二-循环基本结构"><a href="#二-循环基本结构" class="headerlink" title="二 循环基本结构"></a>二 循环基本结构</h3><ul><li><p>循环初始化部分：</p><p>  在该部分对需要处理的数据进行初始化，同时对循环次数等进行初始化，且必要的话需要进行数据保护</p></li><li><p>循环体：</p><p>  在该部分实现待完成的工作</p></li><li><p>循环修改部分：</p><p>  修改循环相关量，如地址、计数器等</p></li><li><p>循环控制部分：</p><p>  在该部分处理循环和退出循环的逻辑判断</p></li></ul><h3 id="三-分支结构程序设计"><a href="#三-分支结构程序设计" class="headerlink" title="三 分支结构程序设计"></a>三 分支结构程序设计</h3><ul><li><p>双分支结构：用于 $if$ 结构，或 $if-else$ 结构</p></li><li><p>多分支语句：</p><ul><li>使用双分支语句嵌套实现多分支</li><li>进行逻辑分解，顺序执行，至到满足条件再进行跳转</li><li>跳跃表法，将每段分支程序的入口放入跳跃表中</li><li>转移表法：将每段分支程序对应跳转语句的地址放入转移表中</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 汇编复习简纲 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 汇编 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>4——汇编指令</title>
+      <link href="2021/01/05/4-hui-bian-zhi-ling/"/>
+      <url>2021/01/05/4-hui-bian-zhi-ling/</url>
+      
+        <content type="html"><![CDATA[<h1 id="第四讲-指令"><a href="#第四讲-指令" class="headerlink" title="第四讲 指令"></a>第四讲 指令</h1><h2 id="一-数据传送指令"><a href="#一-数据传送指令" class="headerlink" title="一 数据传送指令"></a>一 数据传送指令</h2><ul><li><p>MOV DST，SRC</p><p>  功能：（DST）&lt;-（SRC）</p><p>  操作数：操作数不能同时为段寄存器和存储器，立即数不能直接送至段寄存器，DST不得为CS和立即数</p></li><li><p>PUSH SRC</p><p>  功能：（SP）&lt;-（SP）-2，（（SP+1），（SP））&lt;-（SRC）</p><p>  操作数：必须为字类型，寄存器，存储器</p></li><li><p>POP DST</p><p>  功能：（DST）&lt;-（（SP+1），（SP）），（SP）&lt;-（SP+2）</p><p>  操作数：子类型的寄存器或存储器，DST不得为CS</p></li><li><p>PUSHA</p><p>  功能：AX、CX、DX、BX、SP、BP、SI、DI依次入栈</p><p>  操作数：无</p></li><li><p>POPA</p><p>  类比 PUSHA 即可</p></li><li><p>XCHG OPR1，OPR2</p><p>  功能：（OPR1）&lt;-&gt;（OPR2）</p><p>  操作数：两个操作数中必须有一个为寄存器，不得为段寄存器</p></li><li><p>XLAT（换码指令）</p><p>  功能：（AL）&lt;-（（AL）+（BX）），可用于代码转换，如0-9转7段数码管</p><p>  操作数：无</p></li><li><p>LEA REG，SRC</p><p>  功能：（REG）&lt;-SRC的有效地址</p><p>  操作数：SRC为存储器，REG不得为段存储器</p></li><li><p>LDS REG，SRC</p><p>  功能：（REG）&lt;-（SRC），（DS）&lt;-（SRC+2）</p><p>  操作数：同上</p></li><li><p>LES REG，SRC</p><p>  功能：（REG）&lt;-（SRC），（ES）&lt;-（SRC+2）</p><p>  操作数：同上</p></li><li><p>LAHF</p><p>  功能：（AH）&lt;-（FLAGS的低字节）</p></li><li><p>SAHF</p><p>  功能：（FLAGS的低字节）&lt;-（AH）</p></li><li><p>PUSHF</p><p>  功能：（SP）&lt;-（SP）-2，（（SP+1），（SP））&lt;-（FLAGS）</p></li><li><p>POPF</p><p>  功能：与上相反</p><p>  <img src="/2021/01/05/4-hui-bian-zhi-ling/image-20210103142404629.png" alt="16位标志寄存器"></p></li><li><p>CBW</p><p>  功能：若（AL）最高有效位为0，则（AH）&lt;-00H，否则（AH）&lt;-0FFH</p></li><li><p>CWD</p><p>  功能：若（AX）最高有效位为0，则（DX）&lt;-0000H，否则（DX）&lt;-0FFFFH</p></li></ul><h2 id="二-算数指令"><a href="#二-算数指令" class="headerlink" title="二 算数指令"></a>二 算数指令</h2><p>除特殊说明以下指令的操作数：与 MOV 语句操作数条件相同，同时操作数不允许为段寄存器</p><p>除特殊说明以下指令影响的标志位：影响OF，CF，SF，ZF</p><ul><li><p>ADD DST，SRC</p><p>  功能：（DST）&lt;-（DST）+（SRC）</p></li><li><p>ADC DST，SRC</p><p>  功能：（DST）&lt;-（DST）+（SRC）+CF</p></li><li><p>INC OPR</p><p>  功能：（OPR）&lt;-（OPR）+1</p><p>  操作数：OPR为寄存器或存储器，且不能为段寄存器</p><p>  标志位：同上，但不影响CF</p></li><li><p>SUB DST，SRC</p><p>  功能：（DST）&lt;-（DST）-（SRC）</p></li><li><p>SBB DST，SRC</p><p>  功能：（DST）&lt;-（DST）-（SRC）-CF</p></li><li><p>DEC OPR</p><p>  功能：（OPR）&lt;-（OPR）-1</p><p>  操作数：OPR为寄存器或存储器，且不能为段寄存器</p><p>  标志位：不影响CF</p></li><li><p>NEG OPR</p><p>  功能：（OPR）&lt;-0FFFFH-（OPR）+1，可用来求相反数</p><p>  操作数：可微寄存器或存储器，不允许为段寄存器</p><p>  标志位：若操作数为0，则CF为0，否则为1；若操作数为-128或-32768，则OF为1，否则为0</p></li><li><p>CMP OPR1，OPR2</p><p>  功能：（OPR1）-（OPR2）</p></li><li><p>MUL SRC</p><p>  功能：（AX）&lt;-（AL）*（SRC）或（DX，AX）&lt;（AX）*（SRC）</p><p>  操作数：寄存器或存储器，不得为段寄存器和立即数</p><p>  标志位：如果乘积的高一半为0，则（CF，OF）=（0,0）否则（CF，OF）=（1,1）</p></li><li><p>IMUL SRC</p><p>  功能：同上，但其为带符号乘法</p><p>  操作数：寄存器或存储器，不得为段寄存器和立即数</p><p>  标志位：如果乘积的高一半是低一半的成绩扩展，则（CF，OF）=（0,0）否则（CF，OF）=（1,1）</p></li><li><p>DIV SRC</p><p>  功能：（AL）&lt;-（AX）/（SRC），（AH）&lt;-（AX）%（SRC）或</p><p>  （AX）&lt;-（DX，AX）/（SRC），（DX）&lt;-（DX，AX）%（SRC）</p><p>  操作数：同乘法</p><p>  标志位：不影响标志位</p></li><li><p>IDIV SRC</p><p>  同上，该指令为带符号除法</p></li></ul><h2 id="三-逻辑指令"><a href="#三-逻辑指令" class="headerlink" title="三 逻辑指令"></a>三 逻辑指令</h2><p>以下指令除特殊说明外会将 CF，OF 标志位置 0，根据运算结果设置 SF，ZF，PF，功能比较简单，不再介绍。除特殊说明外，其操作数均不允许出现段寄存器，其余和MOV条件相同</p><ul><li><p>NOT OPR</p><p>  操作数：OPR 不能为立即数，段寄存器</p><p>  标志位：不影响标志位</p></li><li><p>AND DST，SRC</p></li><li><p>OR DST，SRC</p></li><li><p>XOR DST，SRC</p></li><li><p>TEST OPR1，OPR2</p><p>  功能：（OPR1）AND（OPR2）</p></li></ul><p>除特殊说明外，对于下列指令，其OPR操作数可用除立即数之外的任何寻址方式，当CNT=1时，可以使用立即数，否则CNT必须为CL。对于条件标志位，CF等于移入数值；当CNT=1时且最高有效位的值发生变化时，OF=1，若CNT=1且最高有效位值不变化时，OF=0；根据结果设置SF，ZF，PF</p><ul><li><p>SHL OPR，CNT</p></li><li><p>SHR OPR，CNT</p></li><li><p>SAL OPR，CNT</p></li><li><p>SAR OPR，CNT</p></li><li><p>ROL OPR，CNT</p></li><li><p>ROR OPR，CNT</p></li><li><p>RCL OPR，CNT</p><p>  不影响标志位SF，ZF，PF，AF</p></li><li><p>RCR OPR，CNT</p><p>  不影响标志位SF，ZF，PF，AF</p><p>  <img src="/2021/01/05/4-hui-bian-zhi-ling/image-20210103153311172.png" alt="祭神图"></p></li></ul><h2 id="四-串处理指令"><a href="#四-串处理指令" class="headerlink" title="四 串处理指令"></a>四 串处理指令</h2><ul><li><p>REP</p><p>  功能：串处理前缀，与MOVS、CMPS、SCAS、LODS、STOS等联用，格式为 REPoperation_expr，每执行一次  expr，CX 减一，直到CX为0为止</p></li><li><p>MOVS/MOVSB/MOVSW DST，SRC</p><p>  功能：（DST）&lt;-（SRC），（DI）&lt;-（DI）±bytes，（SI）&lt;-（SI）±bytes</p><p>  操作数：默认为 DST 为 ES：[DI]，SRC 为 DS：[SI]，仅允许改变 SRC 的段前缀</p><p>  标志位：不影响</p><p>  注：使用 MOVS 时需指定操作数类型（字节或字）</p></li><li><p>STOS/STOSB/STOSW DST</p><p>  功能：（DST）&lt;-（AL/AX/EAX），（DI）&lt;-（DI）±bytes</p><p>  操作数：默认为 ES：[DI]，相信我，你也改不了的。</p></li><li><p>LODS/LODSB/LODSW SRC</p><p>  功能：（AL/AX/EAX）&lt;-（（SI）），（SI）&lt;-（SI）±bytes</p><p>  操作数：默认为 ES：[SI]，可以修改 ES 为 DS</p></li><li><p>REPE/REPZ  expr</p><p>  功能：当 CX 不为 0 且 ZF 不为 0 时循环执行其后的表达式，同时 CX 减一，其后表达式可以为 CMPS 和 SCAS</p></li><li><p>REPNE/REPNZ expr</p><p>  功能：当 CX 不为 0 且 ZF 等于 0 时循环执行其后的表达式，同时 CX 减一，其后表达式可以为 CMPS 和 SCAS</p></li><li><p>CMPS/CMPSB/CMPSW SRC，DST</p><p>  功能：执行 （（SI））-（（DI）），并设置标志位，同时 （SI）和（DI）相应增加或减小</p></li><li><p>SCAS/SCASB/SCASW DST</p><p>  功能：执行（AL）-（（DI）），并设置标志位，同时（DI）相应增加或减小</p></li></ul><h2 id="五-处理机控制与杂项控制指令"><a href="#五-处理机控制与杂项控制指令" class="headerlink" title="五 处理机控制与杂项控制指令"></a>五 处理机控制与杂项控制指令</h2><p>处理机控制指令：</p><ul><li>CLC：CF置0</li><li>STC：CF置1</li><li>CMC：CF求反</li><li>CLD：DF置0</li><li>STD：DF置1</li><li>CLI：IF置0</li><li>STI：IF置1</li></ul><p>CPU 控制指令：</p><ul><li>NOP：不执行任何操作，但占用一个字节存储单元，占用指令执行周期用于调试</li><li>HLT：使CPU暂停工作等待外部中断</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 汇编复习简纲 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 汇编 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>3——汇编语言基础格式</title>
       <link href="2021/01/02/3-hui-bian-yu-yan-ji-chu-ge-shi/"/>
       <url>2021/01/02/3-hui-bian-yu-yan-ji-chu-ge-shi/</url>
