@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>6——子程序结构</title>
+      <link href="2021/01/05/6-zi-cheng-xu-jie-gou/"/>
+      <url>2021/01/05/6-zi-cheng-xu-jie-gou/</url>
+      
+        <content type="html"><![CDATA[<h1 id="第六讲-子程序结构"><a href="#第六讲-子程序结构" class="headerlink" title="第六讲 子程序结构"></a>第六讲 子程序结构</h1><h2 id="一-子程序定义"><a href="#一-子程序定义" class="headerlink" title="一 子程序定义"></a>一 子程序定义</h2><p>子程序定义由伪指令 <code>PROC</code> 和 <code>ENDP</code> 实现，基本格式如下</p><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">processName proc [near|far]...retprocessName endp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><ul><li><code>NEAR</code> 属性：该子程序仅可被相同代码段的其他程序调用</li><li><code>FAR</code> 属性：可以被相同代码段或不同代码段的程序调用</li></ul><h2 id="二-子程序的调用与返回"><a href="#二-子程序的调用与返回" class="headerlink" title="二 子程序的调用与返回"></a>二 子程序的调用与返回</h2><p>子程序调用指令首先将子程序返回地址压入栈中，随后转移到子程序的入口地址执行子程序，分为段内调用和段外调用。子程序返回指令则将压入栈中的返回地址弹出到 IP 地址或 CS：IP中，随后正常执行。</p><p>子程序调用，其指令格式为 <code>call near|far ptr processName</code></p><ul><li><p><code>call near ptr processName</code></p><p>  1、（ip）入栈</p><p>  2、（ip）&lt;-offset processName</p></li><li><p><code>call far ptr processName</code></p><p>  1、（cs、ip）入栈</p><p>  2、（cs、ip）&lt;-（seg processName、offset processName）</p></li></ul><p>子程序返回，其指令格式为<code>ret [val]</code></p><ul><li><p>段内返回</p><p>  1、（ip）&lt;-（sp+1，sp）</p><p>  2、（sp）&lt;-（sp）+2+val</p></li><li><p>段间返回</p><p>  1、（ip）&lt;-（sp+1，sp）</p><p>  2、（sp）&lt;-（sp）+2</p><p>  3、（cs）&lt;-（sp+1，sp）</p><p>  4、（sp）&lt;-（sp）+2+val</p></li></ul><p>需要注意寄存器的保护工作，存在<strong>堆栈保护</strong>和<strong>内存保护</strong>两种保护方式，同时，保护工作既可以在主程序中，也可以在子程序中，但需在同一部分实现。</p><h2 id="三-子程序设计方法"><a href="#三-子程序设计方法" class="headerlink" title="三 子程序设计方法"></a>三 子程序设计方法</h2><p>子程序位置：可以在 <code>mov ah 4ch//int 21h</code> 之后，或者是在主程序开始位置 <code>start</code> 之前，不可以出现在主程序中间位置。</p><p>子程序说明：子程序前关于下列属性的说明：子程序名、子程序功能、入口参数、出口参数、受影响寄存器</p><p>子程序传参：四种传参方式：寄存器法、变量传递法、堆栈法、参数地址指针法</p><ul><li>寄存器法：约定特定的寄存器中存储入口、出口参数</li><li>变量传递法：使用变量名来传递参数</li><li>堆栈法：将入口、出口参数放入栈中（涉及到 sp、bp 的使用）</li><li>参数地址指针法：将参数地址通过寄存器传入子程序中</li></ul><h2 id="四-子程序嵌套与递归"><a href="#四-子程序嵌套与递归" class="headerlink" title="四 子程序嵌套与递归"></a>四 子程序嵌套与递归</h2><p>需注意嵌套深度需在栈空间内以及递归终止条件</p><h2 id="五-子程序的连接"><a href="#五-子程序的连接" class="headerlink" title="五 子程序的连接"></a>五 子程序的连接</h2><p>大型应用程序开发过程中采用模块化的开发方式，各模块之间存在相互调用，一个模块会调用另一个模块的标识符（变量、标号、过程名等）</p><p>标识符分为两种，在本模块内使用的称为局部标识符，在一个模块定义，在另一个模块引用的称为外部标识符。</p><p>模块连接方法：</p><ul><li><p><code>include filename.asm</code> 伪指令</p><p>  该指令负责将独立编制好的 .asm 文件在汇编时简单拼接在一起，其实质是在 <code>include filename.asm</code> 指令位置嵌入 filename.asm 文件文本，被包含文件无法单独汇编，且存在标识符冲突问题。</p></li><li><p>使用 <code>link</code> masm 指令进行连接</p><p>  在 dos 系统下，使用 <code>link fn1.obj fn2.obj ...</code> 指令可以将多个 .obj 文件连接在一起。要求各源程序均能单独汇编（存在必备的段），模块中需使用 <code>extrn</code> 和 <code>public</code> 标号，且两个标号需放在所有段之前。</p></li></ul><p>共用标号的声明：</p><ul><li><p><code>public 标识符[,标识符]</code></p><p>  表示将本模块中的标识符进行共享</p></li><li><p><code>extrn 标识符:类型 [,标识符:类型]</code></p><p>  类型是 byte/word/dword 或 near/far，在一个源程序中 <code>public</code> 和 <code>extrn</code> 可以拥有多条</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 汇编复习简纲 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 汇编 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>5——循环与分支结构设计</title>
       <link href="2021/01/05/5-xun-huan-yu-fen-zhi-jie-gou-she-ji/"/>
       <url>2021/01/05/5-xun-huan-yu-fen-zhi-jie-gou-she-ji/</url>
