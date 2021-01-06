@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="背包九讲">
+    <meta name="keywords" content="7——宏, 蒋晨阳,acm">
     <meta name="description" content="蒋晨阳的小博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>背包九讲学习笔记 | 十卷书舍</title>
+    <title>7——宏 | 十卷书舍</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -466,12 +466,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">背包九讲学习笔记</h1>
+                    <h1 class="description center-align post-title">7——宏</h1>
                 </div>
             </div>
         </div>
@@ -587,12 +587,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                <span class="chip bg-color">动态规划</span>
-                            </a>
-                        
-                            <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
-                                <span class="chip bg-color">背包问题</span>
+                            <a href="/tags/%E6%B1%87%E7%BC%96/">
+                                <span class="chip bg-color">汇编</span>
                             </a>
                         
                     </div>
@@ -603,8 +599,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-category">
-                                动态规划
+                            <a href="/categories/%E6%B1%87%E7%BC%96%E5%A4%8D%E4%B9%A0%E7%AE%80%E7%BA%B2/" class="post-category">
+                                汇编复习简纲
                             </a>
                         
                     </div>
@@ -616,28 +612,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-18
+                    2021-01-06
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-24
+                    2021-01-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.2k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    3 分
                 </div>
                 
 
@@ -660,149 +656,75 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="背包九讲学习笔记"><a href="#背包九讲学习笔记" class="headerlink" title="背包九讲学习笔记"></a>背包九讲学习笔记</h1><blockquote>
-<p>“失败不是什么丢人的事情， 从失败中全无收获才是。”<br>                                                                                            ——崔添翼</p>
-</blockquote>
-<h2 id="1st-01背包问题"><a href="#1st-01背包问题" class="headerlink" title="1st_01背包问题"></a>1st_01背包问题</h2><p>$f[i][j]$ 表示前 $i$ 件物品在容量为 $j$ 的背包中所能获取到的最大价值。状态 $f[i][j]$ 是由<strong>先前状态+决策</strong>得到的，<strong>先前状态</strong>是指我们已知前 $i-1$ 件物品在容量为 $0-j$ 的背包中取值的最优解(即得到最大价值)，<strong>决策</strong>是指我们从前 $i-1$ 件物品的最优解到前 $i$ 件物品的最优解需要作出的选择。在这里，我们需要作出的选择有两种，一种是不将第 $i$ 件物品加入背包，一种是将第 $i$ 件物品加入背包，并从可选择的决策中选出最优的决策，其对应状态方程</p>
-<script type="math/tex; mode=display">f[i][j]=max(f[i-1][j],f[i-1][j-c[i]])</script><p>若我们能够保证 $f[i-1][0…j]$ 是最优解，则我们由此得到的 $f[i][j]$ 必然也是最优解。<br>C++实现代码如下</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; c[i] 表示第 i 件物品所占用体积，w[i] 表示第 i 件物品的价值
-for(int i &#x3D; 1; i &lt;&#x3D; n; ++i)
-    for(int j &#x3D; 1; j &lt;&#x3D; m; ++j)
-        dp[i][j] &#x3D; max(dp[i-1][j], dp[i-1][j-c[i]]+w[i]);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="2nd-完全背包问题"><a href="#2nd-完全背包问题" class="headerlink" title="2nd_完全背包问题"></a>2nd_完全背包问题</h2><p>与 <a href="#1_st01背包问题">01 背包问题</a> 的不同，在完全背包问题中，每一种物品都有无数个。沿用01背包状态<strong>先前状态+决策</strong>的思想，这里 $dp[i][j]$ 可以由若干决策得到，第 $k$ 个决策表示取 $k$ 个第 $i$ 种物品放入背包，我们要从这些决策中挑选出最优策略，只需添加一个循环语句即可。</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for(int i &#x3D; 1; i &lt;&#x3D; n; ++i)
-    for(int j &#x3D; 1; j &lt;&#x3D; m; ++j)
-        for(int k &#x3D; 1; k &lt;&#x3D; j&#x2F;c[i]; ++k)
-            dp[i][j] &#x3D; max(dp[i-1][j], dp[i-1][j-k*c[i]] + k*w[i]);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上述代码时间复杂度为 $O(n^3)$，可以通过推导公式得到一个优化，考虑：</p>
-<script type="math/tex; mode=display">\begin{aligned}
-dp[i][j] &= max(dp[i-1][j], dp[i-1][j-k\cdot c[i]] + k\cdot w[i]), k\in(1,\lfloor{\frac{j}{c[i]}}\rfloor)\\
-dp[i][j-c[i]] &= max(dp[i-1][j-c[i]], dp[i-1][j-c[i]-k\cdot c[i]] + k\cdot w[i]), k\in(1,\lfloor{\frac{j-w[i]}{c[i]}}\rfloor)
-\end{aligned}</script><p>可以发现</p>
-<script type="math/tex; mode=display">\begin{aligned}
-&max(dp[i-1][j-k\cdot c[i]] + k\cdot w[i])(k\in(1,\lfloor{\frac{j}{c[i]}}\rfloor)\\
-=&max(dp[i-1][j-c[i]]+w[i], dp[i-1][j-(k+1)\cdot w[i]]+(k+1)\cdot w[i])(k\in(1,\lfloor{\frac{j}{c[i]}}\rfloor-1)\\
-=&max(dp[i-1][j-c[i]]+w[i], dp[i-1][j-c[i]-k\cdot c[i]] + k\cdot w[i] + w[i]), k\in(1,\lfloor{\frac{j-w[i]}{c[i]}}\rfloor)
-=&dp[i][j-c[i]]+w[i]
-\end{aligned}</script><p>因此得到<strong>优化公式</strong>：</p>
-<script type="math/tex; mode=display">
-dp[i][j] = max(dp[i-1][j], dp[i-1][j-k*c[i]] + k*w[i]) = max(dp[i-1][j], dp[i][j-c[i]] + w[i])</script><p>故化简后的递推方程为：</p>
-<script type="math/tex; mode=display">dp[i][j] = max(dp[i-1][j], dp[i][j-c[i]] + w[i])</script><p>该公式表示 $max(dp[i-1][j-k\cdot c[i]]+k\cdot w[i])$ 与 $dp[i][j-c[i]] + w[i]$ 的值是相同的，因此可将上述代码中 $O(n^3)$ 的时间复杂度减少为 $O(n^2)$ 的时间复杂度。<br>上述是数学上的证明，也可以通过递归状态来理解<strong>优化公式</strong>。若前 $i$ 种物品可选，背包容量为 $j$，若想得到最优解，可以通过两种策略得到。一种是根本不选第 $i$ 种物品，则 $dp[i][j] = dp[i-1][j]$，另一种是选择第 $i$ 种物品，此时我们有最优状态 $dp[i][1…j-1]$(在这些状态中我们可能已经选择了第 $i$ 件物品)，可以基于此来得到若再次选择第 $i$ 件物品的价值 $dp[i][j] = dp[i][j-c[i]]$。由此思想也可以得到上述递推方程式。</p>
-<p><strong>一个简单的优化</strong></p>
-<p>在解决问题之前，有一个 $O(n^2)$ 的算法可以对其进行优化。即对所有物品进行两两比较，若存在 $c[i] &lt; c[j]$ 且 $w[i] &gt; w[j]$，则可以抛弃物品 $j$。</p>
-<h2 id="3rd-多重背包问题"><a href="#3rd-多重背包问题" class="headerlink" title="3rd_多重背包问题"></a>3rd_多重背包问题</h2><h3 id="多重背包的-O-n-sum-logm-解法"><a href="#多重背包的-O-n-sum-logm-解法" class="headerlink" title="多重背包的 $O(n\sum logm)$ 解法"></a>多重背包的 $O(n\sum logm)$ 解法</h3><p>多重背包问题介于 01 背包问题和完全背包问题，其规定每一种物体最多可用 $M_i$ 个。考虑将其转化为 01 背包问题，则其相当于有 $\sum M_i$ 个物品的 01 背包问题(相当于将 1 种物品看做 $M_i$ 个不同的物品)。如果这样的话，则其时间复杂度为$O(n\cdot \sum M_i)$ ，时间复杂度较大，应考虑优化。</p>
-<p>我们使用二进制的思想进行优化。考虑这样一个问题，对于数字 10，我们可以通过$a[1]\cdot 1+a[2]\cdot 1+…+a[10]\cdot 1$的方式取得$1-10$以内的所有值，其中$a[i]\in\{0,1\}$，我们也有另一种方式取到$1-10$以内的值，考虑$a[1]\cdot 1+a[2]\cdot 2+a[3]\cdot 2^2+a[4]\cdot (10-1-2-2^2)$，同样可以达到目标。使用相同的思想，对于第 $i$ 种物品，可以进行相关的划分，不再将其看成 $M_i$ 个独立的物品，而是将其划分成若干组，这些组中分别含有 $\{2^0,2^1,2^2,…2^{k-1},M_i-2^k+1\}$ 个第 $i$ 种物品，通过这些组的组合，我们可以得到范围内任意数量的第 $i$ 种物品，而我们将每一组看成一个独立的物品，其容量为 $m_k\cdot c[i]$ ，价值为 $m_k\cdot w[i]$，$m[1…k+1]=\{2^0,2^1,2^2,…2^{k-1},M_i-2^k+1\}$。</p>
-<p>使用上述思想求解问题，问题的时间复杂度就降为$O(n\cdot \sum logm_i)$，大大降低了时间复杂度。貌似可以使用优先队列优化，但好像考题很少，此处略过~~~。</p>
-<p>实现代码：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void OneZeroPack(int * dp, int n, int c, int w)&#123;
-    for(int i &#x3D; n; i &gt;&#x3D; c; --i)
-        dp[i] &#x3D; max(dp[i], dp[i-c]+w);
-&#125;
-void CompletePack(int * dp, int n, int c, int w)&#123;
-    for(int i &#x3D; c; i &lt;&#x3D; n; ++i)
-        dp[i] &#x3D; max(dp[i], dp[i-c]+w);
-&#125;
-&#x2F;&#x2F; m 表示该物品最多的个数
-void MultiplePack(int * dp, int n, int c, int w, int m)&#123;
-    if(c*m &gt;&#x3D; n)&#123;
-        &#x2F;&#x2F; 转化为完全背包问题
-        CompletePack(dp, n, c, w);
-        return;
-    &#125;
-    int k &#x3D; 1;
-    while(k &lt; m)&#123;
-        OneZeroPack(dp, n, k*c, k*w);
-        m -&#x3D; k;
-        k &lt;&lt;&#x3D; 1;
-    &#125;
-    OneZeroPack(dp, n, m*c, m*w);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="多重背包可行性问题的-O-VN-解法"><a href="#多重背包可行性问题的-O-VN-解法" class="headerlink" title="多重背包可行性问题的 $O(VN)$ 解法"></a>多重背包可行性问题的 $O(VN)$ 解法</h3><p>若只考虑“每种有若干件的物品能否恰好填满背包”，而不考虑每一件物品的价值，那么有着 $O(N)$ 的算法。使用 $f[i][j]$ 表示 “使用前 $i$ 件物品恰好填满了容量为 $j$ 的背包后，最多还剩下第 $i$ 件物品的件数” ，若 $F[i][j]=-1$ 表示前 $i$ 件物品无法恰好填满容量为 $j$ 的背包。可以写出以下代码：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for(int i &#x3D; 1; i &lt;&#x3D; m; ++i)
-    dp[i] &#x3D; -1;
-dp[0] &#x3D; 0;
-for(int i &#x3D; 1; i &lt;&#x3D; n; ++i)&#123;
-    &#x2F;&#x2F; 从前 i-1 件物品转移到前 i 件物品
-    for(int j &#x3D; 1; j &lt;&#x3D; m; ++j)
-        dp[j] &#x3D; dp[j] &#x3D;&#x3D; -1 ? -1 : num[i];
-    &#x2F;&#x2F; 试图填满之前无法填满的背包
-    for(int j &#x3D; c[i]; j &lt;&#x3D; m; ++j)
-        &#x2F;&#x2F; 状态为 j 时是否使用第 i 件物品
-        if(dp[j-c[i]] &gt; 0)
-        	dp[j] &#x3D; max(dp[j], dp[j-c[i]] - 1);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="4th-混合三种背包问题"><a href="#4th-混合三种背包问题" class="headerlink" title="4th_混合三种背包问题"></a>4th_混合三种背包问题</h2><p>如果在一个背包中，有的物体的个数有限、有的物体的个数仅有一个、有的物体的个数无限多个，这就是混合三种背包问题，对此，只需要将上述代码综合起来即可。伪代码如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for(int i &#x3D; 1; i &lt;&#x3D; n; ++i)
-    if 第 i 种物品有一个
-        ZeroOnePack(dp, m, c[i], w[i]);
-	else if 第 i 种物品有无限个
-        CompletePack(dp, m, c[i], w[i]);
-	else 第 i 种物品有 num 个
-        MultiplePack(dp, m, c[i], w[i], num);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="5th-二维费用的背包问题"><a href="#5th-二维费用的背包问题" class="headerlink" title="5th_二维费用的背包问题"></a>5th_二维费用的背包问题</h2><p>二维费用的背包问题指对于每件物品有 $C$、$D$ 两种容量，同时对于这两种费用背包各有一个容量上限，在此基础上求背包所能达到的最大价值。</p>
-<p>设 $f[i][u][v]$ 表示前 $i$ 件物品中背包的两种容量分别为 $u$ 和 $v$ 的情况下所能取得的最大价值，状态方程如下</p>
-<script type="math/tex; mode=display">
-f[i][u][v]=max(f[i-1][u][v], f[i-1][u-C_i][v-D_i]+w[i])</script><p>给出伪代码：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for(int i &#x3D; 1; i &lt;&#x3D; n; ++i)
-    for(int j &#x3D; s; j &gt;&#x3D; c[i]; --j)
-        for(int k &#x3D; t; k &gt;&#x3D; d[i]; --k)
-            f[j][k] &#x3D; max(dp[s][t], dp[s-c[i]][t-d[i]] + w[i]);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="6th-分组的背包问题"><a href="#6th-分组的背包问题" class="headerlink" title="6th_分组的背包问题"></a>6th_分组的背包问题</h2><p>有 $n$ 个物品，将其划分为 $k$ 组，每一组内部的物品最多选取一件，试求出该背包问题的最大解法。设 $dp[k][j]$ 表示前 $k$ 组在容量为 $j$ 的背包中的最大价值，其与 <a href="#1st_01背包问题">01背包</a> 的区别是：<strong>前者的决策是决定在第 $k$ 组中是否选出物品以及选出哪一个物品，后者是决定第 $i$ 件物品是否选中</strong>。递推方程如下：</p>
-<script type="math/tex; mode=display">
-dp[k][j] = max(dp[k-1][j], dp[k-1][j-c[k][i]] + w[k][i] | i\in (1,num[k]))</script><p>其中 $c[k][i]$ 和 $w[k][i]$ 表示第 $k$ 组中第 $i$ 个物品的容量和价值，$num[k]$ 表示第 $k$ 组物品的数目。</p>
-<p>给出代码：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for(int k &#x3D; 1; k &lt;&#x3D; K; ++k)
-    for(int j &#x3D; m; j &gt;&#x3D; 1; ++j)
-        for(int i &#x3D; 1; i &lt;&#x3D; num[k]; ++i)
-            if(j &gt;&#x3D; c[k][i])
-                dp[j] &#x3D; max(dp[j], dp[j-c[k][i]] + w[k][i]);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="7th-有依赖的背包问题"><a href="#7th-有依赖的背包问题" class="headerlink" title="7th_有依赖的背包问题"></a>7th_有依赖的背包问题</h2><p>若选择了物品 $j$ ，则必须先选择物品 $i$，我们称物品 $j$ 依赖于物品 $i$。有依赖的背包问题指的就是当背包中的物品满足若干依赖关系式如何对该类问题进行求解。简化问题，我们仅假设依赖没有连续性，即不会出现 $A$ 依赖于 $B$，而 $B$ 依赖于 $C$ 的情况；又假设一件物品只能依赖于一件物品。</p>
-<p>下面的话完全引用自崔添翼的背包九讲(但是我添加了部分锚点)，<del>—我实在无法找到更美妙的描述了—</del></p>
-<blockquote>
-<p>按照背包问题的一般思路，仅考虑一个主件和它的附件集合。可是，可用的策略非常多，包括：一个也不选，仅选择主件，选择主件后再选择一个附件，选择主件后再选择两个附件……无法用状态转移方程来表示如此多的策略。事实上，设有 $n$ 个附件，则策略有 $2^n + 1$ 个，为指数级。</p>
-<p>考虑到所有这些策略都是互斥的（也就是说，你只能选择一种策略），所以一个主件和它的附件集合实际上对应于<a href="#6th_分组的背包问题">分组背包</a>中的一个物品组，每个选择了主件又选择了若干个附件的策略对应于这个物品组中的一个物品，其费用和价值都是这个策略中的物品的值的和。但仅仅是这一步转化并不能给出一个好的算法，因为物品组中的物品还是像原问题的策略一样多。</p>
-<p>再考虑对每组内的物品应用<a href="#2nd_完全背包问题">完全背包</a>中的优化。我们可以想到，对于第 $k$ 个物品组中的物品，所有费用相同的物品只留一个价值最大的，不影响结果。所以，可以对主件 $k$ 的 “附件集合”先进行一次 01 背包，得到费用依次为 $0…V-C_k$ ，所有这些值时相应的最大价值 $F_k[0…V − C_k]$。那么，这个主件及它的附件集合相当于 $V − C_k + 1$ 个物品的物品组，其中费用为 $v$ 的物品的价值为 $F_k[v − C_k] + W_k$，$v$ 的取值范围是 $C_k ≤ v ≤ V$。</p>
-<p>也就是说，原来指数级的策略中，有很多策略都是冗余的，通过一次 01 背包后， 将主件 $k$ 及其附件转化为 $V − C_k + 1$ 个物品的物品组，就可以直接应用<a href="#2nd_完全背包问题">完全背包</a>的算法解决问题了。</p>
-</blockquote>
-<p>实现代码：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 计算第 k 个物品组</span>
-<span class="token comment">// 得到重量为 0~m-c[k][0]，价值为 f[k][0]~f[k][m-c[k][0]] 的物品</span>
-<span class="token comment">// 这些物品代表同等重量中价值最高的物品组合</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> c<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> m<span class="token operator">-</span>c<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> j <span class="token operator">>=</span> c<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token operator">--</span>j<span class="token punctuation">)</span>
-        f<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> f<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j <span class="token operator">-</span> c<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> w<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> k <span class="token operator">&lt;=</span> K<span class="token punctuation">;</span> <span class="token operator">++</span>k<span class="token punctuation">)</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> m<span class="token punctuation">;</span> j <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token operator">--</span>j<span class="token punctuation">)</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> m <span class="token operator">-</span> c<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-            dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span>j <span class="token operator">-</span> i <span class="token operator">-</span> c<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> f<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> c<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>现在考虑更加一般的情况。如果每个物品仍然只能依赖于一个物品，但是可以连续以来(不能循环依赖)，就构成了若干依赖树，那么该如何求解呢?可以采用相同的思路。仍然可以将一个主件即其附件集合看做一个物品组，但是由于其附件还有附件，因此需要先将其附件以及附件的附件看做一个物品组，以此类推。每当要求一个根节点的物品组时，先求得其子节点的物品组，这是一种树形动态规划的形式。</p>
-<p>需要注意的是，我发现以上方法虽然通用但不代表是最优解。对组内进行朴素分组的时间复杂度为 $O(2^n)$，而通过上述方法进行分组的时间复杂度为 $O(k\cdot C)$，其中 $C$ 表示背包的容量。看似我们大大降低了时间复杂度，但是当面对 $n$ 较小而 $C$ 较大的情况时往往采用朴素分组的时间复杂度会更优。例子可以参考 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1064">金明的预算方案</a>。虽然如此，我认为上述方法对于思维的开拓是极其具有意义和价值的。</p>
-<h2 id="8th-泛化物品"><a href="#8th-泛化物品" class="headerlink" title="8th_泛化物品"></a>8th_泛化物品</h2><p><strong>泛化物品</strong>是对背包内可装入的物品的一个更加抽象与广义的概念。其没有固定体积和价值，其价值随着被分配给它的体积而变化。即其价值与体积为一个函数关系，满足 $w=f(c)$，我们可称此方程为<strong>泛化函数</strong>。</p>
-<p>对于一个容量为 $c$，价值为 $w$ 的物品，在 01 背包问题中其<strong>泛化函数</strong>为</p>
-<script type="math/tex; mode=display">
-f(x)=
-\begin{cases}
-w,x=c\\
-0,x\neq c
-\end{cases}</script><p>在完全背包中其泛化函数为</p>
-<script type="math/tex; mode=display">
-f(x)=
-\begin{cases}
-\frac{x}{c}*w,c\mid x\\
-0,c \nmid x
-\end{cases}</script><p>多重背包同理。</p>
-<p>一个物品组也可以看做一个泛化物品。若物品组中存在容量为 $c$ 的物品，则 $f(c)$ 为所有容量为 $c$ 的物品中的最大价值，若不存在容量为 $c$ 的物品，则 $f(c)=0$。同样，对于<a href="#7th_有依赖的背包问题">依赖背包</a>问题，我们可以按照之前所述的两种方式对其进行分组，得到一个依赖分组中的泛化函数。</p>
-<p>现在有两个泛化物品 $h$ 和 $l$ ，若给定他们以最大空间 $v$，通过分配 $h$ 和 $v$ 不同的空间，求得 $v$ 所能够得到的最大价值 $f(v)$，$f(v)$ 满足</p>
-<script type="math/tex; mode=display">
-f(v) = max\{h(x) + l(v-x)|0\leq x\leq v\}</script><p>而通过 $v$ 的不同取值，我们可以得到一个新的泛化物品 $f$，其代表泛化物品 $h$ 和 $l$ 的和。此时以 $f$ 代替物品 $h$ 和 $l$，结果不会受到任何影响。</p>
-<p>求解背包问题，就是不断地合并泛化物品并求解泛化物品最大值的过程，其通用形式如下</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 集合 S 表示一个泛化物品的集合
-for k in S
-    for v &lt;- C to 0
-        &#x2F;&#x2F; 合并泛化物品 obj 和 k，更新泛化物品 obj
-        obj[v] &lt;- max(obj[v - x] + k[x])
-return obj[C]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="9th-背包问题的变化"><a href="#9th-背包问题的变化" class="headerlink" title="9th_背包问题的变化"></a>9th_背包问题的变化</h2><p>这里我会专门再写一篇博客来探究背包问题的不同问法，此处先留个坑。^ _ ^</p>
+                <h1 id="第七讲-宏"><a href="#第七讲-宏" class="headerlink" title="第七讲 宏"></a>第七讲 宏</h1><h2 id="一-宏"><a href="#一-宏" class="headerlink" title="一 宏"></a>一 宏</h2><p>宏的使用有两部分，一部分为宏定义，宏定义中宏体为主要内容，另一部分为宏调用。汇编时，宏定义消失，宏调用（宏指令）由宏体取代。在宏定义或宏调用语句中，存在具有特殊功能的操作符可供调用。为解决标号问题，提出了 <code>local</code> 宏指令。与子程序类似，宏也存在嵌套问题，需注意相关规范。宏与子程序都辅助人们更好的编写程序，但是各有侧重。</p>
+<h3 id="1、宏定义："><a href="#1、宏定义：" class="headerlink" title="1、宏定义："></a>1、宏定义：</h3><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">MacroName macro [params]
+	...
+	endm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>宏体是由指令、伪指令以及宏指令构成的程序段。</li>
+<li>实参和形参的数目可以不同，若实参多于形参，则多余参数被忽略，若实参少于形参，则对应形参被置空。</li>
+<li>宏定义需置于宏调用之前的任何位置。</li>
+<li>实参可以为任意字符。</li>
+<li>汇编程序会对源代码进行宏展开，即用相应宏体代替宏指令，并用实参代替宏体中的形参。因此应保证实参代替形参后，宏体中语句仍有效。</li>
+</ul>
+<h3 id="2、相关操作符"><a href="#2、相关操作符" class="headerlink" title="2、相关操作符"></a>2、相关操作符</h3><ul>
+<li><p>连接操作符 <code>&amp;</code></p>
+<p>  在宏体中，使用连接操作符 <code>&amp;</code> 作为形参的前缀，在宏展开时 <code>&amp;</code> 前后的两个符号会连接。其也可作为形参的后缀。</p>
+</li>
+<li><p>表达式操作符 <code>%</code></p>
+<p>  在宏调用时，若实参为表达式，该操作符可用于表达式之前，强迫表达式立即求值，并将结果作为实参。</p>
+</li>
+<li><p>转义操作符 <code>!</code></p>
+<p>  用于宏调用的实参之前，表示使用其后紧邻字符的本义。</p>
+</li>
+<li><p><code>LOCAL</code> 伪指令</p>
+  <pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">MName macro [params list]
+	local [label list]
+label1:
+label2:
+	...
+endm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  标号表中各标号使用逗号分隔。<code>local</code> 伪操作仅用于宏定义中，其必须紧邻 <code>macro</code> 伪指令之后，中间不得有注释以及分号。处理宏调用时，汇编程序将用 ??0000、??0001 等来代替标号。</p>
+</li>
+</ul>
+<h3 id="3、宏嵌套"><a href="#3、宏嵌套" class="headerlink" title="3、宏嵌套"></a>3、宏嵌套</h3><p>宏嵌套有两种形式，其一为宏体中包括宏定义，其二是宏体中包括宏调用，此时其调用的宏指令必须已经定义完成。</p>
+<h3 id="4、宏定义与子程序的区别"><a href="#4、宏定义与子程序的区别" class="headerlink" title="4、宏定义与子程序的区别"></a>4、宏定义与子程序的区别</h3><ul>
+<li>处理时间：宏调用在汇编时由汇编程序处理，而子程序调用则由CPU执行</li>
+<li>处理方式：宏定义实质上是对源代码的文本替换，而子程序是CS：IP地址的转换</li>
+<li>参数处理：宏调用采用字符串进行传参，而子程序需要借助寄存器或内存</li>
+<li>执行速度：子程序需要调用call和ret指令以及传参操作，相比宏调用稍慢</li>
+<li>占用空间：宏指令由于会出现多次文本替换，因此其占用内存空间较大，而子程序代码仅会出现一次，因此占用空间小</li>
+</ul>
+<p>宏是源程序级的简化，子程序是目标程序级的简化。模块化结构设计时多采用子程序，而非标准程序段且代码量小、调用次数少，或功能明确的代码可采用宏。</p>
+<h2 id="二-重复汇编"><a href="#二-重复汇编" class="headerlink" title="二 重复汇编"></a>二 重复汇编</h2><p>重复汇编用于生成连续且完全相同或几乎完全相同的一组代码。</p>
+<h4 id="1、rept"><a href="#1、rept" class="headerlink" title="1、rept"></a>1、rept</h4><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">rept 整数表达式
+	重复体
+endm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>重复重复体 n 次，n 为整数表达式的值。</p>
+<p>应用</p>
+<pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">x &#x3D; 0
+rept 10
+	x &#x3D; x + 1
+	db x
+endm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2、irp"><a href="#2、irp" class="headerlink" title="2、irp"></a>2、irp</h4><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">irp 形参, &lt;实参列表&gt;
+	重复体
+endm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>重复重复体，依次取实参列表中的实参代替重复体中的形参。</p>
+<p>应用</p>
+<pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">irp x, &lt;ax, bx, cx, cx&gt;
+	push x
+endm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="3、irpc"><a href="#3、irpc" class="headerlink" title="3、irpc"></a>3、irpc</h4><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">irpc 形参, 字符串
+	重复体
+endm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>重复重复体，依次取字符串中的字符取代重复体中形参。</p>
+<p>应用</p>
+<pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">irpc x, 0123456789
+	db x
+endm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="三-库的使用"><a href="#三-库的使用" class="headerlink" title="三 库的使用"></a>三 库的使用</h3><p>宏库扩展名为 “*.mac”，可以使用 <code>include</code> 伪指令来引用宏库，调用格式为 <code>include [文件路径]</code>。可以使用 <code>purge</code> 语句取消宏定义，形如 <code>purge mName1, mName2, ...</code>。</p>
+<p>宏指令名可以与指令或伪指令同名，且宏指令名优先级更高。同样的，可以使用 <code>purge</code> 在某一位置之后清除已定义的宏。</p>
 
                 
             </div>
@@ -829,7 +751,7 @@ return obj[C]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://FinCreWorld.github.io/2020/12/18/bei-bao-jiu-jiang-xue-xi-bi-ji/">http://FinCreWorld.github.io/2020/12/18/bei-bao-jiu-jiang-xue-xi-bi-ji/</a>
+                    <a href="http://FinCreWorld.github.io/2021/01/06/7-hong/">http://FinCreWorld.github.io/2021/01/06/7-hong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -867,12 +789,8 @@ return obj[C]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                    <span class="chip bg-color">动态规划</span>
-                                </a>
-                            
-                                <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
-                                    <span class="chip bg-color">背包问题</span>
+                                <a href="/tags/%E6%B1%87%E7%BC%96/">
+                                    <span class="chip bg-color">汇编</span>
                                 </a>
                             
                         </div>
@@ -917,7 +835,7 @@ return obj[C]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
         repo: 'FinCreWorld.github.io',
         owner: 'FinCreWorld',
         admin: "FinCreWorld",
-        id: '2020-12-18T22-01-13',
+        id: '2021-01-06T15-42-41',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -943,17 +861,18 @@ return obj[C]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/22/shu-lun-ding-li-hui-zong-yi/">
+                <a href="/2021/01/06/7-hong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="数论定理汇总(一)">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="7——宏">
                         
-                        <span class="card-title">数论定理汇总(一)</span>
+                        <span class="card-title">7——宏</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -963,34 +882,27 @@ return obj[C]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E8%AE%BA/" class="post-category">
-                                    数论
+                            <a href="/categories/%E6%B1%87%E7%BC%96%E5%A4%8D%E4%B9%A0%E7%AE%80%E7%BA%B2/" class="post-category">
+                                    汇编复习简纲
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E8%AE%BA/">
-                        <span class="chip bg-color">数论</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">欧几里得算法</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/">
-                        <span class="chip bg-color">欧拉定理</span>
+                    <a href="/tags/%E6%B1%87%E7%BC%96/">
+                        <span class="chip bg-color">汇编</span>
                     </a>
                     
                 </div>
@@ -1004,31 +916,31 @@ return obj[C]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/18/ji-chu-tu-shang-wen-ti-xiao-jie/">
+                <a href="/2021/01/05/6-zi-cheng-xu-jie-gou/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="基础图上问题小结">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="6——子程序结构">
                         
-                        <span class="card-title">基础图上问题小结</span>
+                        <span class="card-title">6——子程序结构</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目均来自洛谷的"图的基本应用"题单。其中主要涉及到的相关知识有：dfs 和 bfs 的基本应用，根据 dfs 求有向无环图中最大路径、路径数量，根据拓扑排序判断图中是否有环的存在以及能否形成稳定的有序序列，找出图中的欧拉通路。
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-05
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%9B%BE%E8%AE%BA/" class="post-category">
-                                    图论
+                            <a href="/categories/%E6%B1%87%E7%BC%96%E5%A4%8D%E4%B9%A0%E7%AE%80%E7%BA%B2/" class="post-category">
+                                    汇编复习简纲
                                 </a>
                             
                             
@@ -1038,8 +950,8 @@ return obj[C]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9B%BE%E8%AE%BA/">
-                        <span class="chip bg-color">图论</span>
+                    <a href="/tags/%E6%B1%87%E7%BC%96/">
+                        <span class="chip bg-color">汇编</span>
                     </a>
                     
                 </div>
