@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="欧拉函数, 蒋晨阳,acm">
+    <meta name="keywords" content="9——BIOS和DOS功能调用, 蒋晨阳,acm">
     <meta name="description" content="蒋晨阳的小博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>欧拉函数 | 十卷书舍</title>
+    <title>9——BIOS和DOS功能调用 | 十卷书舍</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -466,12 +466,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">欧拉函数</h1>
+                    <h1 class="description center-align post-title">9——BIOS和DOS功能调用</h1>
                 </div>
             </div>
         </div>
@@ -587,12 +587,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E8%AE%BA/">
-                                <span class="chip bg-color">数论</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">
-                                <span class="chip bg-color">欧拉函数</span>
+                            <a href="/tags/%E6%B1%87%E7%BC%96/">
+                                <span class="chip bg-color">汇编</span>
                             </a>
                         
                     </div>
@@ -603,8 +599,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E5%AD%A6/" class="post-category">
-                                数学
+                            <a href="/categories/%E6%B1%87%E7%BC%96%E5%A4%8D%E4%B9%A0%E7%AE%80%E7%BA%B2/" class="post-category">
+                                汇编复习简纲
                             </a>
                         
                     </div>
@@ -616,21 +612,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-18
+                    2021-01-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-24
+                    2021-01-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2.1k
                 </div>
                 
 
@@ -660,124 +656,307 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h1><p>[TOC]</p>
-<blockquote>
-<p>本来好好的刷着排列组合的题目鬼知道怎么蹦出来了一个欧拉函数的题，以前也没有接触过，那就只能学一学喽</p>
-</blockquote>
-<p><strong>整理自<a target="_blank" rel="noopener" href="https://oi-wiki.org/math/euler/">oi-wiki-欧拉函数</a></strong></p>
-<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>当需要求取多个数的欧拉函数时，需要借助<strong>埃氏筛</strong>和<strong>欧拉筛</strong>的相关思想。</p>
-<h3 id="埃氏筛-Eratosthenes"><a href="#埃氏筛-Eratosthenes" class="headerlink" title="埃氏筛(Eratosthenes)"></a>埃氏筛(Eratosthenes)</h3><p>时间复杂度为 $O(nlglgn)$，<del>我不会证QAQ</del></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 埃氏筛思想：从小到大逐个得到小于 n 的质数
-&#x2F;&#x2F; 每得到一个质数，就将 n 以内该质数的所有倍数筛去
-int Eratosthenes(int n, int *pri)&#123;
-    for(int i &#x3D; 2; i &lt;&#x3D; n; ++i)&#123;
-        if(!vis[i])&#123;    &#x2F;&#x2F; 满足该条件说明 i 为质数
-            pri[cnt++] &#x3D; i;
-            &#x2F;&#x2F; 筛去所有质数的倍数
-            &#x2F;&#x2F; 对于 k * i，当 k &lt; i 时该数已经被 k 筛去
-            &#x2F;&#x2F; 故 k 从 i 开始
-            for(long long j &#x3D; i * i * 1ll; j &lt;&#x3D; n; j +&#x3D; i)
-                vis[j] &#x3D; 1;
-        &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h3><p>时间复杂度为 $O(n)$，每一个数仅被访问一次</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 欧拉筛思想：枚举从 1 到 n 的所有数 i
-&#x2F;&#x2F; 使 i 乘上所有已求得的质数筛去合数
-&#x2F;&#x2F; 通过最小因子的思想进行线性优化，即每一个数都被其最小因子筛掉，而不是被其他因子筛掉
-int Euler(int n, int *pri)&#123;
-    for(int i &#x3D;2; i &lt;&#x3D; n; ++i)&#123;
-        if(!vis[i]) pri[cnt++] &#x3D; i; &#x2F;&#x2F; 满足该条件说明 i 为质数
-        for(int j &#x3D; 0; j &lt; cnt; ++j)&#123;
-            if(1ll * pri[j] * i &gt; n) break;
-            vis[i * pri[j]] &#x3D; 1;
-            &#x2F;&#x2F; 下面的代码是优化的核心
-            &#x2F;&#x2F; 对于 i * pri[j]，若 i % pri[j] &#x3D;&#x3D; 0
-            &#x2F;&#x2F; 则 i &#x3D; pri[j] * n&#39;
-            &#x2F;&#x2F; 那么对于 i * pri[k]，k &gt; j
-            &#x2F;&#x2F; i * pri[k] &#x3D; pri[j] * n&#39; * pri[k] &#x3D; pri[j] * (n&#39; * pri[k])
-            &#x2F;&#x2F; 其中 pri[j] 是 i * pri[k] 的最小因子
-            &#x2F;&#x2F; 数 i * pri[k] 在之后会通过 pri[j] * (n&#39; * pri[k]) 筛掉，无需在此处筛去
-            if(i % pri[j] &#x3D;&#x3D; 0) break;
-        &#125;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="欧拉函数-Euler’s-totient-function-的定义"><a href="#欧拉函数-Euler’s-totient-function-的定义" class="headerlink" title="欧拉函数(Euler’s totient function)的定义"></a>欧拉函数(Euler’s totient function)的定义</h2><p>使用 $\phi(x)$ 来代表欧拉函数，其表示的是小于等于 $x$ 和 $x$ 互质的数的个数。根据定义我们可以知道 $\phi(1) = 1$，当 $p$ 为质数时 $\phi(p) = p-1$。注意，1 与任何数都互质。</p>
-<h2 id="欧拉函数的性质"><a href="#欧拉函数的性质" class="headerlink" title="欧拉函数的性质"></a>欧拉函数的性质</h2><ul>
-<li>欧拉函数是积性函数<br>  欧拉函数为积性函数是指当 $a$, $b$ 两个数互质时，即 $gcd(a, b) = 1$，$\phi(a \times b)= \phi(a) \times \phi(b)$<br>  特别的，当 $n$ 为奇数时，$\phi(2n) = \phi(n)$</li>
-<li>$n = \sum_{d|n}\phi(d)$<br>  上述公式可以解释为所有 $n$ 的因数的欧拉函数的和为 $n$ 本身。可以使用<a target="_blank" rel="noopener" href="https://oi-wiki.org/math/mobius/">莫比乌斯反演</a>来证明，然而我不会。此处使用其他方法证明。<br>  <strong>条件一</strong>：如果 $gcd(k, n) = d$，即 $k$ 与 $n$ 的最大公因数为 $d$，那么当 $k$ 与 $n$ 同时除以 $d$ 时（$k$ 和 $n$ 一定可以整除 $d$），$\frac{k}{d}$ 与 $\frac{n}{d}$ 互质。有 $gcd(\frac{k}{d},\frac{n}{d}) = 1$<br>  <strong>条件二</strong>：如果令 $f(x)$ 表示满足 $gcd(k, n) = x$ 的 $k$ 的个数，即 $f(x)$ 为所有小于等于 $n$ 的数中和 $n$ 的最大公倍数为 $x$ 的数的个数，那么有<script type="math/tex">n = f(1) + f(2) + f(3) + ... + f(n) = \sum_{i=1}^{n}f(i)</script>其原因在于，对于任意从 1 到 $n$ 之间的数字 $m$，$m$ 只可能与 $n$ 有唯一的一个最大公因数 $i$，且 $i \leq n$，那么我们只需枚举从 1 到 $n$ 中所有的数字 $i$ 作为最大公因数，并累加 $f(i)$，其就代表枚举了 $m$ 从 1 到 $n$ 的所有情况，故 $\sum_{i=1}^n f(x) = n$<br>  &emsp;<br>  根据上述两个条件，我们可以找到 $f(x)$ 定义的等价形式，即$f(x)$ 表示满足 $gcd(\frac{k}{x}, \frac{n}{x}) = 1$ 的 $k$ 的个数，把 $\frac{k}{x}$ 看做 $k$，则 $f(x)$ 表示满足 $gcd(k, \frac{n}{x}) = 1$ 的 $k$ 的个数，根据欧拉函数的定义，可以发现 $f(x) = \phi(\frac{n}{x})$。<br>  这时有 $n = \sum_{i=1}^{n}f(i) = \sum_{i=1}^{n}\phi(\frac{n}{i}) =\sum_{d|n}\phi(d))$。</li>
-<li>若 $n = p^k$，且 $p$ 为质数，那么 $\phi(n) = p^k-p^{k-1}$。原因是从 1 到 $n$ 中所有与 $n$ 不互质的数的个数有 $n/p = n^p/p = p^{k-1}$ 个，故与 $n$ 互质的数的个数有 $n-p^{k-1}=p^k-p^{k-1}$ 个。</li>
-<li>由唯一分解定理，设 $n=\prod_{i=1}^n{p_i^{k_i}}$，由于 $\phi(n)$ 为积性函数，故</li>
+                <h1 id="第九讲-BIOS-和-DOS-功能调用"><a href="#第九讲-BIOS-和-DOS-功能调用" class="headerlink" title="第九讲 BIOS 和 DOS 功能调用"></a>第九讲 BIOS 和 DOS 功能调用</h1><h2 id="一-BIOS-和-DOS-简介"><a href="#一-BIOS-和-DOS-简介" class="headerlink" title="一 BIOS 和 DOS 简介"></a>一 BIOS 和 DOS 简介</h2><p>BIOS/DOS 的每一个功能对应着一个中断服务程序，BIOS/DOS 中断属于软件中断，其中 5-1FH 号中断为 BIOS 中断，20H-3FH 号中断为 DOS 中断，剩余 40-FFH 号中断为自由中断。</p>
+<p>IBM PC 机在只读存储器 ROM 中固化的一组软件，形成 PC 机基本输入输出系统，称为 ROM BIOS，其包括以下功能：</p>
+<ul>
+<li>系统自检及初始化</li>
+<li>系统服务</li>
+<li>硬件中断处理</li>
 </ul>
-<script type="math/tex; mode=display">
-\begin{aligned}
-phi(n) =& \prod_{i=1}^n\phi(p_i^{k_i})\\
-=& \prod_{i=1}^n(p^k-p^{k-1})\\
-=& \prod_{i=1}^np_i^k(1-\frac{1}{p_i})\\
-=& \prod_{i=1}^np_i^k\times\prod_{i=1}^n(1-\frac{1}{p_i})\\
-=& n\times\prod_{i=1}^n(1-\frac{1}{p_i})
-\end{aligned}</script><p>我们可以得到欧拉函数的对应公式：</p>
-<script type="math/tex; mode=display">
-\phi(n) = n \times \prod_{i=1}^n(1-\frac{1}{p_i})</script><h2 id="求出单个欧拉函数的值"><a href="#求出单个欧拉函数的值" class="headerlink" title="求出单个欧拉函数的值"></a>求出单个欧拉函数的值</h2><p>我们可以简单的根据上述欧拉公式来求得单个欧拉函数的值：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int euler_phi(int x)&#123;
-    int ans &#x3D; n;
-    for(int i &#x3D; 2; i * i &lt;&#x3D; n; ++i)&#123;
-        if(n % i &#x3D;&#x3D; 0)&#123;
-            ans &#x3D; ans &#x2F; i * (i - 1);
-            whiel(n % i &#x3D;&#x3D; 0) n &#x2F;&#x3D; i;
-        &#125;
-    &#125;
-    &#x2F;&#x2F; 特判 n 为质数的情况
-    if(n &gt; 1) ans &#x3D; ans &#x2F; n * (n-1);
-    return n;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上述方法可以使用 <a target="_blank" rel="noopener" href="https://oi-wiki.org/math/pollard-rho/">Pollard Rho</a>进行优化，然而菜鸡的我现在貌似还用不到。</p>
-<h2 id="求出多个欧拉函数的值"><a href="#求出多个欧拉函数的值" class="headerlink" title="求出多个欧拉函数的值"></a>求出多个欧拉函数的值</h2><p>借助上述的公式，我们可以借用埃氏筛的思想求欧拉函数：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void phi_table(int n, int *phi)&#123;
-    for(int i &#x3D; 2; i &lt;&#x3D; n; ++i) phi[i] &#x3D; 0;
-    phi[1] &#x3D; 1;
-    for(int i &#x3D; 2; i &lt;&#x3D; n; ++i)
-        if(!phi[i])&#123;
-            for(int j &#x3D; i; j &lt;&#x3D; n; j +&#x3D; i)&#123;
-                if(!phi[j]) phi[j] &#x3D; j;
-                phi[j] &#x3D; phi[j] &#x2F; i * (i - 1);
-            &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我们通过欧拉筛来线性求解多个欧拉函数的值。首先需要进行公式推导:</p>
-<p>在欧拉筛的过程中，每一个合数都是被其最小因数筛掉的，我们设该最小因数为 $p_1$，剩余部分为 $n’$，两者满足关系 $p_1*n’=n$。<br>考虑 $n’$ 的两种情况，如果 $n’ \bmod p_1 = 0$，则 $n’$ 包含了 $n$ 的全部质因子。</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\phi(n) =& n \times \prod_{i=1}^n{\frac{p_i-1}{p_i}}\\
-=&p_1\times n' \times \prod_{i=1}^n{\frac{p_i-1}{p_i}}\\
-=&p_1\times \phi(n')
-\end{aligned}</script><p>如果 $n’ \bmod p_1 \neq 0$，则 $p_1$ 和 $n’$ 互质，根据欧拉函数的性质有</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\phi(n) =& \phi(n') \times \phi(p_1)\\
-=& \phi(n') \times (p_1 - 1)
-\end{aligned}</script><p>据此，我们可以在通过欧拉筛得到质数的同时得到欧拉函数</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int euler(int n, int* phi, int* pri)&#123;
-    phi[1] &#x3D; 1;
-    for(int i &#x3D; 2; i &lt;&#x3D; n; ++i)&#123;
-        if(!vis[i])&#123;
-            &#x2F;&#x2F; 对于质数直接进行标记
-            phi[i] &#x3D; i - 1;
-            pri[cnt++] &#x3D; i;
-            vis[i] &#x3D; 1;
-        &#125;
-        for(int j &#x3D; 0; j &lt; cnt; ++j)&#123;
-            if(1ll * pri[j] * i &gt; n) break;
-            vis[i * pri[j]] &#x3D; 1;
-            if(i % pri[j])&#123;
-                &#x2F;&#x2F; 对应第二种情况
-                phi[i * pri[j]] &#x3D; phi[i] * (pri[j] - 1);
-            &#125;else&#123;
-                &#x2F;&#x2F; 对应第一种情况
-                phi[i * pri[j]] &#x3D; phi[i] * pri[j];
-                break;
-            &#125;
-        &#125;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107152643992.png" alt="CPU中断、8259A中断、BIOS中断"></p>
+<p>磁盘操作系统（Disk Operation System）是早起 PC 机重要操作系统之一，主要包括三个模块：</p>
+<ul>
+<li>IBMBIO.COM：DOS 与 ROM BIOS 的接口</li>
+<li>IBMDOS.COM：在 IBMBIO.COM 基础上的文件管理程序和处理程序</li>
+<li>COMMAND.COM：DOS 的命令处理程序</li>
+</ul>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107152558120.png" alt="DOS功能"></p>
+<h2 id="二-键盘-I-O"><a href="#二-键盘-I-O" class="headerlink" title="二 键盘 I/O"></a>二 键盘 I/O</h2><h3 id="1、字符码与扫描码"><a href="#1、字符码与扫描码" class="headerlink" title="1、字符码与扫描码"></a>1、字符码与扫描码</h3><p>键盘可以得到按键的位置，并以位置为扫描码，通过8位数据线送往主机。当 “按下” 或 “松开” 一个键时，若允许中断，会产生一个 9 号中断。该中断会从 8259A 芯片中读取一个扫描码，低7位为扫描码，最高位 0/1 表示按下或断开。随后生成 ASCII 码，或指定操作。转换得到的字符码和扫描码存储于 BIOS 数据区的键盘缓冲区中。随后可以使用 BIOS 16H 号功能或 DOS 21H 号从队列中取出字符码和扫描码进行处理。</p>
+<h3 id="2、BIOS-键盘中断（16H）"><a href="#2、BIOS-键盘中断（16H）" class="headerlink" title="2、BIOS 键盘中断（16H）"></a>2、BIOS 键盘中断（16H）</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>中断号</th>
+<th>寄存器参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16H</td>
+<td>AH=0</td>
+<td>从键盘读字符<br>AL=字符码，AH=扫描码</td>
+</tr>
+<tr>
+<td>16H</td>
+<td>AH=1</td>
+<td>从<u>键盘缓冲区</u>读字符<br>ZF=0，AL=字符码，AH=扫描码<br>ZF=1，表示缓冲区为空</td>
+</tr>
+<tr>
+<td>16H</td>
+<td>AH=2</td>
+<td>AL=键盘状态字节</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>当按下控制键、双态键或特殊请求键时，其扫描码不会加入缓冲区中，而是通过键盘状态字节进行记录</p>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107154331600.png" alt="键盘状态字节" style="zoom: 50%;"></p>
+<h3 id="3、DOS-键盘功能调用（21H）"><a href="#3、DOS-键盘功能调用（21H）" class="headerlink" title="3、DOS 键盘功能调用（21H）"></a>3、DOS 键盘功能调用（21H）</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>AH</th>
+<th>功能</th>
+<th>调用参数</th>
+<th>返回参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>从键盘中输入一个字符并显示在屏幕上</td>
+<td></td>
+<td>AL=字符码</td>
+</tr>
+<tr>
+<td>6</td>
+<td>从键盘缓冲区中读取键盘字符码</td>
+<td>DL=0FFH</td>
+<td>若有字符可取，AL=字符码，ZF=0<br>否则AL=0，ZF=1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>从键盘中输入一个字符并不显示</td>
+<td></td>
+<td>AL=字符码</td>
+</tr>
+<tr>
+<td>8</td>
+<td>从键盘中输入一个字符并不显示，检测 ctrl+break</td>
+<td></td>
+<td>AL=字符码</td>
+</tr>
+<tr>
+<td>A</td>
+<td>读取一串字符到缓冲区</td>
+<td>DS:DX=缓冲区首地址</td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td>读取键盘状态</td>
+<td></td>
+<td>若有键入，AL=0FFH<br>否则AL=0</td>
+</tr>
+<tr>
+<td>C</td>
+<td>清除键盘缓冲区并调用一种键盘功能</td>
+<td>AL=键盘功能号</td>
+<td>依键盘功能号而定</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>注，输入字符串的缓冲区定义方式</p>
+<pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">datas segment
+	smax db 21			; 缓冲区首址，存储最大字符数（包括回车）
+	sact db ?			; 存储实际输入字符数
+	stri db 21 dup (?)	; 存储真正输入的字符
+datas ends<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="三-显示器-I-O"><a href="#三-显示器-I-O" class="headerlink" title="三 显示器 I/O"></a>三 显示器 I/O</h3><h3 id="1、字符属性"><a href="#1、字符属性" class="headerlink" title="1、字符属性"></a>1、字符属性</h3><p>文本显示模式下，屏幕被划分为 25$\times$80，左上角坐标为（0,0），右下角坐标为（24,79）。字符以矩形块在屏幕上显示，主要显示字符集大小有 $8\times8$、$8\times14$、$8\times16$。</p>
+<p>屏幕上每个位置对应于主存中的一段空间，存储器中一个字（高字节属性、低字节字符码）表示屏幕中对应位置的一个字符。单色显示适配器 MDA 显存起始地址为 B000:0000，CGA、VGA、EGA 显存起始地址为 B800:0000。对于 VGA，其 0，1,2,3 页的起始地址分别为 B800:0000,B800:1000,B800:2000,B800:3000。</p>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107171859140.png" alt="字符属性"></p>
+<h3 id="2、BIOS-显示中断调用（10H）"><a href="#2、BIOS-显示中断调用（10H）" class="headerlink" title="2、BIOS 显示中断调用（10H）"></a>2、BIOS 显示中断调用（10H）</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>AH</th>
+<th>功能</th>
+<th>调用参数</th>
+<th>返回参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>设置光标类型</td>
+<td>CH=光标开始行<br>CL=光标结束行</td>
+<td>无</td>
+</tr>
+<tr>
+<td>2</td>
+<td>设置光标位置</td>
+<td>BH=页号，DH=行号，DL=列号</td>
+<td>无</td>
+</tr>
+<tr>
+<td>3</td>
+<td>读出当前光标位置</td>
+<td>BH=页号</td>
+<td>DH=行号<br>DL=列号<br>CX=光标大小</td>
+</tr>
+<tr>
+<td>6</td>
+<td>初始窗口或窗口上滚</td>
+<td>AL=上滚行数<br>CX=左上角行、列号<br>DX=右下角行、列号<br>BH=空白行的属性</td>
+<td>无</td>
+</tr>
+<tr>
+<td>7</td>
+<td>初始窗口或窗口下滚</td>
+<td>AL=下滚行数<br>CX=左上角行、列号<br>DX=右下角行、列号<br>BH=空白行的属性</td>
+<td>无</td>
+</tr>
+<tr>
+<td>8</td>
+<td>读取当前光标位置的字符和属性</td>
+<td>BH=页号</td>
+<td>AH=字符码<br>BL=字符属性</td>
+</tr>
+<tr>
+<td>9</td>
+<td>在当前光标位置写字符和属性</td>
+<td>BH=页号<br>AL=字符码<br>BL=字符属性<br>CX=写入字符重复次数</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3、DOS-显示功能调用"><a href="#3、DOS-显示功能调用" class="headerlink" title="3、DOS 显示功能调用"></a>3、DOS 显示功能调用</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>AH</th>
+<th>功能</th>
+<th>调用参数</th>
+<th>返回参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>显示一个字符（检查Ctrl+Break）</td>
+<td>DL=字符，光标跟随移动</td>
+<td>无</td>
+</tr>
+<tr>
+<td>6</td>
+<td>显示一个字符（不检查CB）</td>
+<td>DL=字符，光标跟随移动</td>
+<td>无</td>
+</tr>
+<tr>
+<td>9</td>
+<td>显示字符串</td>
+<td>DS:DX=串地址，必须以”$“结尾</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="四-串行通信口-I-O"><a href="#四-串行通信口-I-O" class="headerlink" title="四 串行通信口 I/O"></a>四 串行通信口 I/O</h2><p>并行通信：多位数据通过多条数据线同时传送<br>串行通信：多位数据通过同一条数据线传送<br>通信方式：单工、半双工、全双工</p>
+<p>串行通信又分为两种类型：同步通信和异步通信。异步通信每个字符单独传输，而同步通信每个字符连接成数据块（信息帧）进行传输。</p>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107190702509.png" alt="异步通信"></p>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107190833365.png" alt="同步通信"></p>
+<p>波特率：指计算机中每秒传送数据的位数</p>
+<p>使用 DOS 命令可以设置串行通信参数：波特率、校验位、字长和终止位<br>格式：<code>MODE COMm:b, p, d, s</code>。其中 <code>b</code> 指波特率，用波特率的最高两位来表示；<code>p</code> 指校验位，<code>n/o/e</code> 分别表示无校验、奇校验、偶校验；<code>d</code> 指数据的字长；<code>s</code> 指终止位位数，可以为1、1.5或2</p>
+<p><strong>DOS串行通信功能调用</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>AH</th>
+<th>功能</th>
+<th>调用参数</th>
+<th>返回参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>从串行口读取字符</td>
+<td></td>
+<td>AL=输入的数据</td>
+</tr>
+<tr>
+<td>4</td>
+<td>向串行口写入字符</td>
+<td>DL=输出的数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="五-文件-I-O"><a href="#五-文件-I-O" class="headerlink" title="五 文件 I/O"></a>五 文件 I/O</h2><p>文件操作可以使用 BIOS 的INT 13H，或 DOS 的INT 21H，只介绍 DOS 提供的文件操作。</p>
+<h3 id="1、预备知识"><a href="#1、预备知识" class="headerlink" title="1、预备知识"></a>1、预备知识</h3><h4 id="（1）路径名和-ASCIZ-串"><a href="#（1）路径名和-ASCIZ-串" class="headerlink" title="（1）路径名和 ASCIZ 串"></a>（1）路径名和 ASCIZ 串</h4><p>asciz 串是一个关于文件位置的字符串，但其最后一个字节必须为 0，可定义成如下形式</p>
+<pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">filename db &#39;d:\test\a.txt&#39;, 00<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>DOS 得到文件路径名之后，会得到一个文件代号用来唯一的表示文件。其中 0-4 的文件代号已固定，且长期处于打开状态。最多同时打开 5 个文件。</p>
+<h4 id="（2）错误返回码"><a href="#（2）错误返回码" class="headerlink" title="（2）错误返回码"></a>（2）错误返回码</h4><p>对文件进行操作得到的返回参数中，CF=0 表示操作成功，CF=1 表示操作失败。而错误类型码保存在 AX 寄存器中。</p>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107192719130.png" alt="错误类型码"></p>
+<h4 id="（3）文件属性"><a href="#（3）文件属性" class="headerlink" title="（3）文件属性"></a>（3）文件属性</h4><p>每个文件都拥有自己的属性，使用字节表示，存放在 CX 寄存器中</p>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107194158430.png" alt="文件属性字节"></p>
+<p>其中常用的有普通文件（00H），只读文件（01H），隐藏文件（02H），只读隐藏系统文件（07H）</p>
+<h4 id="（4）文件指针"><a href="#（4）文件指针" class="headerlink" title="（4）文件指针"></a>（4）文件指针</h4><p>文件指针用来指示当前在文件中的位置，其实一个 32 位二进制数，建立或打开文件后文件指针初值为 0，且每次文件指针的移动位移量等于读写文件的字节数。</p>
+<h3 id="2、常用文件处理命令"><a href="#2、常用文件处理命令" class="headerlink" title="2、常用文件处理命令"></a>2、常用文件处理命令</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>AH</th>
+<th>功能</th>
+<th>入口参数</th>
+<th>出口参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3CH</td>
+<td>建立文件</td>
+<td>CX=文件属性  DS：DX=文件说明地址</td>
+<td>CF=0，调用成功，AX=文件代号  CF=1，调用失败，AX=错误代码</td>
+</tr>
+<tr>
+<td>3DH</td>
+<td>打开文件</td>
+<td>AL=存取代码  DS：DX=文件说明地址</td>
+<td>CF=0，调用成功，AX=文件代号  CF=1，调用失败，AX=错误代码</td>
+</tr>
+<tr>
+<td>3EH</td>
+<td>关闭文件</td>
+<td>BX=文件代号</td>
+<td>CF=0，调用成功  CF=1，调用失败，AX=错误代码</td>
+</tr>
+<tr>
+<td>3FH</td>
+<td>读文件</td>
+<td>BX=文件代号  CX=读文件的字节数  DS：DX=文件缓冲区地址</td>
+<td>CF=0，调用成功，AX=实际读入的字节数  CF=1，调用失败，AX=错误代码</td>
+</tr>
+<tr>
+<td>40H</td>
+<td>写文件</td>
+<td>BX=文件代号  CX=写文件的字节数  DS：DX=文件缓冲区地址</td>
+<td>CF=0，调用成功，AX=实际写入的字节数  CF=1，调用失败，AX=错误代码</td>
+</tr>
+<tr>
+<td>42H</td>
+<td>移动文件指针</td>
+<td>BX=文件代号  AL=移动方式  CX：DX=移动字节数</td>
+<td>CF=0，调用成功，DX：AX=指针新位置  CF=1，调用失败，AX=错误代码</td>
+</tr>
+<tr>
+<td>43H</td>
+<td>读写文件属性</td>
+<td>AL=0检验/1置文件属性  CX=文件属性  DS：DX=文件说明地址</td>
+<td>CF=0，调用成功，AX=文件属性  CF=1，调用失败，AX=错误代码</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107195124137.png" alt="文件存取代码"></p>
+<p><img src="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/image-20210107195505397.png" alt="其他操作"></p>
+<p>复习完结撒花 \\（^ v ^）/***</p>
+
                 
             </div>
             <hr/>
@@ -803,7 +982,7 @@ phi(n) =& \prod_{i=1}^n\phi(p_i^{k_i})\\
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://FinCreWorld.github.io/2020/12/18/ou-la-han-shu/">http://FinCreWorld.github.io/2020/12/18/ou-la-han-shu/</a>
+                    <a href="http://FinCreWorld.github.io/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/">http://FinCreWorld.github.io/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -841,12 +1020,8 @@ phi(n) =& \prod_{i=1}^n\phi(p_i^{k_i})\\
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E8%AE%BA/">
-                                    <span class="chip bg-color">数论</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/">
-                                    <span class="chip bg-color">欧拉函数</span>
+                                <a href="/tags/%E6%B1%87%E7%BC%96/">
+                                    <span class="chip bg-color">汇编</span>
                                 </a>
                             
                         </div>
@@ -891,7 +1066,7 @@ phi(n) =& \prod_{i=1}^n\phi(p_i^{k_i})\\
         repo: 'FinCreWorld.github.io',
         owner: 'FinCreWorld',
         admin: "FinCreWorld",
-        id: '2020-12-18T20-24-11',
+        id: '2021-01-07T20-01-06',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -917,46 +1092,48 @@ phi(n) =& \prod_{i=1}^n\phi(p_i^{k_i})\\
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/18/ji-chu-shu-xue-wen-ti-xiao-jie/">
+                <a href="/2021/01/07/9-bios-he-dos-gong-neng-diao-yong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="基础数学问题小结">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="9——BIOS和DOS功能调用">
                         
-                        <span class="card-title">基础数学问题小结</span>
+                        <span class="card-title">9——BIOS和DOS功能调用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            主要涉及进制的转换、位运算、计数原理与排列组合和整除理论。以洛谷上的题目为主。
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E5%AD%A6/" class="post-category">
-                                    数学
+                            <a href="/categories/%E6%B1%87%E7%BC%96%E5%A4%8D%E4%B9%A0%E7%AE%80%E7%BA%B2/" class="post-category">
+                                    汇编复习简纲
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E5%AD%A6/">
-                        <span class="chip bg-color">数学</span>
+                    <a href="/tags/%E6%B1%87%E7%BC%96/">
+                        <span class="chip bg-color">汇编</span>
                     </a>
                     
                 </div>
@@ -970,13 +1147,13 @@ phi(n) =& \prod_{i=1}^n\phi(p_i^{k_i})\\
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/18/hello-world/">
+                <a href="/2021/01/06/8-shu-ru-shu-chu-cheng-xu-she-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="8——输入输出程序设计">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">8——输入输出程序设计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -987,15 +1164,27 @@ phi(n) =& \prod_{i=1}^n\phi(p_i^{k_i})\\
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-06
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            蒋晨阳
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B1%87%E7%BC%96%E5%A4%8D%E4%B9%A0%E7%AE%80%E7%BA%B2/" class="post-category">
+                                    汇编复习简纲
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%B1%87%E7%BC%96/">
+                        <span class="chip bg-color">汇编</span>
+                    </a>
+                    
                 </div>
                 
             </div>
