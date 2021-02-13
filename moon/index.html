@@ -5,20 +5,22 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
   <link rel="icon" type="image/png" href="./jscss/moon_icon.png">
   <style type="text/css">
     .rtTop {
-        width: 20px;
-        height: 20px;
-        position: fixed;
-        _position: absolute;
-        right: 20px;
-        top: 30px;
-        padding: 4px;
-      }
-    
+      width: 20px;
+      height: 20px;
+      position: fixed;
+      _position: absolute;
+      right: 20px;
+      top: 30px;
+      padding: 4px;
+    }
+
     .background {
-      height: 100%;
+      /* height: 100%;
       width: 100%;
       background: url('./jscss/background.jpg') no-repeat;
       background-size: cover;
@@ -28,6 +30,17 @@
       min-width: 2000px;
       background-size: cover;
       background-position: center 0;
+      width:100%; */
+      background: url('./jscss/background.jpg') no-repeat;
+      height: 0;
+      /* width: 100%; */
+      padding-bottom: 100%;
+      overflow: scroll;
+      background-position: center center;
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
       /* overflow-y: scroll; */
     }
 
@@ -67,7 +80,8 @@
     }
 
     .container {
-      position: absolute;
+      position: fixed;
+      _position: absolute;
     }
 
     @font-face {
@@ -106,7 +120,8 @@
     $(window).resize(function () {
       console.log(parseInt(($(window).width() - $('.container').outerWidth()) / 2) + 'px');
       $('.container').css({
-        position: 'absolute',
+        // position: fixed,
+        // _position: absolute,
         left: ($(window).width() - $('.container').outerWidth()) / 2,
         top: ($(window).height() - $('.container').outerHeight()) / 2
       });
@@ -159,10 +174,10 @@
 <body class="background">
   <div class="rtTop">
     <a href="https://fincreworld.github.io/">
-      <img src="jscss/home.png" alt="home" height="30" width="30"/>
+      <img src="jscss/home.png" alt="home" height="30" width="30" />
     </a>
   </div>
-  <div class="container" style="position: absolute; left: 482px; top: 181.5px;">
+  <div class="container">
     <div class="words"> Time for us </div>
     <div class="days">
       <span class="days-number">1921</span>
@@ -170,8 +185,6 @@
     </div>
     <div class="seconds">15 hours 24 minutes 30 seconds</div>
   </div>
-
-
 </body>
 
 </html>
